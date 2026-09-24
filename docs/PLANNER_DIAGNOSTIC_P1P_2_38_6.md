@@ -60,9 +60,10 @@ also computes unique action sequences, normalized first-action entropy,
 best-minus-median predicted score, candidate origin fractions, and the chosen
 first-action distribution.
 
-Run one closed-loop episode per fixed seed for each A-D planner variant at each
-horizon and proposal type. Run a
-matched random baseline and one P1P-A oracle-search episode per seed. Keep actor
+Run one closed-loop episode per fixed seed for B-D at every horizon and proposal.
+For A, run one actual environment-search episode per seed at H8 with mixed
+proposals; this is the preregistered oracle-navigation check. Run a
+matched random baseline on the same seeds. Keep actor
 success separate from planner success. Log actual realized return and success;
 do not use training loss or predicted return as a replacement.
 
@@ -71,7 +72,9 @@ The raw artifact at `runs/v2_38_6/planner_diagnostic_raw.json` must have format
 because its B condition required an impossible latent-state oracle. The v2 top level contains `scenario`,
 `seed_ids`, the ordered `horizons`, world/actor `checkpoint_sha256`, `tests`,
 `branch_replay_report_sha256` (the SHA-256 of `vizdoom_branch_replay.json`),
-`random_baseline`, and P1P-A's `oracle_search_episode_results`. Each test contains
+`collector` (real backend, two repeats, candidate count, 525-step episode
+limit, discount), `random_baseline`, and P1P-A's
+`oracle_search_episode_results`. Each test contains
 its declared dynamics/reward/value/risk settings, `episode_results`, and
 `candidate_groups`. Each candidate group contains:
 
@@ -80,6 +83,12 @@ seed, horizon, proposal, state_id
 predicted_scores[], realized_returns[], action_sequences[], origins[]
 chosen_first_action[], planning_latency_ms
 ```
+
+P1P-A also keeps `branch_proofs[]` for every candidate: starting observation
+hash, observed step reward trace, and identical full-trace hashes from two
+independent reset/replays. The gate recomputes A's discounted branch returns
+from these reward traces. A manual return edit therefore cannot pass without
+changing its supporting trace record.
 
 Candidate groups for A-D must match in state ID, action sequences, origin labels,
 and actual branch returns. A mismatch means the paired measurement is invalid.
@@ -92,6 +101,29 @@ The progressive gate recomputes the entire report from the adjacent
 files listed in the real structured-training receipt. A standalone PASS report
 or a claimed checksum without those files and the matching real-host replay
 qualification cannot advance P2.
+
+On the qualified GPU host, collect native branch and episode evidence with:
+
+```bash
+awa-v2-vizdoom-branch-replay --output runs/v2_38_6/vizdoom_branch_replay.json
+awa-v2-vizdoom-planner-collect \
+  --world-checkpoint runs/v2_38_6/structured/checkpoints/stable-000-real-wiring-2k-world.pt \
+  --actor-checkpoint runs/v2_38_6/structured/checkpoints/stable-000-real-wiring-2k-actor.pt \
+  --replay-report runs/v2_38_6/vizdoom_branch_replay.json \
+  --output runs/v2_38_6/planner_diagnostic_raw.json \
+  --execute
+```
+
+The collector requires native ViZDoom and the exact retained P1 checkpoints.
+It reuses two native simulator instances but resets and replays every candidate
+twice. It writes `.partial` after each completed cell; an interruption leaves
+the authoritative raw path absent. A run with 525 steps per episode may take
+substantial time, especially the six H8 oracle-search episodes. Budget for the
+full measurement before starting; do not substitute short episodes while
+claiming full-length navigation success. Omit `--execute` to see the worst-case
+branch-step budget first; the CLI defaults to a 30 million branch-step ceiling.
+The P2 gate refuses a shortened episode horizon even if its measured success is
+high.
 
 Once the actual raw measurements exist, validate them with:
 

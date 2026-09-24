@@ -1,6 +1,6 @@
 # Aether World Agent v2.38.6
 
-**v2.38.6 Diagnostic Gate:** adds a paired raw-vs-clipped `my_way_home` reward test, then a fixed-seed planner real-branch comparison before P2. It also records scenario/reward telemetry in collection and training evidence, marks the first stable checkpoint as baseline registration, and checks the provisioned persistent-volume quota instead of host `df` free space. See `docs/PLANNER_DIAGNOSTIC_P1P_2_38_6.md`.
+**v2.38.6 Diagnostic Gate:** adds a paired raw-vs-clipped `my_way_home` reward test, then a fixed-seed planner real-branch comparison before P2. The `awa-v2-vizdoom-planner-collect` command collects repeatable native branches and closed-loop episodes with frozen P1 checkpoints. It also records scenario/reward telemetry in collection and training evidence, marks the first stable checkpoint as baseline registration, and checks the provisioned persistent-volume quota instead of host `df` free space. See `docs/PLANNER_DIAGNOSTIC_P1P_2_38_6.md`.
 
 The v2.38.5 code and evidence remain frozen. v2.38.6 changes execution/evidence gates only; it does not add an action-time cognitive module.
 

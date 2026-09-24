@@ -61,9 +61,9 @@
       "sha256": "7f17e8b3f8a030342888d535d74c2aa4f14d82f5f0fff1b63e3fde9b522dd2b8"
     },
     {
-      "bytes": 47074,
+      "bytes": 47483,
       "path": "CHANGELOG.md",
-      "sha256": "a25d24ab0f60c01073e5e53dcdd549de0b6cbb963aa42cee213f0011c5f8fc08"
+      "sha256": "b1f96f8cc1c63d85557c24faa6e8e9b7494f84be68ebb70ff7f1f4dc0f061a8d"
     },
     {
       "bytes": 37513,
@@ -156,9 +156,9 @@
       "sha256": "3f42904ec40f0d5e764fc335a91d0fe4adcf134e69b1c7c53d3ff28957c432cb"
     },
     {
-      "bytes": 45788,
+      "bytes": 45922,
       "path": "README.md",
-      "sha256": "cd12f1c9f28ba6d487267073913c6b1ad8d9de327bcbe8f97565e925d8b786ec"
+      "sha256": "879a402a2be17902946d9325ab7643dfb2c509e725e907eea68421cc5498e8d3"
     },
     {
       "bytes": 939,
@@ -181,9 +181,9 @@
       "sha256": "37fd75b0f5134c01b5dbbedcdcd451890e9e4db65feec8cb87aeea18cde55b49"
     },
     {
-      "bytes": 10282,
+      "bytes": 11198,
       "path": "RELEASE_MANIFEST_2_38_6.json",
-      "sha256": "eb7e6a118f788cfe994dbe3c879c7058e1a41a32101b38eb05bb57f865c6f07c"
+      "sha256": "f2ef4f169ba9bae67c225583b5f1be7c83ce3b107178b67f680586e776154058"
     },
     {
       "bytes": 3912,
@@ -591,9 +591,9 @@
       "sha256": "d9bf625ed4b453cfa49019ac63923f442c7fbb6c135e1cd4b23d6bceef62c2f8"
     },
     {
-      "bytes": 5806,
+      "bytes": 7554,
       "path": "docs/PLANNER_DIAGNOSTIC_P1P_2_38_6.md",
-      "sha256": "df5e99349ae03de27a935cc47a97ae824f6b997c47f84062addade1eb557bb9c"
+      "sha256": "d47e5c746c9c32aafcb4b09533055dac5c2a413ac9f28f4f62c8ace3ffc0cf76"
     },
     {
       "bytes": 5635,
@@ -926,9 +926,9 @@
       "sha256": "998f2de508bd77fbfe2dfbd73dc0b03d81ad0d2d90af9a69614edfd707a6fb7e"
     },
     {
-      "bytes": 6911,
+      "bytes": 7001,
       "path": "pyproject.toml",
-      "sha256": "e07b7377f0d927fb38244318fdc158c1464318fd1d6cb46c91efc7c4d37bd3f7"
+      "sha256": "6b834d302e966f8de4bf984cdd44c77884ce54e16d82d57e23e84cebfc02467b"
     },
     {
       "bytes": 23,
@@ -1831,9 +1831,9 @@
       "sha256": "27197844b5269f29de42c8b65753596e9e491fefeeee079dacb709140a6c487a"
     },
     {
-      "bytes": 6368,
+      "bytes": 6366,
       "path": "src/awa/v2/progressive_cli.py",
-      "sha256": "1b26aad7b416c14d6336cb7fa465289e2082aec7afa1e33ed449aa73e81dce37"
+      "sha256": "40506d04c97626f8463d5ef816bee2fca3aa0bca9fce6283dbef08baff9121bc"
     },
     {
       "bytes": 1949,
@@ -1846,9 +1846,9 @@
       "sha256": "dd350b831e91bd91a821e2c599baa525eb351509c8c00b03d9800f3738d61bc7"
     },
     {
-      "bytes": 8153,
+      "bytes": 11664,
       "path": "src/awa/v2/real_execution_cli.py",
-      "sha256": "cba580edfaf692018a6c12c85b076221fb7eb7682bf7d4a26ef6c1614fb9d842"
+      "sha256": "a3967bd192d82b3b601abd42121de10e77412527f5a3d7be0fe2f96f6a57529e"
     },
     {
       "bytes": 403,
@@ -1901,9 +1901,9 @@
       "sha256": "80d657f8227bbf24ea8e70eb03f57d8e703522784f2e6c9a37628d074ce99bed"
     },
     {
+      "bytes": 8049,
       "path": "src/awa/v2/research_os/branch_replay.py",
-      "bytes": 7809,
-      "sha256": "4fee783b4978674d53dc560f50ecf43f1d6cd8667488c853fcd2f7680b76fd56"
+      "sha256": "939a5baaf70e2bb363fb2c816eb3494a9da3bbe0a28a0a50b88a76b81566ad0b"
     },
     {
       "bytes": 35332,
@@ -1931,9 +1931,14 @@
       "sha256": "62fe7d02a6b16e18c39d9f7b3833f54da11fde96ee29cc2a4ba7cc917b90db8a"
     },
     {
-      "bytes": 32570,
+      "bytes": 19358,
+      "path": "src/awa/v2/research_os/planner_collection.py",
+      "sha256": "b27bc24230e70407b53a674ba3543e47067191e67b8cdf3093e5ac54b6a843a4"
+    },
+    {
+      "bytes": 35886,
       "path": "src/awa/v2/research_os/planner_diagnostic.py",
-      "sha256": "8860bf0ae5f62afcbd52846eac57d0e9862ef0dbf4b02373c64d880f70a5358b"
+      "sha256": "2707f59bfafc1964a78f9fe2d350d97c23859252c725c30494f5b7c824166bb6"
     },
     {
       "bytes": 27161,
@@ -1941,9 +1946,9 @@
       "sha256": "f7399d5f86f3f2f05a31190b0c5ef41ff27529b4334b55c1193ec7a0a10f6ab2"
     },
     {
-      "bytes": 20324,
+      "bytes": 20511,
       "path": "src/awa/v2/research_os/progressive_executor.py",
-      "sha256": "91f5ffa8804cc5210eebe81ad372f576931ca190aefe156bc4e18977b19da7b1"
+      "sha256": "e9add2252252c4e525559bd64a143eb52eb3f5406b7c8a41ea55f07cf8176203"
     },
     {
       "bytes": 7790,
@@ -2341,9 +2346,14 @@
       "sha256": "9cdd8876931e74d2f2dc98916f2bf427d1e9a6086791f104388c48b2d68d5b83"
     },
     {
-      "bytes": 11149,
+      "bytes": 3741,
+      "path": "tests/test_v2386_planner_collection.py",
+      "sha256": "47903db42c70071dfd3fd0aa895b0f3654f8ab0a1dc15d9bc1b93cabb2920ea0"
+    },
+    {
+      "bytes": 12899,
       "path": "tests/test_v2386_planner_diagnostic.py",
-      "sha256": "884851912dec5763a706345ae6019c0ca69d4d44f55a0e138bdf6d6823ba86a4"
+      "sha256": "7a0e67a454ee878ec07f5186775bdebb99b20ce62831ec853179b5f0bd67403b"
     },
     {
       "bytes": 6173,

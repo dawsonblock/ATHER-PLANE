@@ -126,6 +126,7 @@ awa-v2-reward-diagnostic-gate = "awa.v2.progressive_cli:reward_diagnostic_gate_m
 awa-v2-planner-diagnostic-gate = "awa.v2.progressive_cli:planner_diagnostic_gate_main"
 awa-v2-vizdoom-reward-diagnostic = "awa.v2.real_execution_cli:vizdoom_reward_diagnostic_main"
 awa-v2-vizdoom-branch-replay = "awa.v2.real_execution_cli:vizdoom_branch_replay_main"
+awa-v2-vizdoom-planner-collect = "awa.v2.real_execution_cli:vizdoom_planner_collect_main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

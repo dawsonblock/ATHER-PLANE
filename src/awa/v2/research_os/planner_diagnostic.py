@@ -153,6 +153,15 @@ def build_planner_diagnostic_report(raw: dict[str, Any], *, min_spearman: float 
     replay_hash = raw.get("branch_replay_report_sha256")
     if not isinstance(replay_hash, str) or len(replay_hash) != 64:
         raise ValueError("raw receipt must bind the real-host reset-replay qualification SHA-256")
+    collector = raw.get("collector") or {}
+    if (collector.get("real_backend") is not True or collector.get("candidate_replays") != 2
+        or not isinstance(collector.get("max_episode_steps"), int)
+        or not 1 <= collector["max_episode_steps"] <= 525
+        or not isinstance(collector.get("candidates"), int)
+        or collector["candidates"] < minimum_candidates
+        or not math.isfinite(float(collector.get("gamma", float("nan"))))
+        or not 0 < float(collector["gamma"]) <= 1):
+        raise ValueError("P1P requires complete native collector configuration and repeated candidate branches")
     tests = raw.get("tests")
     if (not isinstance(tests, list) or len(tests) != len(TESTS)
         or any(not isinstance(x, dict) for x in tests)
@@ -180,6 +189,29 @@ def build_planner_diagnostic_report(raw: dict[str, Any], *, min_spearman: float 
                 raise ValueError(f"{test_id} contains an unexpected or duplicate candidate group: {key}")
             if len(group.get("predicted_scores", [])) < minimum_candidates:
                 raise ValueError(f"{test_id} candidate group has fewer than {minimum_candidates} candidates")
+            if len(group["predicted_scores"]) != collector["candidates"]:
+                raise ValueError("candidate population must match the frozen collector count")
+            if test_id == "P1P-A" and group["predicted_scores"] != group["realized_returns"]:
+                raise ValueError("P1P-A environment oracle must score actual replayed candidate returns")
+            if test_id == "P1P-A":
+                proofs = group.get("branch_proofs")
+                if not isinstance(proofs, list) or len(proofs) != collector["candidates"]:
+                    raise ValueError("P1P-A needs one repeated branch proof per candidate")
+                for i, proof in enumerate(proofs):
+                    if not isinstance(proof, dict):
+                        raise ValueError("P1P-A branch proof must be an object")
+                    hashes = proof.get("trace_sha256_by_replay")
+                    rewards = proof.get("reward_trace")
+                    if (proof.get("state_sha256") != group.get("state_id")
+                        or not isinstance(hashes, list) or len(hashes) != 2
+                        or any(not isinstance(h, str) or len(h) != 64 for h in hashes)
+                        or hashes[0] != hashes[1]
+                        or not isinstance(rewards, list) or not 1 <= len(rewards) <= group["horizon"]
+                        or any(not isinstance(r, (float, int)) or not math.isfinite(r) for r in rewards)
+                        or not math.isclose(sum(float(r) * collector["gamma"] ** t
+                                                for t, r in enumerate(rewards)),
+                                            float(group["realized_returns"][i]), rel_tol=1e-6, abs_tol=1e-6)):
+                        raise ValueError("P1P-A branch proof does not reproduce its real return")
             sequence_hash = hashlib.sha256(json.dumps(group["action_sequences"], separators=(",", ":")).encode()).hexdigest()
             population = (str(group["state_id"]), sequence_hash,
                           tuple(float(value) for value in group["realized_returns"]),
@@ -196,8 +228,10 @@ def build_planner_diagnostic_report(raw: dict[str, Any], *, min_spearman: float 
             raise ValueError(f"{test_id} candidate groups are incomplete; missing examples: {missing}")
         episodes = row.get("episode_results") or []
         episode_keys = {(int(e["seed"]), int(e["horizon"]), str(e["proposal"])) for e in episodes}
-        if len(episodes) != len(expected_groups) or episode_keys != expected_groups:
-            raise ValueError(f"{test_id} requires one realized closed-loop episode per seed/horizon/proposal")
+        required_episode_keys = ({(seed, 8, "mixed") for seed in seeds}
+                                 if test_id == "P1P-A" else expected_groups)
+        if len(episodes) != len(required_episode_keys) or episode_keys != required_episode_keys:
+            raise ValueError(f"{test_id} requires exactly the preregistered closed-loop episodes")
         for e in episodes:
             if not isinstance(e.get("success"), bool) or not math.isfinite(float(e.get("realized_return"))):
                 raise ValueError(f"{test_id} episode results need boolean success and finite realized_return")
@@ -223,6 +257,13 @@ def build_planner_diagnostic_report(raw: dict[str, Any], *, min_spearman: float 
         raise ValueError("oracle-search episodes need boolean success and finite realized return")
     if not all(isinstance(random_map[s].get("success"), bool) and math.isfinite(float(random_map[s].get("realized_return"))) for s in seeds):
         raise ValueError("random-baseline episodes need boolean success and finite realized return")
+    oracle_episodes = {(int(e["seed"]), int(e["horizon"]), str(e["proposal"])): e
+                       for e in episode_rows["P1P-A"]}
+    if any(oracle_map[seed]["success"] != oracle_episodes[(seed, 8, "mixed")]["success"]
+           or float(oracle_map[seed]["realized_return"]) !=
+           float(oracle_episodes[(seed, 8, "mixed")]["realized_return"])
+           for seed in seeds):
+        raise ValueError("oracle-search summary must equal the measured P1P-A H8 mixed episode")
     oracle_navigates = (oracle_success >= min_oracle_success_rate and
                         oracle_success - random_success >= min_oracle_success_gain)
 
@@ -278,7 +319,7 @@ def build_planner_diagnostic_report(raw: dict[str, Any], *, min_spearman: float 
         "actor_seed_search_restriction": {"answered": True, "proposal_effects": proposal_effects},
     }
     diagnosis_complete = all(x["answered"] for x in question_answers.values())
-    p2_gate = (diagnosis_complete and oracle_navigates
+    p2_gate = (diagnosis_complete and oracle_navigates and collector["max_episode_steps"] == 525
                and qualified_horizon >= int(minimum_qualified_horizon_for_p2))
     serial = json.dumps(raw, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()
     return {
@@ -294,7 +335,9 @@ def build_planner_diagnostic_report(raw: dict[str, Any], *, min_spearman: float 
         "raw_evidence_sha256": hashlib.sha256(serial).hexdigest(),
         "candidate_ranking": {test_id: _aggregate_groups(group_summary[test_id]) for test_id in TESTS},
         "question_answers": question_answers,
-        "failure_localization": _localize(question_answers),
+        "failure_localization": (_localize(question_answers) if collector["max_episode_steps"] == 525
+                                 else ["shortened episodes cannot authorize full-length P2 navigation"]
+                                 + _localize(question_answers)),
         "thresholds": {"minimum_candidates": minimum_candidates, "minimum_spearman": min_spearman,
                        "minimum_top_k_agreement": min_top_k_agreement,
                        "minimum_oracle_success_gain": min_oracle_success_gain,

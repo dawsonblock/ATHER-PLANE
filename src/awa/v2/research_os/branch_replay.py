@@ -39,28 +39,34 @@ def _trace(env_factory: Callable[[], Any], seed: int, prefix: list[list[float]],
            actions: list[list[float]], require_real_backend: bool) -> dict[str, Any]:
     env = env_factory()
     try:
-        observation, _ = env.reset(seed=seed)
-        if require_real_backend:
-            from awa.v2.game.vizdoom_qualification import assert_real_backend
-            assert_real_backend(env)
-        for action in prefix:
-            observation, _, terminated, truncated, _ = env.step(action)
-            if terminated or truncated:
-                return {"error": "episode_ended_before_fixed_start"}
-        state_sha = _observation_sha256(observation)
-        transitions = []
-        for action in actions:
-            observation, reward, terminated, truncated, info = env.step(action)
-            transitions.append({
-                "observation_sha256": _observation_sha256(observation),
-                "reward": float(reward), "terminated": bool(terminated),
-                "truncated": bool(truncated), "success": bool(info.get("success", False)),
-            })
-            if terminated or truncated:
-                break
-        return {"state_sha256": state_sha, "transitions": transitions}
+        return trace_on_env(env, seed, prefix, actions, require_real_backend)
     finally:
         env.close()
+
+
+def trace_on_env(env: Any, seed: int, prefix: list[list[float]],
+                 actions: list[list[float]], require_real_backend: bool) -> dict[str, Any]:
+    """Reset the same native game for every branch without save/load artifacts."""
+    if require_real_backend:
+        from awa.v2.game.vizdoom_qualification import assert_real_backend
+        assert_real_backend(env)
+    observation, _ = env.reset(seed=seed)
+    for action in prefix:
+        observation, _, terminated, truncated, _ = env.step(action)
+        if terminated or truncated:
+            return {"error": "episode_ended_before_fixed_start"}
+    state_sha = _observation_sha256(observation)
+    transitions = []
+    for action in actions:
+        observation, reward, terminated, truncated, info = env.step(action)
+        transitions.append({
+            "observation_sha256": _observation_sha256(observation),
+            "reward": float(reward), "terminated": bool(terminated),
+            "truncated": bool(truncated), "success": bool(info.get("success", False)),
+        })
+        if terminated or truncated:
+            break
+    return {"state_sha256": state_sha, "transitions": transitions}
 
 
 def qualify_vizdoom_reset_replay(

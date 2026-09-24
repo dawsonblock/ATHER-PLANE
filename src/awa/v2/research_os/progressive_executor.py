@@ -240,11 +240,13 @@ def build_next_phase_execution_plan(
         raw = evidence / str(execution_meta.get("input", "planner_diagnostic_raw.json"))
         if not raw.is_file():
             manual = (
-                f"Run the fixed-seed P1P real-branch comparison and save candidate-level and episode-level measurements to {raw}. "
+                f"Run awa-v2-vizdoom-planner-collect on the real host using the frozen P1 world/actor checkpoints; save measurements to {raw}. "
                 "Include P1P-A through P1P-D, horizons 1/2/4/8/16/32, actor_seeded and mixed proposals, actual "
                 "ViZDoom realized returns and candidate action sequences/origins. "
                 "First run awa-v2-vizdoom-branch-replay on the real host and verify every fixed branch is "
-                "reproducible from reset. B compares joint learned-dynamics/learned-reward predictions against real returns."
+                "reproducible from reset. Pass --world-checkpoint, --actor-checkpoint, --replay-report, "
+                "and --output to the collector; see docs/PLANNER_DIAGNOSTIC_P1P_2_38_6.md. "
+                "B compares joint learned-dynamics/learned-reward predictions against real returns."
             )
         else:
             commands.append(CommandSpec((

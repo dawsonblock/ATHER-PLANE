@@ -107,6 +107,65 @@ def vizdoom_branch_replay_main() -> None:
         raise SystemExit(2)
 
 
+def vizdoom_planner_collect_main() -> None:
+    """Measure P1P on real ViZDoom, refusing unsupported local IPC hosts."""
+    from awa.v2.game.vizdoom_env import ViZDoomAetherEnv, ViZDoomConfig, ViZDoomScenario
+    from awa.v2.game.vizdoom_runtime import load_vizdoom_runtime
+    from awa.v2.research_os.execution_preflight import _vizdoom_ipc_probe
+    from awa.v2.research_os.planner_collection import PlannerBranchCollector, maximum_branch_steps
+
+    parser = argparse.ArgumentParser(description="Collect real P1P planner branches and closed-loop episodes")
+    parser.add_argument("--world-checkpoint", required=True)
+    parser.add_argument("--actor-checkpoint", required=True)
+    parser.add_argument("--replay-report", required=True)
+    parser.add_argument("--output", required=True)
+    parser.add_argument("--seeds", default="9101,9102,9103,9104,9105,9106")
+    parser.add_argument("--device", default="cuda")
+    parser.add_argument("--max-episode-steps", type=int, default=525)
+    parser.add_argument("--candidates", type=int, default=16)
+    parser.add_argument("--max-branch-steps", type=int, default=30_000_000)
+    parser.add_argument("--execute", action="store_true")
+    args = parser.parse_args()
+    seeds = [int(x) for x in args.seeds.split(",")]
+    if len(set(seeds)) < 6 or args.candidates < 16 or not 1 <= args.max_episode_steps <= 525:
+        parser.error("P1P needs six distinct seeds, at least 16 candidates, and 1–525 episode steps")
+    projected = maximum_branch_steps(len(seeds), args.candidates, args.max_episode_steps)
+    if projected > args.max_branch_steps:
+        raise SystemExit(f"BLOCKED: worst-case branch work {projected} exceeds cap {args.max_branch_steps}")
+    if not args.execute:
+        print(json.dumps({"status": "PLAN_ONLY", "worst_case_branch_steps": projected,
+                          "max_branch_steps": args.max_branch_steps,
+                          "closed_loop_episodes": len(seeds) * (1 + 3 * 6 * 2 + 1),
+                          "note": "Use --execute on a qualified GPU host; full P2 qualification requires 525 episode steps."},
+                         sort_keys=True))
+        return
+    ipc_available, ipc_error = _vizdoom_ipc_probe()
+    if not ipc_available:
+        raise SystemExit(f"BLOCKED: ViZDoom local IPC unavailable: {ipc_error}")
+    if args.device.startswith("cuda"):
+        import torch
+        if not torch.cuda.is_available():
+            raise SystemExit("BLOCKED: CUDA device requested but unavailable")
+    controller = load_vizdoom_runtime(args.world_checkpoint, args.actor_checkpoint,
+                                      device=args.device, use_planner=False)
+    if controller.track != "structured":
+        raise SystemExit("BLOCKED: P1P requires the frozen structured P1 checkpoint")
+
+    def make_env():
+        return ViZDoomAetherEnv(ViZDoomConfig(
+            scenario=ViZDoomScenario.MY_WAY_HOME, track="structured", frame_skip=4))
+
+    collector = PlannerBranchCollector(
+        make_env, controller, seeds=seeds,
+        world_checkpoint=args.world_checkpoint, actor_checkpoint=args.actor_checkpoint,
+        replay_report=args.replay_report, max_episode_steps=args.max_episode_steps,
+        candidates=args.candidates, require_real_backend=True)
+    result = collector.collect(args.output)
+    print(json.dumps({"status": "MEASURED", "format": result["format"],
+                      "seed_ids": result["seed_ids"], "output": str(Path(args.output).resolve())},
+                     sort_keys=True))
+
+
 def real_evidence_bundle_main() -> None:
     from awa.v2.research_os.real_campaign_evidence import (
         EvidenceBundleConfig,

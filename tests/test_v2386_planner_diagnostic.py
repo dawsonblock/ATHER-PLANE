@@ -28,7 +28,7 @@ def _p1p_raw():
                     for index in range(16):
                         action = [float(index % 3 - 1), float((index // 3) % 3 - 1), 1.0, -1.0]
                         actions.append([action[:] for _ in range(horizon)])
-                    groups.append({
+                    group = {
                         "seed": seed, "horizon": horizon, "proposal": proposal,
                         "state_id": f"snapshot-{seed}-{horizon}-{proposal}",
                         "predicted_scores": list(map(float, range(16))),
@@ -37,9 +37,16 @@ def _p1p_raw():
                         "origins": (["actor"] * 16 if proposal == "actor_seeded" else ["actor"] * 8 + ["random"] * 8),
                         "chosen_first_action": [0.0, 1.0, 1.0, -1.0],
                         "planning_latency_ms": 2.5,
-                    })
-                    episode_results.append({"seed": seed, "horizon": horizon, "proposal": proposal,
-                                            "success": True, "realized_return": 1.0})
+                    }
+                    if test_id == "P1P-A":
+                        group["branch_proofs"] = [{
+                            "state_sha256": group["state_id"], "reward_trace": [float(i)],
+                            "trace_sha256_by_replay": ["1" * 64, "1" * 64]}
+                            for i in range(16)]
+                    groups.append(group)
+                    if test_id != "P1P-A" or (horizon == 8 and proposal == "mixed"):
+                        episode_results.append({"seed": seed, "horizon": horizon, "proposal": proposal,
+                                                "success": True, "realized_return": 1.0})
         row = {"id": test_id, **contract, "candidate_groups": groups, "episode_results": episode_results}
         if test_id == "P1P-A":
             row["oracle_search_episode_results"] = [{"seed": seed, "success": True, "realized_return": 1.0}
@@ -49,6 +56,8 @@ def _p1p_raw():
             "seed_ids": seeds, "horizons": horizons,
             "checkpoint_sha256": {"world": "b" * 64, "actor": "c" * 64},
             "branch_replay_report_sha256": "d" * 64,
+            "collector": {"real_backend": True, "candidate_replays": 2,
+                          "max_episode_steps": 525, "gamma": .99, "candidates": 16},
             "tests": tests,
             "random_baseline": [{"seed": seed, "success": False, "realized_return": -1.0} for seed in seeds]}
 
@@ -75,6 +84,38 @@ def test_planner_diagnostic_computes_oracle_ladder_and_paired_effects():
     assert "learned_reward_vs_oracle_reward" not in report["question_answers"]["value_and_risk_effects"]["paired_deltas"]
     assert report["candidate_ranking"]["P1P-B"]["by_horizon"]["4"]["mean_spearman"] == 1.0
     assert report["candidate_ranking"]["P1P-B"]["by_proposal"]["mixed"]["chosen_first_action_distribution"]
+
+
+def test_planner_diagnostic_never_promotes_shortened_navigation_episodes():
+    raw = _p1p_raw()
+    raw["collector"]["max_episode_steps"] = 64
+    report = build_planner_diagnostic_report(raw)
+    assert report["status"] == "BLOCKED"
+    assert "shortened episodes" in report["failure_localization"][0]
+
+
+def test_planner_diagnostic_requires_oracle_episode_same_as_raw_h8_mixed():
+    raw = _p1p_raw()
+    raw["tests"][0]["oracle_search_episode_results"][0]["realized_return"] += 1.
+    try:
+        build_planner_diagnostic_report(raw)
+    except ValueError as exc:
+        assert "oracle-search summary" in str(exc)
+    else:
+        raise AssertionError("oracle summary cannot disagree with the measured episode")
+
+
+def test_planner_diagnostic_rejects_unproven_branch_return():
+    raw = _p1p_raw()
+    group = raw["tests"][0]["candidate_groups"][0]
+    group["predicted_scores"][0] += 10.
+    group["realized_returns"][0] += 10.
+    try:
+        build_planner_diagnostic_report(raw)
+    except ValueError as exc:
+        assert "branch proof" in str(exc)
+    else:
+        raise AssertionError("oracle return must follow the repeated reward trace")
 
 
 def test_planner_diagnostic_rejects_legacy_imagined_reward_oracle():

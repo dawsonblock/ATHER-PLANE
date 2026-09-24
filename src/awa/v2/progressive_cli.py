@@ -67,7 +67,7 @@ def reward_diagnostic_gate_main() -> None:
 def planner_diagnostic_gate_main() -> None:
     from awa.v2.research_os.planner_diagnostic import write_planner_diagnostic_report
 
-    parser = argparse.ArgumentParser(description="Aether v2.38.6 planner oracle-ladder evidence gate")
+    parser = argparse.ArgumentParser(description="Aether v2.38.6 planner real-branch evidence gate")
     parser.add_argument("--input", required=True, help="raw fixed-seed P1P real-branch comparison JSON")
     parser.add_argument("--output", required=True)
     parser.add_argument("--config", default="configs/v2_38_6_planner_diagnostic.yaml")
