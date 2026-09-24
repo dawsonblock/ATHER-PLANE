@@ -72,3 +72,44 @@ def test_collector_does_not_publish_incomplete_raw_receipt(tmp_path, monkeypatch
     assert not target.exists()
     partial = json.loads((tmp_path / "planner_diagnostic_raw.json.partial").read_text())
     assert len(partial["random_baseline"]) == 1
+
+
+def test_collector_resumes_completed_candidate_groups_without_repeating_them(tmp_path, monkeypatch):
+    from awa.v2.research_os import planner_collection
+
+    collector = _collector(tmp_path)
+    fixture = __import__("test_v2386_planner_diagnostic")._p1p_raw()
+    groups = {
+        (row["id"], group["seed"], group["horizon"], group["proposal"]): group
+        for row in fixture["tests"] for group in row["candidate_groups"]
+    }
+    calls = []
+    interrupted = True
+
+    def paired_group(seed, horizon, proposal):
+        nonlocal interrupted
+        key = (seed, horizon, proposal)
+        calls.append(key)
+        if interrupted and len(calls) == 2:
+            interrupted = False
+            raise RuntimeError("interrupted after first paired group")
+        return {arm: groups[arm, *key] for arm in ("P1P-A", "P1P-B", "P1P-C", "P1P-D")}
+
+    monkeypatch.setattr(collector, "_group", paired_group)
+    monkeypatch.setattr(collector, "_random_episode", lambda seed: {
+        "seed": seed, "success": False, "realized_return": -1.0})
+    monkeypatch.setattr(collector, "_episode", lambda seed, horizon, proposal, arm: {
+        "seed": seed, "horizon": horizon, "proposal": proposal,
+        "success": True, "realized_return": 1.0})
+    # This test checks persistence and ordering; the native evidence gate is
+    # tested separately and correctly rejects fake-backend collector receipts.
+    monkeypatch.setattr(planner_collection, "build_planner_diagnostic_report", lambda raw: {})
+    target = tmp_path / "planner_diagnostic_raw.json"
+    with pytest.raises(RuntimeError, match="interrupted"):
+        collector.collect(target)
+    assert not target.exists()
+    result = collector.collect(target)
+    assert len(calls) == 73  # one completed group, one interrupted call, 71 new groups
+    assert calls.count((101, 1, "actor_seeded")) == 1
+    assert all(len(row["candidate_groups"]) == 72 for row in result["tests"])
+    assert target.exists() and not target.with_name(target.name + ".partial").exists()

@@ -234,8 +234,8 @@
     },
     {
       "path": "tests/test_v2386_planner_collection.py",
-      "sha256": "47903db42c70071dfd3fd0aa895b0f3654f8ab0a1dc15d9bc1b93cabb2920ea0",
-      "size": 3741
+      "sha256": "d55a1418dcf5040f989718212a99f47d7d03c112c3ee3907b570932f5f91b878",
+      "size": 5764
     },
     {
       "path": "tests/test_v2386_planner_diagnostic.py",
@@ -264,6 +264,10 @@
     "limitation": "No empirical GPU or ViZDoom P1P result has been collected in this workspace.",
     "scope": "Implement resumable native P1P real-branch collection, paired candidate ranking, terminal-value/risk controls, replay trace proofs, and bounded execution plan; fix completed-group resume lookup."
   },
+  "gatefix6": {
+    "scope": "Add interrupted-collection resume regression covering 72 paired groups, deduplication, and atomic final publication.",
+    "validation": "Direct stdlib synthetic interruption/resume check passed; empirical measurements and full pytest still pending."
+  },
   "release": "2.38.6",
   "scope": "paired P1D reward diagnosis, P1P real-branch joint dynamics/reward gate, persistent-volume quota preflight, scenario/reward telemetry, baseline-registration semantics; no action-time cognitive module",
   "verification": {
@@ -272,7 +276,7 @@
     "pytest": "Full pytest was previously 411 passed, 1 skipped before final proof/resume edits. Latest workspace lacks pytest and Torch; no full suite claimed for gatefix 5.",
     "python_compile": "pass (all source and changed tests)",
     "real_gpu_training": "not run; this validation used CPU-only PyTorch and did not execute on a GPU pod",
-    "synthetic_p1d_p1p_evidence_logic": "P1P synthetic gate PASS; forged oracle return rejected (stdlib check); synthetic results are not empirical.",
+    "synthetic_p1d_p1p_evidence_logic": "P1P synthetic gate PASS; forged oracle return rejected; interruption/resume across 72 paired groups PASS (direct stdlib checks; not empirical).",
     "vizdoom_branch_replay": "BLOCKED on this workspace: native ViZDoom requires a local IPC socket that this host denies; the new preflight reports the failure without entering the native extension",
     "yaml_and_toml_parse": "pass"
   }

@@ -181,9 +181,9 @@
       "sha256": "37fd75b0f5134c01b5dbbedcdcd451890e9e4db65feec8cb87aeea18cde55b49"
     },
     {
-      "bytes": 11198,
+      "bytes": 11520,
       "path": "RELEASE_MANIFEST_2_38_6.json",
-      "sha256": "f2ef4f169ba9bae67c225583b5f1be7c83ce3b107178b67f680586e776154058"
+      "sha256": "7ebe4dd5194682927e3945069b2b388ccd05b153bc3d1370e85d3bfe6b18022f"
     },
     {
       "bytes": 3912,
@@ -2346,9 +2346,9 @@
       "sha256": "9cdd8876931e74d2f2dc98916f2bf427d1e9a6086791f104388c48b2d68d5b83"
     },
     {
-      "bytes": 3741,
+      "bytes": 5764,
       "path": "tests/test_v2386_planner_collection.py",
-      "sha256": "47903db42c70071dfd3fd0aa895b0f3654f8ab0a1dc15d9bc1b93cabb2920ea0"
+      "sha256": "d55a1418dcf5040f989718212a99f47d7d03c112c3ee3907b570932f5f91b878"
     },
     {
       "bytes": 12899,
