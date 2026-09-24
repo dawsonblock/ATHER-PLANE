@@ -1,0 +1,67 @@
+release: "2.32.0"
+purpose: grounded_dream_rsi_meta_learning_over_training_allocation
+
+architecture:
+  agent_runtime_changed: false
+  learning_system:
+    shared_online_replay_decision_interface: awa-training-allocation-v1
+    arbitrary_policy_code_rewriting: false
+    decision_fields:
+      - factor_signature
+      - collector
+      - transition_budget
+      - planner_budget
+      - parallel_worlds
+      - stop
+  research_os:
+    grounded_history_only: true
+    replay_can_promote_without_online_evidence: false
+    incumbent_always_in_candidate_set: true
+    fixed_agent_evaluator_interface_contract: true
+    unsupported_replay_decisions_require_online_probe: true
+
+meta_policy:
+  initial:
+    deficit_weight: 1.0
+    uncertainty_weight: 0.25
+    transfer_weight: 0.35
+    novelty_weight: 0.20
+    cost_weight: 0.10
+    support_weight: 0.05
+    staleness_weight: 0.02
+    stop_threshold: -0.05
+    max_parallel: 4
+  mutation:
+    step: 0.10
+    arbitrary_source_mutation: false
+
+replay_objective:
+  quality_weight: 1.0
+  transfer_weight: 0.35
+  adaptation_weight: 0.20
+  failure_weight: 0.50
+  transition_cost_weight: 0.0
+  compute_cost_weight: 0.10
+  latency_weight: 0.0
+  parallelism_bonus_weight: 0.05
+
+support_gate:
+  min_worlds: 2
+  min_selected_nodes: 2
+  min_replay_coverage: 0.10
+  min_exact_decision_support: 1
+  unsupported_action: online_probe_required
+
+online_qualification:
+  minimum_seeds: 5
+  minimum_mean_paired_gain: 0.0
+  max_seed_regression: 0.05
+  evidence_classes_allowed: [observed, validated]
+  contract_mismatch: fail
+
+empirical_boundary:
+  dream_rsi_embodied_rl_benefit_demonstrated: false
+  paper_domain_results_are_not_embodied_rl_evidence: true
+  full_25k_100k_five_seed_ablation_executed: false
+  real_vizdoom_structured_executed: false
+  real_vjepa_downstream_executed: false

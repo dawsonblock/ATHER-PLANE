@@ -1,0 +1,31 @@
+{
+  "format": "awa-v2.32-dream-rsi-integration-v1",
+  "release": "2.32.0",
+  "scope": "meta-learning over training allocation; action-time agent unchanged",
+  "adopted": [
+    "online exploration -> historical replay -> policy improvement -> online redeployment loop",
+    "completed grounded histories as replay simulators",
+    "same decision interface online and in replay",
+    "quality/cost/parallelism-aware replay objective",
+    "incumbent included in candidate comparison",
+    "fixed underlying agent/evaluator/interface contract"
+  ],
+  "aether_hardening": [
+    "only observed/validated outcomes enter grounded replay",
+    "historical support gate",
+    "weak support requires online probe",
+    "replay can never directly promote",
+    "paired multi-seed grounded online qualification",
+    "declarative bounded mutation; no arbitrary code rewriting"
+  ],
+  "not_claimed": [
+    "DREAM-RSI improves embodied RL",
+    "recursive self-improvement is empirically demonstrated in Aether",
+    "historical replay predicts unseen factor combinations",
+    "paper-domain results transfer automatically to ViZDoom"
+  ],
+  "source": {
+    "title": "Dream-RSI: Recursive Self-Improvement through Evolving Worlds",
+    "arxiv": "2609.14858v1"
+  }
+}

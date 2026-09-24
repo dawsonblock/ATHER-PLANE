@@ -1,0 +1,37 @@
+release: "2.37.0"
+purpose: progressive_capability_curriculum_and_fail_closed_scaling_gate
+
+gating:
+  minimum_final_success_gain: 0.03
+  minimum_relative_curve_gain: 0.10
+  minimum_efficiency_reduction: 0.20
+  protected_regression_margin: 0.01
+
+# Ordered. A later phase cannot become PASS while an earlier phase is missing.
+phases:
+  - {id: P0, name: cuda_vizdoom_preflight, kind: preflight}
+  - {id: P1, name: structured_bringup_2k, kind: real_training, track: structured, min_transitions: 2000}
+  - {id: P2, name: structured_learning_10k, kind: real_training, track: structured, min_transitions: 10000}
+  - {id: P3, name: structured_control_25k, kind: real_training, track: structured, min_transitions: 25000}
+  - {id: P4, name: temporal_memory_value, kind: ablation, mechanism: temporal_memory}
+  - {id: P5, name: world_model_reliable_horizon, kind: report, filename: world_model_horizon_gate.json}
+  - {id: P6, name: grounded_planner_benefit, kind: ablation, mechanism: fixed_planner}
+  - {id: P7, name: adaptive_compute_value, kind: ablation, mechanism: adaptive_compute}
+  - {id: P8, name: real_vjepa_pixel_5k, kind: real_training, track: pixel, min_transitions: 5000, require_vjepa: true}
+  - {id: P9, name: planner_physical_schedule, kind: planner_hardware}
+  - {id: P10, name: compositional_generalization, kind: report, filename: compositional_report.json}
+  - {id: P11, name: dream_rsi_five_seed, kind: dream_campaign}
+  - {id: P12, name: unseen_map_transfer, kind: report, filename: transfer_report.json}
+  - {id: P13, name: matched_external_baseline, kind: report, filename: external_baseline_comparison.json}
+  - {id: P14, name: scale_250k_plus, kind: manual_scale_gate}
+
+world_model_horizon_gate:
+  max_normalized_prediction_error: 0.20
+  max_calibration_error: 0.10
+  minimum_samples: 256
+  minimum_qualified_horizon: 4
+
+claim_boundary:
+  - The protocol advances only from actual evidence artifacts and never fabricates missing benchmark results.
+  - World-model reliability is necessary but not sufficient for planner value; grounded planner benefit is a separate gate.
+  - Pixel/V-JEPA, compositional transfer, DREAM-RSI, and external baseline evidence must be earned before 250K+ scaling.

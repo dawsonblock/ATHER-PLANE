@@ -1,0 +1,32 @@
+version: 2.4
+seed: 7
+representation:
+  provider: identity_or_exact_frozen_backbone
+  checkpoint_fingerprint_required: true
+world_checkpoint:
+  strict_format: true
+  freeze_for_planner_benchmark: true
+actor_checkpoint:
+  algorithm: td3_bc
+  same_latent_space_as_world: true
+benchmark:
+  seeds: [0, 1, 2, 3, 4]
+  paired_seed_comparison: true
+  bootstrap_confidence_interval: 0.95
+  controller_set: [actor, cem, mppi, policy_mppi, policy_icem, gradient]
+  planner_horizon: 8
+  world_model_call_budget: 128
+  metrics:
+    - mean_return
+    - success_rate
+    - paired_return_gain_vs_actor
+    - paired_win_rate_vs_actor
+    - planning_latency_ms_per_decision
+    - world_model_calls_per_decision
+    - return_per_1k_world_calls
+qualification:
+  use_saved_world_checkpoint: true
+  use_saved_actor_checkpoint: true
+  dmcontrol_optional: true
+  metaworld_optional: true
+  no_claim_without_multiseed_closed_loop_results: true

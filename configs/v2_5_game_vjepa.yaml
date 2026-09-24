@@ -1,0 +1,30 @@
+version: 2.5
+seed: 7
+game_perception:
+  provider: vjepa2-hf
+  model_name_or_path: facebook/vjepa2-vitl-fpc64-256
+  local_files_only: true
+  frames_per_clip: 64
+  frame_stride: 1
+  cache_frozen_features: true
+  telemetry_fusion: concatenate_before_aether_projection
+  video_layout: TCHW
+representation:
+  projection_latent_dim: 128
+  freeze_pretrained_backbone: true
+world_model:
+  use_cached_game_features: true
+  multimodal_components: 5
+  horizons: [1, 5, 10, 20]
+decision:
+  actor_first: true
+  planners: [cem, mppi, policy_mppi, policy_icem, gradient]
+  value_of_computation: true
+runtime:
+  streaming_clip_buffer: true
+  exact_world_checkpoint_projector: true
+  fail_closed_action_guard: true
+qualification:
+  compare_structured_state_vs_video_plus_telemetry: true
+  equal_world_model_call_budgets: true
+  multi_seed_required: true

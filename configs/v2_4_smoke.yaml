@@ -1,0 +1,8 @@
+version: 2.4
+seed: 7
+benchmark:
+  environment: continuous_point
+  seeds: [0, 1, 2]
+  controllers: [actor, cem, mppi, policy_mppi]
+  world_model_call_budget: 64
+  planner_horizon: 4

@@ -1,0 +1,77 @@
+version: 2.13.0
+experiment: durable_training_campaign
+seed: 213
+runtime:
+  device: auto
+  # Leave unset to use the resource profile's safe default (FP32 CPU/MPS, FP16/BF16 CUDA).
+  # precision: bf16
+  strict_resources: false
+replay:
+  # Auto profile chooses a suitable default if omitted. 100k is reasonable for 24 GB GPUs.
+  shard_size: 100000
+promotion:
+  # Stage candidates must remain finite and may not regress badly versus the last stable checkpoint.
+  max_actor_success_regression: 0.15
+  max_planner_success_regression: 0.10
+  max_risk_brier: 0.50
+stop_on_failed_promotion: true
+compute:
+  # Set after measuring your own hardware to turn the plan into a wall-clock estimate.
+  # measured_samples_per_second: 1500
+stages:
+  - name: bootstrap-100k
+    target_transitions: 100000
+    curriculum_stages: [1, 2, 3]
+    difficulty: 0.25
+    sequence_length: 8
+    hidden: 96
+    world_epochs: 2
+    actor_epochs: 4
+    calibration_epochs: 2
+    batch_size: 64
+    episodes_per_task: 2
+    tasks_per_stage: 3
+    horizon: 100
+    teacher_fraction: 0.80
+  - name: memory-control-250k
+    target_transitions: 250000
+    curriculum_stages: [1, 2, 3, 4, 5, 6]
+    difficulty: 0.35
+    sequence_length: 12
+    hidden: 96
+    world_epochs: 3
+    actor_epochs: 5
+    calibration_epochs: 2
+    batch_size: 96
+    episodes_per_task: 2
+    tasks_per_stage: 3
+    horizon: 120
+    teacher_fraction: 0.65
+  - name: tactics-500k
+    target_transitions: 500000
+    curriculum_stages: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    difficulty: 0.48
+    sequence_length: 16
+    hidden: 128
+    world_epochs: 3
+    actor_epochs: 6
+    calibration_epochs: 3
+    batch_size: 128
+    episodes_per_task: 2
+    tasks_per_stage: 4
+    horizon: 140
+    teacher_fraction: 0.50
+  - name: transfer-1m
+    target_transitions: 1000000
+    curriculum_stages: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    difficulty: 0.60
+    sequence_length: 16
+    hidden: 128
+    world_epochs: 4
+    actor_epochs: 8
+    calibration_epochs: 3
+    batch_size: 128
+    episodes_per_task: 2
+    tasks_per_stage: 4
+    horizon: 160
+    teacher_fraction: 0.35

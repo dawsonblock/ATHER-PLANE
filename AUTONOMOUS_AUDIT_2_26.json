@@ -1,0 +1,16 @@
+{
+  "format": "awa-v2.26-autonomous-audit-v1",
+  "version": "2.26.0",
+  "changes": {
+    "collection_modes": ["teacher", "random", "coverage", "aether_actor", "aether_planner"],
+    "canonical_collection_mode": "aether_planner",
+    "canonical_bootstrap_mode": "coverage",
+    "world_optimizer_resume": true,
+    "grad_scaler_resume_when_enabled": true,
+    "global_world_update_resume": true,
+    "ablation_system_config_hash_binding": true
+  },
+  "canonical_ablation_systems": 7,
+  "release_tests_passed": 293,
+  "full_empirical_campaign_executed": false
+}

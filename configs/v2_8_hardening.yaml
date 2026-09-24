@@ -1,0 +1,23 @@
+version: 2.8.0
+release: hardening
+reusable_learning:
+  replay_capacity: 100000
+  novelty_capacity: 4096
+  surprise_threshold: 0.25
+  surprise_repeat_window: 4
+  skill_min_examples: 5
+  engram_capacity: 100000
+  her_future_goals: 4
+  seed: 28
+safety:
+  risk_limit: 0.8
+  require_safe_recovery: true
+async_rollout:
+  reject_future_policy_versions: true
+  max_lag: 4
+  half_life: 2.0
+replay_export:
+  include_hindsight: false
+  order_by_episode: true
+qualification:
+  run_hardening_smoke: true

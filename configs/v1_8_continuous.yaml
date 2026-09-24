@@ -1,0 +1,99 @@
+seed: 18
+device: auto
+
+env:
+  kind: continuous_point
+  action_type: continuous
+  horizon: 60
+  obs_dim: 4
+  action_dim: 2
+  action_low: [-1.0, -1.0]
+  action_high: [1.0, 1.0]
+  step_scale: 0.15
+  success_radius: 0.10
+
+model:
+  obs_dim: 4
+  latent_dim: 64
+  deterministic_dim: 128
+  stochastic_dim: 32
+  dynamics: gru
+  action_dim: 2
+  hidden_dim: 160
+  slow_enabled: true
+  slow_dim: 64
+  slow_stride: 4
+  uncertainty_heads: 5
+  experts_enabled: false
+  actor_log_std_min: -5.0
+  actor_log_std_max: 1.0
+
+planner:
+  enabled: true
+  horizon: 12
+  candidates: 256
+  elites: 32
+  iterations: 4
+  min_std: 0.03
+  momentum: 0.10
+  uncertainty_limit: 1.5
+  adaptive: true
+  uncertainty_low: 0.25
+  uncertainty_medium: 0.60
+  uncertainty_high: 0.85
+  min_horizon: 2
+  min_candidates: 32
+  calibrated_uncertainty: true
+  learned_gate: true
+  learned_gate_hidden: 48
+  learned_gate_threshold: 0.5
+
+training:
+  steps: 3000
+  batch_size: 24
+  sequence_length: 20
+  burn_in: 4
+  overshoot_horizon: 5
+  overshoot_coef: 0.15
+  replay_capacity: 180000
+  prioritized_replay: true
+  priority_alpha: 0.6
+  priority_beta: 0.4
+  lr: 0.0003
+  actor_lr: 0.0002
+  value_lr: 0.00025
+  grad_clip: 10.0
+  free_nats: 0.1
+  imagination_horizon: 12
+  discount: 0.99
+  lambda: 0.95
+  entropy_coef: 0.001
+  advantage_normalize: true
+  target_tau: 0.01
+  epsilon_start: 0.25
+  epsilon_final: 0.02
+  checkpoint_every: 500
+  checkpoint_replay: true
+  log_every: 25
+  auto_calibrate_uncertainty: true
+  calibration_interval: 25
+  calibration_quantile: 0.75
+  calibration_lr: 0.03
+  continuous_q:
+    enabled: true
+    critic_type: quantile_twin_q
+    quantiles: 32
+    n_step: 3
+    hidden_dim: 192
+    lr: 0.00025
+    target_tau: 0.01
+    actor_coef: 0.25
+    entropy_alpha: 0.01
+    scale_momentum: 0.01
+
+acceptance:
+  success_improvement_pct: 5
+  sample_efficiency_pct: 15
+  robustness_pct: 20
+  compute_reduction_pct: 20
+  max_critical_regression_pct: 3

@@ -1,0 +1,19 @@
+version: 2
+seed: 7
+representation:
+  latent_dim: 32
+world:
+  local_dim: 32
+  global_dim: 32
+  stochastic_components: 5
+  horizon_uncertainty: [1, 5, 10, 20, 50]
+decision:
+  default: actor
+  planners: [mppi, icem, gradient]
+  value_of_computation: true
+  risk_weight: 1.0
+memory:
+  long_context_events: 512
+  episodic_capacity: 10000
+biology:
+  critical_path: false

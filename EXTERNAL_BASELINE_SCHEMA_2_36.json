@@ -1,0 +1,17 @@
+{
+  "format": "awa-v2.36-external-baseline-records-v1",
+  "records": [
+    {
+      "system": "example-system",
+      "seed": 1701,
+      "milestone": 25000,
+      "track": "structured",
+      "transitions": 25000,
+      "success_rate": 0.0,
+      "mean_return": 0.0,
+      "accelerator_seconds": 0.0,
+      "artifact_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  ],
+  "note": "Template only. Zero-valued example rows are not empirical evidence."
+}

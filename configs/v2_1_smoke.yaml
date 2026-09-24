@@ -1,0 +1,14 @@
+version: 2.1
+seed: 7
+representation:
+  provider: module
+  frozen: true
+  cache_frozen_features: true
+  latent_dim: 32
+world:
+  stochastic_components: 5
+  horizon_uncertainty: [1, 5, 10]
+decision:
+  default: actor
+  planners: [mppi, icem]
+  compute_budgets: [0, 8, 32]

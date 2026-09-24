@@ -1,0 +1,1446 @@
+{
+  "all_tasks_valid": true,
+  "exact_signature_leakage": false,
+  "format": "awa-v2.30-compositional-benchmark-v1",
+  "heldout_factor_signatures": [
+    [
+      "key_door",
+      "dynamics_shift"
+    ],
+    [
+      "memory",
+      "combat"
+    ],
+    [
+      "scarcity",
+      "hazards"
+    ]
+  ],
+  "heldout_tasks": [
+    {
+      "concepts": [
+        "memory",
+        "combat"
+      ],
+      "difficulty": 0.7,
+      "environment": {
+        "enemy_aggression": 0.705,
+        "enemy_density": 0.535,
+        "friction_scale": 1.0,
+        "gravity_scale": 1.0,
+        "hazard_density": 0.0,
+        "hide_goal_after_steps": 11,
+        "layout_seed": 2107191992,
+        "lighting_seed": 1426568961,
+        "movement_scale": 1.0,
+        "object_density": 0.45599999999999996,
+        "obstacle_density": 0.394,
+        "resource_scarcity": 0.0,
+        "texture_seed": 1311226414
+      },
+      "goal": {
+        "factor_signature": [
+          "memory",
+          "combat"
+        ],
+        "objectives": [
+          "remember_goal",
+          "defeat_enemy",
+          "reach_goal"
+        ],
+        "success_threshold": 0.9,
+        "target_count": 1
+      },
+      "novelty_class": "heldout_composition",
+      "seed": 828525638,
+      "stage": 12,
+      "task_id": "cmp-heldout_composition-01370fdc8a3e1e",
+      "verifier_name": "engine_verifier"
+    },
+    {
+      "concepts": [
+        "key_door",
+        "dynamics_shift"
+      ],
+      "difficulty": 0.7,
+      "environment": {
+        "enemy_aggression": 0.0,
+        "enemy_density": 0.0,
+        "friction_scale": 1.2556338924969797,
+        "gravity_scale": 0.8229925322646778,
+        "hazard_density": 0.0,
+        "hide_goal_after_steps": null,
+        "layout_seed": 449731602,
+        "lighting_seed": 895249181,
+        "movement_scale": 0.8376895554860219,
+        "object_density": 0.45599999999999996,
+        "obstacle_density": 0.394,
+        "resource_scarcity": 0.0,
+        "texture_seed": 795381503
+      },
+      "goal": {
+        "factor_signature": [
+          "key_door",
+          "dynamics_shift"
+        ],
+        "objectives": [
+          "collect_key",
+          "open_door",
+          "reach_goal"
+        ],
+        "success_threshold": 0.9,
+        "target_count": 1
+      },
+      "novelty_class": "heldout_composition",
+      "seed": 1227364335,
+      "stage": 12,
+      "task_id": "cmp-heldout_composition-01fe4dcb63b148",
+      "verifier_name": "engine_verifier"
+    },
+    {
+      "concepts": [
+        "scarcity",
+        "hazards"
+      ],
+      "difficulty": 0.7,
+      "environment": {
+        "enemy_aggression": 0.705,
+        "enemy_density": 0.535,
+        "friction_scale": 1.0,
+        "gravity_scale": 1.0,
+        "hazard_density": 0.585,
+        "hide_goal_after_steps": null,
+        "layout_seed": 202929691,
+        "lighting_seed": 1052686597,
+        "movement_scale": 1.0,
+        "object_density": 0.45599999999999996,
+        "obstacle_density": 0.394,
+        "resource_scarcity": 0.72,
+        "texture_seed": 321129157
+      },
+      "goal": {
+        "factor_signature": [
+          "scarcity",
+          "hazards"
+        ],
+        "objectives": [
+          "collect_resource",
+          "defeat_enemy",
+          "avoid_enemy",
+          "reach_goal"
+        ],
+        "success_threshold": 0.9,
+        "target_count": 1
+      },
+      "novelty_class": "heldout_composition",
+      "seed": 1981064328,
+      "stage": 12,
+      "task_id": "cmp-heldout_composition-4383ec2dad730e",
+      "verifier_name": "engine_verifier"
+    }
+  ],
+  "receipts": [
+    {
+      "constructible": true,
+      "factor_signature": [
+        "navigation"
+      ],
+      "finite_goal": true,
+      "finite_observation": true,
+      "reachable_targets": true,
+      "split": "train",
+      "task_id": "cmp-train-1cc6b8198994f4",
+      "task_sha256": "a64e5afcb20bd941dd1a356c3361e138b42b60bb04989a9a257ddde1a0e7000a",
+      "valid": true
+    },
+    {
+      "constructible": true,
+      "factor_signature": [
+        "navigation"
+      ],
+      "finite_goal": true,
+      "finite_observation": true,
+      "reachable_targets": true,
+      "split": "train",
+      "task_id": "cmp-train-d5780f55dbaf43",
+      "task_sha256": "7bdb7e2c2e5e7ef68a78d79cd79d96af984489d4e732472df401ebcbc765c2db",
+      "valid": true
+    },
+    {
+      "constructible": true,
+      "factor_signature": [
+        "memory"
+      ],
+      "finite_goal": true,
+      "finite_observation": true,
+      "reachable_targets": true,
+      "split": "train",
+      "task_id": "cmp-train-24817b9b6842fb",
+      "task_sha256": "d7f1ba5c187b7711da7bcd60ae2773abe08f4510b7218abfd56b0b3a18760a75",
+      "valid": true
+    },
+    {
+      "constructible": true,
+      "factor_signature": [
+        "memory"
+      ],
+      "finite_goal": true,
+      "finite_observation": true,
+      "reachable_targets": true,
+      "split": "train",
+      "task_id": "cmp-train-a0b448a3cdd53d",
+      "task_sha256": "2389c8caf589564283c5f1fe1442df779b768fc729063849cac475fcd785a0d0",
+      "valid": true
+    },
+    {
+      "constructible": true,
+      "factor_signature": [
+        "combat"
+      ],
+      "finite_goal": true,
+      "finite_observation": true,
+      "reachable_targets": true,
+      "split": "train",
+      "task_id": "cmp-train-6f633c42875994",
+      "task_sha256": "276d5b6b3c0c8859d6f1cf06f883ad648063717eea47fec98c2cf18bd430752b",
+      "valid": true
+    },
+    {
+      "constructible": true,
+      "factor_signature": [
+        "combat"
+      ],
+      "finite_goal": true,
+      "finite_observation": true,
+      "reachable_targets": true,
+      "split": "train",
+      "task_id": "cmp-train-b7ec516136caf7",
+      "task_sha256": "6bbf133f313aae7b251dcd8aab5a6d747d556158b5868fad86bc7fa4b969f6c8",
+      "valid": true
+    },
+    {
+      "constructible": true,
+      "factor_signature": [
+        "scarcity"
+      ],
+      "finite_goal": true,
+      "finite_observation": true,
+      "reachable_targets": true,
+      "split": "train",
+      "task_id": "cmp-train-578da6c5d7b632",
+      "task_sha256": "e0ab08856ca1093e73980862ea63a85758d48dc0644cf9e46107ee9dcf4e179d",
+      "valid": true
+    },
+    {
+      "constructible": true,
+      "factor_signature": [
+        "scarcity"
+      ],
+      "finite_goal": true,
+      "finite_observation": true,
+      "reachable_targets": true,
+      "split": "train",
+      "task_id": "cmp-train-245f910d837aa6",
+      "task_sha256": "d52dfdf76472a0a4a9dcb1cdbf723d75c8867d87b8c1795265ba48f34ee247ae",
+      "valid": true
+    },
+    {
+      "constructible": true,
+      "factor_signature": [
+        "key_door"
+      ],
+      "finite_goal": true,
+      "finite_observation": true,
+      "reachable_targets": true,
+      "split": "train",
+      "task_id": "cmp-train-2691e547945219",
+      "task_sha256": "43a0f5933e4c7f688c7c67c31bd1f25480d6d68fd5bf08f1583767bbf78b45d0",
+      "valid": true
+    },
+    {
+      "constructible": true,
+      "factor_signature": [
+        "key_door"
+      ],
+      "finite_goal": true,
+      "finite_observation": true,
+      "reachable_targets": true,
+      "split": "train",
+      "task_id": "cmp-train-21ff67d76408b1",
+      "task_sha256": "f8626ac2679b66e9b6cc45f374ce776808a8211f8d125f93aefc4637c3d9421c",
+      "valid": true
+    },
+    {
+      "constructible": true,
+      "factor_signature": [
+        "hazards"
+      ],
+      "finite_goal": true,
+      "finite_observation": true,
+      "reachable_targets": true,
+      "split": "train",
+      "task_id": "cmp-train-c227c4432a7d61",
+      "task_sha256": "5cfb72577d370622baf763086ac05add3f7d474a5d8c0f8b98c3b33d7964bae2",
+      "valid": true
+    },
+    {
+      "constructible": true,
+      "factor_signature": [
+        "hazards"
+      ],
+      "finite_goal": true,
+      "finite_observation": true,
+      "reachable_targets": true,
+      "split": "train",
+      "task_id": "cmp-train-fc2f032d6aa9b7",
+      "task_sha256": "d071a5de55db6600437ecf66a2de15ad492eadf837286dcfa082f380b9e62818",
+      "valid": true
+    },
+    {
+      "constructible": true,
+      "factor_signature": [
+        "dynamics_shift"
+      ],
+      "finite_goal": true,
+      "finite_observation": true,
+      "reachable_targets": true,
+      "split": "train",
+      "task_id": "cmp-train-95433d9f2ac8aa",
+      "task_sha256": "191a250760d67a657a2a7433f9b7212b0a542836b7b69e7c65fdda02af29a219",
+      "valid": true
+    },
+    {
+      "constructible": true,
+      "factor_signature": [
+        "dynamics_shift"
+      ],
+      "finite_goal": true,
+      "finite_observation": true,
+      "reachable_targets": true,
+      "split": "train",
+      "task_id": "cmp-train-7c347da3371d0c",
+      "task_sha256": "9d4b1333b06131ca8f754aaee3ac2ed29bcc38208bf629df9f3c190e95646bdc",
+      "valid": true
+    },
+    {
+      "constructible": true,
+      "factor_signature": [
+        "navigation",
+        "memory"
+      ],
+      "finite_goal": true,
+      "finite_observation": true,
+      "reachable_targets": true,
+      "split": "train",
+      "task_id": "cmp-train-2a6d42be01bfe2",
+      "task_sha256": "c6df8155d5a989620f272bfb98f0bb5e00b6ead8c27d9b62472bb200c12b06f3",
+      "valid": true
+    },
+    {
+      "constructible": true,
+      "factor_signature": [
+        "navigation",
+        "memory"
+      ],
+      "finite_goal": true,
+      "finite_observation": true,
+      "reachable_targets": true,
+      "split": "train",
+      "task_id": "cmp-train-0b68c064cc248a",
+      "task_sha256": "87d581fe119ce4acbb11865bc569269c9399195824f772fca8c654ad7fcc111b",
+      "valid": true
+    },
+    {
+      "constructible": true,
+      "factor_signature": [
+        "combat",
+        "scarcity"
+      ],
+      "finite_goal": true,
+      "finite_observation": true,
+      "reachable_targets": true,
+      "split": "train",
+      "task_id": "cmp-train-9a937b68a5fe16",
+      "task_sha256": "41168cf75dc8bad0cbf8f4efb8a889bd8667c31c7ef757a99968efdf3e510568",
+      "valid": true
+    },
+    {
+      "constructible": true,
+      "factor_signature": [
+        "combat",
+        "scarcity"
+      ],
+      "finite_goal": true,
+      "finite_observation": true,
+      "reachable_targets": true,
+      "split": "train",
+      "task_id": "cmp-train-df2b9808bbad34",
+      "task_sha256": "5da490193bd3561e55322125fc529d5b6b7dc521a4694453fb5ed8fe7fbdb345",
+      "valid": true
+    },
+    {
+      "constructible": true,
+      "factor_signature": [
+        "key_door",
+        "hazards"
+      ],
+      "finite_goal": true,
+      "finite_observation": true,
+      "reachable_targets": true,
+      "split": "train",
+      "task_id": "cmp-train-ba589c3b6ae94a",
+      "task_sha256": "bebf069d5dfc1a35f3b5a3e3a7d2d3d070e2014b0aac0aa94ece1d571b1d7945",
+      "valid": true
+    },
+    {
+      "constructible": true,
+      "factor_signature": [
+        "key_door",
+        "hazards"
+      ],
+      "finite_goal": true,
+      "finite_observation": true,
+      "reachable_targets": true,
+      "split": "train",
+      "task_id": "cmp-train-d3ea0be5bc7dd0",
+      "task_sha256": "33e1304d7e4ee64af36095db85f4a751f3766f1eb35fb7f31c0194862ba86662",
+      "valid": true
+    },
+    {
+      "constructible": true,
+      "factor_signature": [
+        "memory",
+        "combat"
+      ],
+      "finite_goal": true,
+      "finite_observation": true,
+      "reachable_targets": true,
+      "split": "heldout_composition",
+      "task_id": "cmp-heldout_composition-01370fdc8a3e1e",
+      "task_sha256": "394b9473b22b12ea56da9db017cd55ef63a63fe7f2ffdb2e6cf682b57806d790",
+      "valid": true
+    },
+    {
+      "constructible": true,
+      "factor_signature": [
+        "key_door",
+        "dynamics_shift"
+      ],
+      "finite_goal": true,
+      "finite_observation": true,
+      "reachable_targets": true,
+      "split": "heldout_composition",
+      "task_id": "cmp-heldout_composition-01fe4dcb63b148",
+      "task_sha256": "105fd9ef0c536652d02bc76932e4a693500f164ba4a84ab3286addbc77e7e176",
+      "valid": true
+    },
+    {
+      "constructible": true,
+      "factor_signature": [
+        "scarcity",
+        "hazards"
+      ],
+      "finite_goal": true,
+      "finite_observation": true,
+      "reachable_targets": true,
+      "split": "heldout_composition",
+      "task_id": "cmp-heldout_composition-4383ec2dad730e",
+      "task_sha256": "552680e9eb628f7b79cd9fa1819cc356326969d9a29f7a4f17b7858a04ade5d9",
+      "valid": true
+    },
+    {
+      "constructible": true,
+      "factor_signature": [
+        "memory",
+        "combat",
+        "scarcity"
+      ],
+      "finite_goal": true,
+      "finite_observation": true,
+      "reachable_targets": true,
+      "split": "transfer_composition",
+      "task_id": "cmp-transfer_composition-9155d106c4e32c",
+      "task_sha256": "48816c67c7dedf12b6b22097aafc0ff85d96d54f51fed382e21e2308dbee45ca",
+      "valid": true
+    },
+    {
+      "constructible": true,
+      "factor_signature": [
+        "key_door",
+        "hazards",
+        "dynamics_shift"
+      ],
+      "finite_goal": true,
+      "finite_observation": true,
+      "reachable_targets": true,
+      "split": "transfer_composition",
+      "task_id": "cmp-transfer_composition-5f1dc6b296defe",
+      "task_sha256": "7a1dc647a9480215cebc0acaf65d755c7885a0e926df2a439dc7b7a7ddf0c3bb",
+      "valid": true
+    },
+    {
+      "constructible": true,
+      "factor_signature": [
+        "navigation",
+        "memory",
+        "combat",
+        "key_door"
+      ],
+      "finite_goal": true,
+      "finite_observation": true,
+      "reachable_targets": true,
+      "split": "transfer_composition",
+      "task_id": "cmp-transfer_composition-9f47b25b04c998",
+      "task_sha256": "eb895155f2bba9a797edf3f6157513f537e956afe4830b1a2a440b43616c5967",
+      "valid": true
+    }
+  ],
+  "sha256": "c9f13d2ee366e7fcceeef4f4450634cf15bb6010d49200f049c50bcfb0e13c82",
+  "train_factor_signatures": [
+    [
+      "combat"
+    ],
+    [
+      "combat",
+      "scarcity"
+    ],
+    [
+      "dynamics_shift"
+    ],
+    [
+      "hazards"
+    ],
+    [
+      "key_door"
+    ],
+    [
+      "key_door",
+      "hazards"
+    ],
+    [
+      "memory"
+    ],
+    [
+      "navigation"
+    ],
+    [
+      "navigation",
+      "memory"
+    ],
+    [
+      "scarcity"
+    ]
+  ],
+  "train_tasks": [
+    {
+      "concepts": [
+        "navigation"
+      ],
+      "difficulty": 0.5,
+      "environment": {
+        "enemy_aggression": 0.0,
+        "enemy_density": 0.0,
+        "friction_scale": 1.0,
+        "gravity_scale": 1.0,
+        "hazard_density": 0.0,
+        "hide_goal_after_steps": null,
+        "layout_seed": 1426066057,
+        "lighting_seed": 342355808,
+        "movement_scale": 1.0,
+        "object_density": 0.36,
+        "obstacle_density": 0.31,
+        "resource_scarcity": 0.0,
+        "texture_seed": 414078489
+      },
+      "goal": {
+        "factor_signature": [
+          "navigation"
+        ],
+        "objectives": [
+          "reach_goal"
+        ],
+        "success_threshold": 0.9,
+        "target_count": 1
+      },
+      "novelty_class": "train",
+      "seed": 777337877,
+      "stage": 12,
+      "task_id": "cmp-train-1cc6b8198994f4",
+      "verifier_name": "engine_verifier"
+    },
+    {
+      "concepts": [
+        "navigation"
+      ],
+      "difficulty": 0.5,
+      "environment": {
+        "enemy_aggression": 0.0,
+        "enemy_density": 0.0,
+        "friction_scale": 1.0,
+        "gravity_scale": 1.0,
+        "hazard_density": 0.0,
+        "hide_goal_after_steps": null,
+        "layout_seed": 851393194,
+        "lighting_seed": 1239894191,
+        "movement_scale": 1.0,
+        "object_density": 0.36,
+        "obstacle_density": 0.31,
+        "resource_scarcity": 0.0,
+        "texture_seed": 1421610476
+      },
+      "goal": {
+        "factor_signature": [
+          "navigation"
+        ],
+        "objectives": [
+          "reach_goal"
+        ],
+        "success_threshold": 0.9,
+        "target_count": 1
+      },
+      "novelty_class": "train",
+      "seed": 1167661240,
+      "stage": 12,
+      "task_id": "cmp-train-d5780f55dbaf43",
+      "verifier_name": "engine_verifier"
+    },
+    {
+      "concepts": [
+        "memory"
+      ],
+      "difficulty": 0.5,
+      "environment": {
+        "enemy_aggression": 0.0,
+        "enemy_density": 0.0,
+        "friction_scale": 1.0,
+        "gravity_scale": 1.0,
+        "hazard_density": 0.0,
+        "hide_goal_after_steps": 9,
+        "layout_seed": 104618098,
+        "lighting_seed": 1219115497,
+        "movement_scale": 1.0,
+        "object_density": 0.36,
+        "obstacle_density": 0.31,
+        "resource_scarcity": 0.0,
+        "texture_seed": 892012197
+      },
+      "goal": {
+        "factor_signature": [
+          "memory"
+        ],
+        "objectives": [
+          "remember_goal",
+          "reach_goal"
+        ],
+        "success_threshold": 0.9,
+        "target_count": 1
+      },
+      "novelty_class": "train",
+      "seed": 950785576,
+      "stage": 12,
+      "task_id": "cmp-train-24817b9b6842fb",
+      "verifier_name": "engine_verifier"
+    },
+    {
+      "concepts": [
+        "memory"
+      ],
+      "difficulty": 0.5,
+      "environment": {
+        "enemy_aggression": 0.0,
+        "enemy_density": 0.0,
+        "friction_scale": 1.0,
+        "gravity_scale": 1.0,
+        "hazard_density": 0.0,
+        "hide_goal_after_steps": 9,
+        "layout_seed": 365144369,
+        "lighting_seed": 1011295852,
+        "movement_scale": 1.0,
+        "object_density": 0.36,
+        "obstacle_density": 0.31,
+        "resource_scarcity": 0.0,
+        "texture_seed": 727366907
+      },
+      "goal": {
+        "factor_signature": [
+          "memory"
+        ],
+        "objectives": [
+          "remember_goal",
+          "reach_goal"
+        ],
+        "success_threshold": 0.9,
+        "target_count": 1
+      },
+      "novelty_class": "train",
+      "seed": 640449134,
+      "stage": 12,
+      "task_id": "cmp-train-a0b448a3cdd53d",
+      "verifier_name": "engine_verifier"
+    },
+    {
+      "concepts": [
+        "combat"
+      ],
+      "difficulty": 0.5,
+      "environment": {
+        "enemy_aggression": 0.575,
+        "enemy_density": 0.42500000000000004,
+        "friction_scale": 1.0,
+        "gravity_scale": 1.0,
+        "hazard_density": 0.0,
+        "hide_goal_after_steps": null,
+        "layout_seed": 1440398250,
+        "lighting_seed": 1684744120,
+        "movement_scale": 1.0,
+        "object_density": 0.36,
+        "obstacle_density": 0.31,
+        "resource_scarcity": 0.0,
+        "texture_seed": 1460967895
+      },
+      "goal": {
+        "factor_signature": [
+          "combat"
+        ],
+        "objectives": [
+          "defeat_enemy",
+          "reach_goal"
+        ],
+        "success_threshold": 0.9,
+        "target_count": 1
+      },
+      "novelty_class": "train",
+      "seed": 856007539,
+      "stage": 12,
+      "task_id": "cmp-train-6f633c42875994",
+      "verifier_name": "engine_verifier"
+    },
+    {
+      "concepts": [
+        "combat"
+      ],
+      "difficulty": 0.5,
+      "environment": {
+        "enemy_aggression": 0.575,
+        "enemy_density": 0.42500000000000004,
+        "friction_scale": 1.0,
+        "gravity_scale": 1.0,
+        "hazard_density": 0.0,
+        "hide_goal_after_steps": null,
+        "layout_seed": 382612933,
+        "lighting_seed": 852643011,
+        "movement_scale": 1.0,
+        "object_density": 0.36,
+        "obstacle_density": 0.31,
+        "resource_scarcity": 0.0,
+        "texture_seed": 1162220843
+      },
+      "goal": {
+        "factor_signature": [
+          "combat"
+        ],
+        "objectives": [
+          "defeat_enemy",
+          "reach_goal"
+        ],
+        "success_threshold": 0.9,
+        "target_count": 1
+      },
+      "novelty_class": "train",
+      "seed": 959287250,
+      "stage": 12,
+      "task_id": "cmp-train-b7ec516136caf7",
+      "verifier_name": "engine_verifier"
+    },
+    {
+      "concepts": [
+        "scarcity"
+      ],
+      "difficulty": 0.5,
+      "environment": {
+        "enemy_aggression": 0.575,
+        "enemy_density": 0.42500000000000004,
+        "friction_scale": 1.0,
+        "gravity_scale": 1.0,
+        "hazard_density": 0.0,
+        "hide_goal_after_steps": null,
+        "layout_seed": 1735894237,
+        "lighting_seed": 118316495,
+        "movement_scale": 1.0,
+        "object_density": 0.36,
+        "obstacle_density": 0.31,
+        "resource_scarcity": 0.6,
+        "texture_seed": 777078198
+      },
+      "goal": {
+        "factor_signature": [
+          "scarcity"
+        ],
+        "objectives": [
+          "collect_resource",
+          "defeat_enemy",
+          "reach_goal"
+        ],
+        "success_threshold": 0.9,
+        "target_count": 1
+      },
+      "novelty_class": "train",
+      "seed": 1893600961,
+      "stage": 12,
+      "task_id": "cmp-train-578da6c5d7b632",
+      "verifier_name": "engine_verifier"
+    },
+    {
+      "concepts": [
+        "scarcity"
+      ],
+      "difficulty": 0.5,
+      "environment": {
+        "enemy_aggression": 0.575,
+        "enemy_density": 0.42500000000000004,
+        "friction_scale": 1.0,
+        "gravity_scale": 1.0,
+        "hazard_density": 0.0,
+        "hide_goal_after_steps": null,
+        "layout_seed": 500040552,
+        "lighting_seed": 2079173455,
+        "movement_scale": 1.0,
+        "object_density": 0.36,
+        "obstacle_density": 0.31,
+        "resource_scarcity": 0.6,
+        "texture_seed": 1515140850
+      },
+      "goal": {
+        "factor_signature": [
+          "scarcity"
+        ],
+        "objectives": [
+          "collect_resource",
+          "defeat_enemy",
+          "reach_goal"
+        ],
+        "success_threshold": 0.9,
+        "target_count": 1
+      },
+      "novelty_class": "train",
+      "seed": 1133851615,
+      "stage": 12,
+      "task_id": "cmp-train-245f910d837aa6",
+      "verifier_name": "engine_verifier"
+    },
+    {
+      "concepts": [
+        "key_door"
+      ],
+      "difficulty": 0.5,
+      "environment": {
+        "enemy_aggression": 0.0,
+        "enemy_density": 0.0,
+        "friction_scale": 1.0,
+        "gravity_scale": 1.0,
+        "hazard_density": 0.0,
+        "hide_goal_after_steps": null,
+        "layout_seed": 871216668,
+        "lighting_seed": 444285916,
+        "movement_scale": 1.0,
+        "object_density": 0.36,
+        "obstacle_density": 0.31,
+        "resource_scarcity": 0.0,
+        "texture_seed": 501412485
+      },
+      "goal": {
+        "factor_signature": [
+          "key_door"
+        ],
+        "objectives": [
+          "collect_key",
+          "open_door",
+          "reach_goal"
+        ],
+        "success_threshold": 0.9,
+        "target_count": 1
+      },
+      "novelty_class": "train",
+      "seed": 698146068,
+      "stage": 12,
+      "task_id": "cmp-train-2691e547945219",
+      "verifier_name": "engine_verifier"
+    },
+    {
+      "concepts": [
+        "key_door"
+      ],
+      "difficulty": 0.5,
+      "environment": {
+        "enemy_aggression": 0.0,
+        "enemy_density": 0.0,
+        "friction_scale": 1.0,
+        "gravity_scale": 1.0,
+        "hazard_density": 0.0,
+        "hide_goal_after_steps": null,
+        "layout_seed": 2096703149,
+        "lighting_seed": 831237821,
+        "movement_scale": 1.0,
+        "object_density": 0.36,
+        "obstacle_density": 0.31,
+        "resource_scarcity": 0.0,
+        "texture_seed": 226873715
+      },
+      "goal": {
+        "factor_signature": [
+          "key_door"
+        ],
+        "objectives": [
+          "collect_key",
+          "open_door",
+          "reach_goal"
+        ],
+        "success_threshold": 0.9,
+        "target_count": 1
+      },
+      "novelty_class": "train",
+      "seed": 1615811680,
+      "stage": 12,
+      "task_id": "cmp-train-21ff67d76408b1",
+      "verifier_name": "engine_verifier"
+    },
+    {
+      "concepts": [
+        "hazards"
+      ],
+      "difficulty": 0.5,
+      "environment": {
+        "enemy_aggression": 0.575,
+        "enemy_density": 0.42500000000000004,
+        "friction_scale": 1.0,
+        "gravity_scale": 1.0,
+        "hazard_density": 0.47500000000000003,
+        "hide_goal_after_steps": null,
+        "layout_seed": 680468285,
+        "lighting_seed": 839390384,
+        "movement_scale": 1.0,
+        "object_density": 0.36,
+        "obstacle_density": 0.31,
+        "resource_scarcity": 0.0,
+        "texture_seed": 114460214
+      },
+      "goal": {
+        "factor_signature": [
+          "hazards"
+        ],
+        "objectives": [
+          "avoid_enemy",
+          "reach_goal"
+        ],
+        "success_threshold": 0.9,
+        "target_count": 1
+      },
+      "novelty_class": "train",
+      "seed": 1100097204,
+      "stage": 12,
+      "task_id": "cmp-train-c227c4432a7d61",
+      "verifier_name": "engine_verifier"
+    },
+    {
+      "concepts": [
+        "hazards"
+      ],
+      "difficulty": 0.5,
+      "environment": {
+        "enemy_aggression": 0.575,
+        "enemy_density": 0.42500000000000004,
+        "friction_scale": 1.0,
+        "gravity_scale": 1.0,
+        "hazard_density": 0.47500000000000003,
+        "hide_goal_after_steps": null,
+        "layout_seed": 253319705,
+        "lighting_seed": 282580434,
+        "movement_scale": 1.0,
+        "object_density": 0.36,
+        "obstacle_density": 0.31,
+        "resource_scarcity": 0.0,
+        "texture_seed": 1888654861
+      },
+      "goal": {
+        "factor_signature": [
+          "hazards"
+        ],
+        "objectives": [
+          "avoid_enemy",
+          "reach_goal"
+        ],
+        "success_threshold": 0.9,
+        "target_count": 1
+      },
+      "novelty_class": "train",
+      "seed": 2063598416,
+      "stage": 12,
+      "task_id": "cmp-train-fc2f032d6aa9b7",
+      "verifier_name": "engine_verifier"
+    },
+    {
+      "concepts": [
+        "dynamics_shift"
+      ],
+      "difficulty": 0.5,
+      "environment": {
+        "enemy_aggression": 0.0,
+        "enemy_density": 0.0,
+        "friction_scale": 1.2287886599665727,
+        "gravity_scale": 1.2036007695110498,
+        "hazard_density": 0.0,
+        "hide_goal_after_steps": null,
+        "layout_seed": 777714639,
+        "lighting_seed": 1188792068,
+        "movement_scale": 1.0094736820050008,
+        "object_density": 0.36,
+        "obstacle_density": 0.31,
+        "resource_scarcity": 0.0,
+        "texture_seed": 1073050533
+      },
+      "goal": {
+        "factor_signature": [
+          "dynamics_shift"
+        ],
+        "objectives": [
+          "reach_goal"
+        ],
+        "success_threshold": 0.9,
+        "target_count": 1
+      },
+      "novelty_class": "train",
+      "seed": 1680343883,
+      "stage": 12,
+      "task_id": "cmp-train-95433d9f2ac8aa",
+      "verifier_name": "engine_verifier"
+    },
+    {
+      "concepts": [
+        "dynamics_shift"
+      ],
+      "difficulty": 0.5,
+      "environment": {
+        "enemy_aggression": 0.0,
+        "enemy_density": 0.0,
+        "friction_scale": 0.6234898637052584,
+        "gravity_scale": 0.9307334523180313,
+        "hazard_density": 0.0,
+        "hide_goal_after_steps": null,
+        "layout_seed": 976812795,
+        "lighting_seed": 941929052,
+        "movement_scale": 1.2339968781280426,
+        "object_density": 0.36,
+        "obstacle_density": 0.31,
+        "resource_scarcity": 0.0,
+        "texture_seed": 198151120
+      },
+      "goal": {
+        "factor_signature": [
+          "dynamics_shift"
+        ],
+        "objectives": [
+          "reach_goal"
+        ],
+        "success_threshold": 0.9,
+        "target_count": 1
+      },
+      "novelty_class": "train",
+      "seed": 2070404956,
+      "stage": 12,
+      "task_id": "cmp-train-7c347da3371d0c",
+      "verifier_name": "engine_verifier"
+    },
+    {
+      "concepts": [
+        "navigation",
+        "memory"
+      ],
+      "difficulty": 0.5,
+      "environment": {
+        "enemy_aggression": 0.0,
+        "enemy_density": 0.0,
+        "friction_scale": 1.0,
+        "gravity_scale": 1.0,
+        "hazard_density": 0.0,
+        "hide_goal_after_steps": 9,
+        "layout_seed": 1196782756,
+        "lighting_seed": 161272133,
+        "movement_scale": 1.0,
+        "object_density": 0.36,
+        "obstacle_density": 0.31,
+        "resource_scarcity": 0.0,
+        "texture_seed": 1014043138
+      },
+      "goal": {
+        "factor_signature": [
+          "navigation",
+          "memory"
+        ],
+        "objectives": [
+          "remember_goal",
+          "reach_goal"
+        ],
+        "success_threshold": 0.9,
+        "target_count": 1
+      },
+      "novelty_class": "train",
+      "seed": 525708028,
+      "stage": 12,
+      "task_id": "cmp-train-2a6d42be01bfe2",
+      "verifier_name": "engine_verifier"
+    },
+    {
+      "concepts": [
+        "navigation",
+        "memory"
+      ],
+      "difficulty": 0.5,
+      "environment": {
+        "enemy_aggression": 0.0,
+        "enemy_density": 0.0,
+        "friction_scale": 1.0,
+        "gravity_scale": 1.0,
+        "hazard_density": 0.0,
+        "hide_goal_after_steps": 9,
+        "layout_seed": 1112804699,
+        "lighting_seed": 387999065,
+        "movement_scale": 1.0,
+        "object_density": 0.36,
+        "obstacle_density": 0.31,
+        "resource_scarcity": 0.0,
+        "texture_seed": 1257735933
+      },
+      "goal": {
+        "factor_signature": [
+          "navigation",
+          "memory"
+        ],
+        "objectives": [
+          "remember_goal",
+          "reach_goal"
+        ],
+        "success_threshold": 0.9,
+        "target_count": 1
+      },
+      "novelty_class": "train",
+      "seed": 402608478,
+      "stage": 12,
+      "task_id": "cmp-train-0b68c064cc248a",
+      "verifier_name": "engine_verifier"
+    },
+    {
+      "concepts": [
+        "combat",
+        "scarcity"
+      ],
+      "difficulty": 0.5,
+      "environment": {
+        "enemy_aggression": 0.575,
+        "enemy_density": 0.42500000000000004,
+        "friction_scale": 1.0,
+        "gravity_scale": 1.0,
+        "hazard_density": 0.0,
+        "hide_goal_after_steps": null,
+        "layout_seed": 691515316,
+        "lighting_seed": 1527921704,
+        "movement_scale": 1.0,
+        "object_density": 0.36,
+        "obstacle_density": 0.31,
+        "resource_scarcity": 0.6,
+        "texture_seed": 937347811
+      },
+      "goal": {
+        "factor_signature": [
+          "combat",
+          "scarcity"
+        ],
+        "objectives": [
+          "collect_resource",
+          "defeat_enemy",
+          "reach_goal"
+        ],
+        "success_threshold": 0.9,
+        "target_count": 1
+      },
+      "novelty_class": "train",
+      "seed": 534322458,
+      "stage": 12,
+      "task_id": "cmp-train-9a937b68a5fe16",
+      "verifier_name": "engine_verifier"
+    },
+    {
+      "concepts": [
+        "combat",
+        "scarcity"
+      ],
+      "difficulty": 0.5,
+      "environment": {
+        "enemy_aggression": 0.575,
+        "enemy_density": 0.42500000000000004,
+        "friction_scale": 1.0,
+        "gravity_scale": 1.0,
+        "hazard_density": 0.0,
+        "hide_goal_after_steps": null,
+        "layout_seed": 1677066691,
+        "lighting_seed": 1856855969,
+        "movement_scale": 1.0,
+        "object_density": 0.36,
+        "obstacle_density": 0.31,
+        "resource_scarcity": 0.6,
+        "texture_seed": 797657512
+      },
+      "goal": {
+        "factor_signature": [
+          "combat",
+          "scarcity"
+        ],
+        "objectives": [
+          "collect_resource",
+          "defeat_enemy",
+          "reach_goal"
+        ],
+        "success_threshold": 0.9,
+        "target_count": 1
+      },
+      "novelty_class": "train",
+      "seed": 1698116136,
+      "stage": 12,
+      "task_id": "cmp-train-df2b9808bbad34",
+      "verifier_name": "engine_verifier"
+    },
+    {
+      "concepts": [
+        "key_door",
+        "hazards"
+      ],
+      "difficulty": 0.5,
+      "environment": {
+        "enemy_aggression": 0.575,
+        "enemy_density": 0.42500000000000004,
+        "friction_scale": 1.0,
+        "gravity_scale": 1.0,
+        "hazard_density": 0.47500000000000003,
+        "hide_goal_after_steps": null,
+        "layout_seed": 2058636683,
+        "lighting_seed": 305368670,
+        "movement_scale": 1.0,
+        "object_density": 0.36,
+        "obstacle_density": 0.31,
+        "resource_scarcity": 0.0,
+        "texture_seed": 1416009498
+      },
+      "goal": {
+        "factor_signature": [
+          "key_door",
+          "hazards"
+        ],
+        "objectives": [
+          "collect_key",
+          "open_door",
+          "avoid_enemy",
+          "reach_goal"
+        ],
+        "success_threshold": 0.9,
+        "target_count": 1
+      },
+      "novelty_class": "train",
+      "seed": 1546138097,
+      "stage": 12,
+      "task_id": "cmp-train-ba589c3b6ae94a",
+      "verifier_name": "engine_verifier"
+    },
+    {
+      "concepts": [
+        "key_door",
+        "hazards"
+      ],
+      "difficulty": 0.5,
+      "environment": {
+        "enemy_aggression": 0.575,
+        "enemy_density": 0.42500000000000004,
+        "friction_scale": 1.0,
+        "gravity_scale": 1.0,
+        "hazard_density": 0.47500000000000003,
+        "hide_goal_after_steps": null,
+        "layout_seed": 1823575103,
+        "lighting_seed": 738780237,
+        "movement_scale": 1.0,
+        "object_density": 0.36,
+        "obstacle_density": 0.31,
+        "resource_scarcity": 0.0,
+        "texture_seed": 1611379506
+      },
+      "goal": {
+        "factor_signature": [
+          "key_door",
+          "hazards"
+        ],
+        "objectives": [
+          "collect_key",
+          "open_door",
+          "avoid_enemy",
+          "reach_goal"
+        ],
+        "success_threshold": 0.9,
+        "target_count": 1
+      },
+      "novelty_class": "train",
+      "seed": 1494041202,
+      "stage": 12,
+      "task_id": "cmp-train-d3ea0be5bc7dd0",
+      "verifier_name": "engine_verifier"
+    }
+  ],
+  "transfer_factor_signatures": [
+    [
+      "key_door",
+      "hazards",
+      "dynamics_shift"
+    ],
+    [
+      "memory",
+      "combat",
+      "scarcity"
+    ],
+    [
+      "navigation",
+      "memory",
+      "combat",
+      "key_door"
+    ]
+  ],
+  "transfer_tasks": [
+    {
+      "concepts": [
+        "memory",
+        "combat",
+        "scarcity"
+      ],
+      "difficulty": 0.82,
+      "environment": {
+        "enemy_aggression": 0.783,
+        "enemy_density": 0.601,
+        "friction_scale": 1.0,
+        "gravity_scale": 1.0,
+        "hazard_density": 0.0,
+        "hide_goal_after_steps": 12,
+        "layout_seed": 1588990976,
+        "lighting_seed": 745707849,
+        "movement_scale": 1.0,
+        "object_density": 0.5136,
+        "obstacle_density": 0.4444,
+        "resource_scarcity": 0.7919999999999999,
+        "texture_seed": 860864432
+      },
+      "goal": {
+        "factor_signature": [
+          "memory",
+          "combat",
+          "scarcity"
+        ],
+        "objectives": [
+          "remember_goal",
+          "collect_resource",
+          "defeat_enemy",
+          "reach_goal"
+        ],
+        "success_threshold": 0.9,
+        "target_count": 1
+      },
+      "novelty_class": "transfer_composition",
+      "seed": 1689878255,
+      "stage": 12,
+      "task_id": "cmp-transfer_composition-9155d106c4e32c",
+      "verifier_name": "engine_verifier"
+    },
+    {
+      "concepts": [
+        "key_door",
+        "hazards",
+        "dynamics_shift"
+      ],
+      "difficulty": 0.82,
+      "environment": {
+        "enemy_aggression": 0.783,
+        "enemy_density": 0.601,
+        "friction_scale": 0.5205864453822018,
+        "gravity_scale": 1.061996862957505,
+        "hazard_density": 0.651,
+        "hide_goal_after_steps": null,
+        "layout_seed": 795004145,
+        "lighting_seed": 82848126,
+        "movement_scale": 0.9642801156693694,
+        "object_density": 0.5136,
+        "obstacle_density": 0.4444,
+        "resource_scarcity": 0.0,
+        "texture_seed": 1741653694
+      },
+      "goal": {
+        "factor_signature": [
+          "key_door",
+          "hazards",
+          "dynamics_shift"
+        ],
+        "objectives": [
+          "collect_key",
+          "open_door",
+          "avoid_enemy",
+          "reach_goal"
+        ],
+        "success_threshold": 0.9,
+        "target_count": 1
+      },
+      "novelty_class": "transfer_composition",
+      "seed": 2108513410,
+      "stage": 12,
+      "task_id": "cmp-transfer_composition-5f1dc6b296defe",
+      "verifier_name": "engine_verifier"
+    },
+    {
+      "concepts": [
+        "navigation",
+        "memory",
+        "combat",
+        "key_door"
+      ],
+      "difficulty": 0.82,
+      "environment": {
+        "enemy_aggression": 0.783,
+        "enemy_density": 0.601,
+        "friction_scale": 1.0,
+        "gravity_scale": 1.0,
+        "hazard_density": 0.0,
+        "hide_goal_after_steps": 12,
+        "layout_seed": 1053245103,
+        "lighting_seed": 2108654794,
+        "movement_scale": 1.0,
+        "object_density": 0.5136,
+        "obstacle_density": 0.4444,
+        "resource_scarcity": 0.0,
+        "texture_seed": 1514947585
+      },
+      "goal": {
+        "factor_signature": [
+          "navigation",
+          "memory",
+          "combat",
+          "key_door"
+        ],
+        "objectives": [
+          "remember_goal",
+          "collect_key",
+          "open_door",
+          "defeat_enemy",
+          "reach_goal"
+        ],
+        "success_threshold": 0.9,
+        "target_count": 1
+      },
+      "novelty_class": "transfer_composition",
+      "seed": 680436346,
+      "stage": 12,
+      "task_id": "cmp-transfer_composition-9f47b25b04c998",
+      "verifier_name": "engine_verifier"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+version: 2.2
+seed: 7
+representation:
+  provider: module
+  frozen: true
+  feature_dim: 24
+  latent_dim: 12
+world_training:
+  sequence_length: 5
+  batch_size: 16
+  learning_rate: 0.001
+  stochastic_components: 3
+  overshoot_horizon: 4
+qualification:
+  horizons: [1, 2, 4]
+uncertainty:
+  horizons: [1, 2, 4]
+  calibration_epochs: 5
+risk:
+  constraints: 4
+promotion:
+  max_horizon_regression_pct: 3.0

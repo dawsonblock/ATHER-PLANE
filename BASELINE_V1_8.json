@@ -1,0 +1,6 @@
+{
+  "archive": "aether-world-agent-v1.8.0-full-upgraded.zip",
+  "baseline_release": "1.8.0",
+  "role": "Frozen compatibility and regression baseline for Aether v2.",
+  "sha256": "5d6c95f1668eebad82d348e7471ff671d3f269e648845492d6629419377599eb"
+}

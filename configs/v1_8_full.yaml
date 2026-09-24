@@ -1,0 +1,84 @@
+seed: 7
+device: auto
+
+env:
+  action_type: discrete
+  kind: delayed_cue
+  horizon: 96
+  cue_delay: 16
+  obs_dim: 16
+  action_dim: 3
+
+model:
+  obs_dim: 16
+  latent_dim: 128
+  deterministic_dim: 256
+  stochastic_dim: 64
+  dynamics: ssm
+  action_dim: 3
+  hidden_dim: 256
+  slow_enabled: true
+  slow_dim: 128
+  slow_stride: 6
+  uncertainty_heads: 6
+  experts_enabled: true
+  experts_count: 4
+  experts_top_k: 2
+  expert_context_dim: 0
+
+planner:
+  enabled: true
+  horizon: 18
+  candidates: 320
+  elites: 40
+  iterations: 4
+  uncertainty_limit: 1.25
+  adaptive: true
+  uncertainty_low: 0.25
+  uncertainty_medium: 0.60
+  uncertainty_high: 0.85
+  min_horizon: 3
+  min_candidates: 32
+  calibrated_uncertainty: true
+  learned_gate: false
+  learned_gate_threshold: 0.5
+
+training:
+  steps: 5000
+  batch_size: 32
+  sequence_length: 40
+  burn_in: 5
+  overshoot_horizon: 5
+  overshoot_coef: 0.25
+  replay_capacity: 200000
+  prioritized_replay: true
+  priority_alpha: 0.6
+  priority_beta: 0.4
+  lr: 0.0003
+  actor_lr: 0.0002
+  value_lr: 0.0002
+  grad_clip: 10.0
+  free_nats: 0.1
+  imagination_horizon: 18
+  discount: 0.99
+  lambda: 0.95
+  entropy_coef: 0.003
+  target_tau: 0.01
+  advantage_normalize: true
+  expert_balance_coef: 0.01
+  epsilon_start: 0.35
+  epsilon_final: 0.04
+  log_every: 25
+  checkpoint_every: 500
+  checkpoint_replay: true
+  auto_calibrate_uncertainty: true
+  calibration_interval: 25
+  calibration_quantile: 0.75
+  calibration_lr: 0.03
+
+acceptance:
+  success_improvement_pct: 5
+  sample_efficiency_pct: 15
+  robustness_pct: 20
+  compute_reduction_pct: 20
+  max_critical_regression_pct: 3

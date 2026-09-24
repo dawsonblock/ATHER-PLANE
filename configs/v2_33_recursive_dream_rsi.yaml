@@ -1,0 +1,107 @@
+release: "2.33.0"
+purpose: faithful_grounded_dream_rsi_adaptation_for_training_allocation
+
+architecture:
+  agent_runtime_changed: false
+  learning_system:
+    shared_online_replay_decision_interface: awa-training-allocation-v2
+    arbitrary_policy_code_rewriting: false
+    exact_transition_execution: true
+    complete_decision_menu_logging: true
+    decision_fields:
+      - factor_signature
+      - collector
+      - transition_budget
+      - planner_budget
+      - parallel_worlds
+      - stop
+  research_os:
+    grounded_history_only: true
+    replay_can_promote_without_online_evidence: false
+    fixed_agent_evaluator_interface_contract: true
+    iterative_policy_development: true
+    replay_pool_expands_after_every_real_round: true
+    unsupported_replay_decisions_require_online_probe: true
+
+meta_policy:
+  initial:
+    deficit_weight: 1.0
+    uncertainty_weight: 0.25
+    transfer_weight: 0.35
+    novelty_weight: 0.20
+    cost_weight: 0.10
+    support_weight: 0.05
+    staleness_weight: 0.02
+    stop_threshold: -0.05
+    max_parallel: 4
+    worker_budget: 4
+  development:
+    revision_rounds: 8
+    mutation_step: 0.10
+    arbitrary_source_mutation: false
+    feedback_recorded_per_revision: true
+    incumbent_in_every_revision: true
+
+replay:
+  canonical_aether_objective:
+    mode: aether
+    quality_weight: 1.0
+    transfer_weight: 0.35
+    adaptation_weight: 0.20
+    failure_weight: 0.50
+    transition_cost_weight: 0.0
+    compute_cost_weight: 0.10
+    latency_weight: 0.0
+    parallelism_bonus_weight: 0.05
+  exact_paper_objective:
+    mode: paper
+    paper_beta1: 0.01
+    paper_beta2: 0.05
+  complete_menu_semantics:
+    unexecuted_offered_choice: unsupported
+    action: online_probe_required
+    fabricated_outcome: forbidden
+  worker_semantics:
+    resource_constraint: sum_parallel_worlds_lte_worker_budget
+    worker_budget: 4
+
+support_gate:
+  min_worlds: 2
+  min_selected_nodes: 2
+  min_replay_coverage: 0.10
+  min_exact_decision_support: 1
+  unsupported_action: online_probe_required
+
+real_online_execution:
+  exact_transition_budget_enforced: true
+  task_factory: FactorizedEnvironmentFactory
+  collector_from_same_decision_object: true
+  output_receipt: allocation_execution_receipt.json
+  replay_world_receipt: grounded_replay_world.json
+
+online_qualification:
+  minimum_seeds: 5
+  minimum_mean_paired_gain: 0.0
+  max_seed_regression: 0.05
+  evidence_classes_allowed: [observed, validated]
+  contract_mismatch: fail
+  replay_winner_is_proposal_only: true
+
+controlled_comparison:
+  fixed_vs_dream:
+    same_initial_policy: required
+    same_agent: required
+    same_evaluator: required
+    same_interface: required
+    same_seed_set: required
+    same_transition_budget_per_round: required
+    same_resource_budget: required
+
+empirical_boundary:
+  software_loop_closed: true
+  real_exact_transition_smoke_executed: true
+  dream_rsi_embodied_rl_benefit_demonstrated: false
+  fixed_vs_dream_real_comparison_executed: false
+  full_25k_100k_five_seed_ablation_executed: false
+  real_vizdoom_structured_executed: false
+  real_vjepa_downstream_executed: false

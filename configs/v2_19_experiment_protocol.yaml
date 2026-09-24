@@ -1,0 +1,17 @@
+format: awa-v2.19-experiment-protocol-v1
+protocol_id: vizdoom-empirical-closure-v1
+systems: [full, actor_only, no_skills, no_counterfactuals, no_global_context, no_voc]
+seeds: [1701, 1702, 1703, 1704, 1705]
+tasks: [vizdoom]
+splits: [heldout, transfer]
+milestones: [25000, 100000, 250000, 500000, 1000000]
+primary_metric: success_rate
+minimum_seeds: 5
+policy:
+  matrix: exact
+  unexpected_cells: reject
+  missing_cells: reject
+  duplicate_cells: reject
+  split_leakage: reject
+  provenance: required
+  note: This protocol defines evidence collection; it does not assert empirical superiority.

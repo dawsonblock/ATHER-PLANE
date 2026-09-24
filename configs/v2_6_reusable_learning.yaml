@@ -1,0 +1,43 @@
+version: 2.6.0
+reusable_learning:
+  curriculum:
+    current_fraction: 0.50
+    mastered_fraction: 0.25
+    harder_fraction: 0.15
+    novel_fraction: 0.10
+    frontier_success_low: 0.30
+    frontier_success_high: 0.80
+    history: 50
+  experience:
+    surprise_threshold: 0.25
+    repeat_window: 4
+    counterfactual_fraction: 0.10
+  replay:
+    td_error: 0.30
+    prediction_error: 0.25
+    novelty: 0.15
+    failure: 0.10
+    task_importance: 0.10
+    information_value: 0.10
+    priority_clip: 5.0
+  reasoning_effort:
+    cost_lambda: 0.05
+    levels:
+      - {name: reflex, planner: actor, budget: 0, normalized_compute: 0.0}
+      - {name: shallow, planner: policy_mppi, budget: 32, normalized_compute: 0.25}
+      - {name: medium, planner: policy_mppi, budget: 128, normalized_compute: 0.50}
+      - {name: deep, planner: policy_icem, budget: 256, normalized_compute: 0.75}
+      - {name: strategic, planner: beam, budget: 512, normalized_compute: 1.0}
+  distillation:
+    min_teacher_margin: 0.0
+    buffer_capacity: 200000
+  skills:
+    discovery_min_examples: 5
+    promotion_min_success: 0.70
+    promotion_min_confidence: 0.50
+  engram_lite:
+    capacity: 100000
+    buckets: 4096
+  async_rollout:
+    max_policy_lag: 4
+    staleness_half_life: 2.0

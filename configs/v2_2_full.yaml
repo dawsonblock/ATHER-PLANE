@@ -1,0 +1,44 @@
+version: 2.2
+seed: 7
+representation:
+  provider: hf
+  model_name_or_path: local/path/to/vision-backbone
+  local_files_only: true
+  frozen: true
+  cache_frozen_features: true
+  latent_dim: 512
+world_training:
+  sequence_length: 51
+  batch_size: 64
+  learning_rate: 0.0003
+  stochastic_components: 8
+  one_step_nll: true
+  reward_weight: 1.0
+  continuation_weight: 0.25
+  overshoot_weight: 0.5
+  overshoot_horizon: 10
+qualification:
+  horizons: [1, 5, 10, 20, 50]
+  require_chain_consistency: true
+  report_nll: true
+  report_reward_rmse: true
+  report_continuation_brier: true
+uncertainty:
+  calibrate_to_realized_rollout_error: true
+  horizons: [1, 5, 10, 20, 50]
+  calibration_epochs: 20
+risk:
+  separate_from_uncertainty: true
+  constraints: [collision, forbidden_state, task_failure, force_limit]
+  explicit_labels_required: true
+promotion:
+  min_average_horizon_improvement_pct: 0.0
+  max_horizon_regression_pct: 3.0
+  max_nll_regression_pct: 3.0
+decision:
+  default: actor
+  value_of_computation: true
+  planners:
+    local: [mppi, icem]
+    differentiable: [gradient]
+    abstract: [beam]

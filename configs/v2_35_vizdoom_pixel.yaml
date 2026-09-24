@@ -1,0 +1,49 @@
+release: "2.35.0"
+purpose: real_rgb_vjepa_bringup
+track: pixel
+seed: 2351
+runtime:
+  device: cuda
+  precision: fp32
+environment:
+  frame_skip: 4
+  max_episode_steps: 600
+  visible: false
+  sound: false
+video:
+  model: facebook/vjepa2-vitl-fpc64-256
+  frames: 64
+  stride: 1
+  batch_size: 1
+replay:
+  shard_size: 10000
+promotion:
+  max_actor_success_regression: 0.20
+  max_planner_success_regression: 0.15
+stages:
+  - name: real-pixel-wiring-1k
+    scenario: basic
+    target_transitions: 1000
+    episodes_per_collection: 6
+    horizon: 160
+    sequence_length: 5
+    world_epochs: 1
+    actor_epochs: 2
+    calibration_epochs: 1
+    batch_size: 32
+    hidden: 96
+    eval_episodes: 3
+    planner_fraction: 0.0
+  - name: real-pixel-navigation-5k
+    scenario: my_way_home
+    target_transitions: 5000
+    episodes_per_collection: 8
+    horizon: 480
+    sequence_length: 8
+    world_epochs: 2
+    actor_epochs: 3
+    calibration_epochs: 1
+    batch_size: 32
+    hidden: 96
+    eval_episodes: 5
+    planner_fraction: 0.10

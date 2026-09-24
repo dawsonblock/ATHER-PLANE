@@ -1,0 +1,67 @@
+{
+  "architecture_frozen": true,
+  "campaign_binding": {
+    "ablation_config_sha256": "c96ece5890a5e487835f4eac768ca444546ad203849ca8787ebc8811139c1648",
+    "executed": false,
+    "full_config_file_sha256": "ef42c51780518bad25c08f7df7d825a4267a19c3ab4fefff251d447eaef504cc",
+    "plan_sha256": "e757dd7e25002659407d04e140aaf9c4e0b1f002f6f8813835e06f2df6304bd1",
+    "protocol_sha256": "c0c18fbe1be9fcb87eeffb3087edd1b54d244d544b59232257c26aae502d4889",
+    "result_cells": 140,
+    "training_jobs": 70
+  },
+  "canonical_agent_excludes": [
+    "skills",
+    "engram",
+    "sparse_moe",
+    "modular_world",
+    "reusable_learning_engine",
+    "connectome",
+    "legacy_v2_prototypes"
+  ],
+  "canonical_config": "configs/v2_31_system_split.yaml",
+  "compatibility_note": "historical flat awa.v2 modules remain implementation details for one bounded migration phase",
+  "empirical_boundary": {
+    "full_25k_100k_five_seed_ablation_executed": false,
+    "matched_microbatch_schedule_benchmark_executed": false,
+    "real_vizdoom_structured_qualification_executed": false,
+    "real_vjepa_downstream_qualification_executed": false
+  },
+  "format": "awa-v2.31-system-split-v1",
+  "layers": {
+    "agent_runtime": {
+      "may_depend_on": [
+        "agent_runtime",
+        "shared"
+      ],
+      "purpose": "inference-time cognition and action selection"
+    },
+    "experimental": {
+      "may_depend_on": [
+        "agent_runtime",
+        "experimental",
+        "learning_system",
+        "research_os",
+        "shared"
+      ],
+      "purpose": "quarantined hypotheses that are not part of the canonical agent"
+    },
+    "learning_system": {
+      "may_depend_on": [
+        "agent_runtime",
+        "learning_system",
+        "shared"
+      ],
+      "purpose": "experience, datasets, replay, environment generation, curriculum, and training"
+    },
+    "research_os": {
+      "may_depend_on": [
+        "agent_runtime",
+        "learning_system",
+        "research_os",
+        "shared"
+      ],
+      "purpose": "protocols, provenance, ablations, compute accounting, qualification, and release evidence"
+    }
+  },
+  "release": "2.31.0"
+}

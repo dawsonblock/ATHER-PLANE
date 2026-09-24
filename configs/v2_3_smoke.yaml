@@ -1,0 +1,11 @@
+version: 2.3
+seed: 7
+planner_qualification:
+  exact_snapshot_required: true
+  branch_horizon: 3
+  world_model_call_budgets: [64]
+  max_states: 16
+value_of_computation:
+  epochs: 120
+safety:
+  fail_closed_guard: true

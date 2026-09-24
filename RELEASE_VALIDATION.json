@@ -1,0 +1,110 @@
+{
+  "agent_runtime": {
+    "python_source_tree_sha256": "f1d9942bad5d9b45bc1e6f177465eec1914ab540823a5c97e7cfa3c18f78582b",
+    "unchanged_from_v2_37": true
+  },
+  "clean_wheel_import": {
+    "awa": "2.38.0",
+    "awa.v2": "2.38.0",
+    "entry_points_verified": [
+      "awa-v2-progressive-executor",
+      "awa-v2-runpod-bootstrap",
+      "awa-v2-progressive-capability",
+      "awa-v2-world-model-horizon-gate"
+    ],
+    "status": "PASS"
+  },
+  "compilation": {
+    "command": "python -m compileall -q src",
+    "status": "PASS"
+  },
+  "configs": {
+    "configs/v2_34_dream_rsi_empirical.yaml": {
+      "sha256": "205148129b99995df159807cebd3129a8222747b5e174dc40b824f5acc212383"
+    },
+    "configs/v2_35_empirical_execution.yaml": {
+      "sha256": "2910c4b51f70fce066ec60688b6250719fec4ff6b4b3a065826e8a57ed69303e"
+    },
+    "configs/v2_35_vizdoom_pixel.yaml": {
+      "sha256": "fd2e0b002a94b0ec72d25190b2a7743a44d4dd1cee4314f8df5f76bf33c0290b"
+    },
+    "configs/v2_35_vizdoom_structured.yaml": {
+      "sha256": "911707e640e78bf81582f1d28ad1021416184e1f317a7795bd01f679297009f2"
+    },
+    "configs/v2_36_empirical_evidence.yaml": {
+      "sha256": "3f924de9017b9c440c9e70cefa1782e5bae1ed23bbcd737f59f29246b4326d06"
+    },
+    "configs/v2_38_ablation_adaptive_compute.yaml": {
+      "sha256": "3088e6110130353653a98c324dba09ce611d60436a31d334b5feeb8cd38a764b"
+    },
+    "configs/v2_38_ablation_fixed_planner.yaml": {
+      "sha256": "7ce8324b6c48e827b2da88222c24e2e397574c2a20f35c4858dae3269dcf7ea0"
+    },
+    "configs/v2_38_ablation_temporal_memory.yaml": {
+      "sha256": "300191591e9f83b4ee33574d7948bcfdbc40cdac71fff22871a184289b0cf89f"
+    },
+    "configs/v2_38_progressive_capability.yaml": {
+      "sha256": "ebca4cb9318da8b04dcf9fcfa090277e6a0e0c501f4592b459cc1a0f144858fb"
+    },
+    "configs/v2_38_progressive_executor.yaml": {
+      "sha256": "371a34437b9233161003b36e1f9dc40ef530b8f984fda8274bc759b3c38fac6d"
+    }
+  },
+  "empirical_boundary": {
+    "canonical_five_seed_fixed_vs_dream_campaign_executed": false,
+    "external_world_model_baseline_executed": false,
+    "full_25k_100k_five_seed_ablation_executed": false,
+    "gpu_energy_measured": false,
+    "grounded_planner_benefit_campaign_executed": false,
+    "real_structured_vizdoom_campaign_executed_in_release_validation": false,
+    "real_vjepa_campaign_executed_in_release_validation": false,
+    "scale_250k_plus_authorized": false,
+    "unseen_map_transfer_executed": false,
+    "world_model_horizon_measured_on_real_campaign": false
+  },
+  "format": "awa-v2.38-release-validation-v1",
+  "manifest_entries": 452,
+  "qualification_scope": {
+    "expensive_campaign_second_ack_required": true,
+    "focused_pairwise_ablation_gates_implemented": true,
+    "full_seven_system_matrix_required_before_scale": true,
+    "one_phase_executor_implemented": true,
+    "shell_free_allowlisted_execution": true,
+    "transition_budget_guard_implemented": true,
+    "world_model_horizon_measurement_still_fail_closed": true
+  },
+  "runpod_bootstrap": {
+    "bash_syntax": "PASS",
+    "path": "deploy/runpod/bootstrap.sh"
+  },
+  "source_tests": {
+    "command": "PYTHONPATH=src pytest -q",
+    "failed": 0,
+    "passed": 385,
+    "status": "PASS",
+    "warnings": 4
+  },
+  "source_tree_python_sha256": "a312546cca37cec938eb0721e2b23712618fc439aabfa1691277636f249cfc03",
+  "system_split": {
+    "status": "PASS",
+    "violations": 0
+  },
+  "v2_38_tests": {
+    "failed": 0,
+    "file": "tests/test_v2380_progressive_executor.py",
+    "passed": 11,
+    "status": "PASS"
+  },
+  "version": "2.38.0",
+  "version_agreement": {
+    "awa": "2.38.0",
+    "awa.v2": "2.38.0",
+    "pyproject": "2.38.0",
+    "status": "PASS"
+  },
+  "wheel_build": {
+    "command": "python -m pip wheel . --no-deps --no-build-isolation -w dist",
+    "note": "no-build-isolation used because validation environment has no network access",
+    "status": "PASS"
+  }
+}

@@ -1,0 +1,57 @@
+release: "2.35.0"
+purpose: real_structured_vizdoom_bringup
+track: structured
+seed: 2350
+runtime:
+  device: cuda
+  precision: fp32
+environment:
+  frame_skip: 4
+  max_episode_steps: 900
+  visible: false
+  sound: false
+replay:
+  shard_size: 25000
+promotion:
+  max_actor_success_regression: 0.15
+  max_planner_success_regression: 0.10
+stages:
+  - name: real-wiring-2k
+    scenario: basic
+    target_transitions: 2000
+    episodes_per_collection: 8
+    horizon: 180
+    sequence_length: 5
+    world_epochs: 1
+    actor_epochs: 2
+    calibration_epochs: 1
+    batch_size: 64
+    hidden: 96
+    eval_episodes: 4
+    planner_fraction: 0.0
+  - name: real-navigation-10k
+    scenario: my_way_home
+    target_transitions: 10000
+    episodes_per_collection: 12
+    horizon: 600
+    sequence_length: 8
+    world_epochs: 2
+    actor_epochs: 3
+    calibration_epochs: 1
+    batch_size: 64
+    hidden: 96
+    eval_episodes: 6
+    planner_fraction: 0.10
+  - name: real-control-25k
+    scenario: health_gathering
+    target_transitions: 25000
+    episodes_per_collection: 16
+    horizon: 900
+    sequence_length: 10
+    world_epochs: 2
+    actor_epochs: 4
+    calibration_epochs: 2
+    batch_size: 64
+    hidden: 96
+    eval_episodes: 8
+    planner_fraction: 0.20

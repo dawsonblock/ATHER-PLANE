@@ -1,0 +1,28 @@
+name: ci
+on:
+  push:
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m pip install --upgrade pip
+      - run: pip install -e '.[dev]'
+      - run: python -m compileall -q src
+      - run: pytest -q
+      - run: awa-smoke
+      - run: awa-continuous-smoke
+      - run: awa-v2-smoke
+      - run: awa-v2-game-repr-smoke
+      - run: awa-v2-closed-loop-smoke
+      - run: awa-v2-transfer-smoke
+      - run: awa-v2-skill-contract-smoke
+      - run: awa-v2-rollout-pool-smoke
+      - run: awa-env-check --config configs/v1_7_gate_fit.yaml --steps 3

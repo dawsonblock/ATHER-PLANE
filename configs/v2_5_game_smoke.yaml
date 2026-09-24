@@ -1,0 +1,13 @@
+version: 2.5
+seed: 25
+game_perception:
+  provider: toy-video
+  frames_per_clip: 4
+  frame_stride: 1
+  visual_feature_dim: 16
+  telemetry_dim: 4
+representation:
+  latent_dim: 12
+qualification:
+  dependency_free: true
+  streaming_offline_parity: true

@@ -1,0 +1,138 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aether-world-agent"
+version = "2.38.6"
+description = "Policy-first hierarchical world-model agent research platform"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [{name = "Architect Block"}]
+dependencies = [
+  "numpy>=1.26",
+  "torch>=2.3",
+  "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.6"]
+graphs = ["networkx>=3.2", "pandas>=2.2"]
+gym = ["gymnasium>=0.29"]
+dmcontrol = ["dm-control>=1.0.20"]
+faiss = ["faiss-cpu>=1.8"]
+mamba = ["mamba-ssm>=2.2"]
+hf = ["transformers>=4.57.3", "pillow>=10.0"]
+vjepa = ["transformers>=4.57.3", "pillow>=10.0"]
+vizdoom = ["vizdoom>=1.2"]
+doom-vjepa = ["vizdoom>=1.2", "transformers>=4.57.3", "pillow>=10.0"]
+metaworld = ["metaworld"]
+
+[project.scripts]
+awa-smoke = "awa.cli:smoke_main"
+awa-continuous-smoke = "awa.cli:continuous_smoke_main"
+awa-train = "awa.cli:train_main"
+awa-eval = "awa.cli:eval_main"
+awa-connectome = "awa.cli:connectome_main"
+awa-benchmark = "awa.cli:benchmark_main"
+awa-robustness = "awa.cli:robustness_main"
+awa-suite = "awa.cli:suite_main"
+awa-ablation = "awa.cli:ablation_main"
+awa-matrix = "awa.cli:matrix_main"
+awa-provenance = "awa.cli:provenance_main"
+awa-calibrate = "awa.cli:calibrate_main"
+awa-gate-fit = "awa.cli:gate_fit_main"
+awa-env-check = "awa.cli:env_check_main"
+awa-env-multiseed = "awa.cli:env_multiseed_main"
+
+awa-v2-smoke = "awa.v2.cli:smoke_main"
+awa-v2-arena = "awa.v2.cli:arena_main"
+awa-v2-voc = "awa.v2.cli:voc_demo_main"
+awa-v2-cache = "awa.v2.cli:cache_main"
+awa-v2-repr-check = "awa.v2.cli:representation_check_main"
+awa-v2-world-smoke = "awa.v2.cli:world_smoke_main"
+awa-v2-world-qualify = "awa.v2.cli:world_qualify_main"
+awa-v2-risk-smoke = "awa.v2.cli:risk_smoke_main"
+awa-v2-promote = "awa.v2.cli:promotion_main"
+awa-v2-actor-smoke = "awa.v2.cli:actor_baseline_smoke_main"
+awa-v2-planner-qualify = "awa.v2.cli:planner_qualify_main"
+awa-v2-safety-smoke = "awa.v2.cli:safety_smoke_main"
+awa-v2-actor-train = "awa.v2.cli:actor_train_main"
+awa-v2-benchmark-qualify = "awa.v2.cli:benchmark_qualify_main"
+awa-v2-benchmark-smoke = "awa.v2.cli:benchmark_smoke_main"
+awa-v2-game-cache = "awa.v2.cli:game_cache_main"
+awa-v2-game-repr-smoke = "awa.v2.cli:game_representation_smoke_main"
+awa-v2-reusable-smoke = "awa.v2.cli:reusable_learning_smoke_main"
+awa-v2-curriculum-smoke = "awa.v2.cli:curriculum_smoke_main"
+awa-v2-closed-loop-smoke = "awa.v2.cli:closed_loop_learning_smoke_main"
+awa-v2-transfer-smoke = "awa.v2.cli:transfer_smoke_main"
+awa-v2-skill-contract-smoke = "awa.v2.cli:skill_contract_smoke_main"
+awa-v2-rollout-pool-smoke = "awa.v2.cli:rollout_pool_smoke_main"
+awa-v2-hardening-smoke = "awa.v2.cli:hardening_smoke_main"
+
+awa-v2-game-lab-generate = "awa.v2.cli:game_lab_generate_main"
+awa-v2-game-train = "awa.v2.cli:game_train_main"
+awa-v2-game-loop-smoke = "awa.v2.cli:game_loop_smoke_main"
+awa-v2-game-lab-smoke = "awa.v2.cli:game_lab_smoke_main"
+awa-v2-game-adaptation-smoke = "awa.v2.cli:game_adaptation_smoke_main"
+awa-v2-empirical-scaling-smoke = "awa.v2.cli:empirical_scaling_smoke_main"
+awa-v2-controlled-scaling-smoke = "awa.v2.cli:controlled_scaling_smoke_main"
+awa-v2-scaling-sweep = "awa.v2.cli:scaling_sweep_main"
+awa-v2-training-campaign = "awa.v2.cli:training_campaign_main"
+awa-v2-training-campaign-smoke = "awa.v2.cli:training_campaign_smoke_main"
+awa-v2-game-bridge-check = "awa.v2.cli:game_bridge_check_main"
+awa-v2-qualification-report = "awa.v2.cli:qualification_report_main"
+awa-v2-empirical-qualification-smoke = "awa.v2.cli:empirical_qualification_smoke_main"
+awa-v2-vizdoom-check = "awa.v2.cli:vizdoom_check_main"
+awa-v2-vizdoom-collect = "awa.v2.cli:vizdoom_collect_main"
+awa-v2-vizdoom-vjepa-cache = "awa.v2.cli:vizdoom_vjepa_cache_main"
+awa-v2-vizdoom-smoke = "awa.v2.cli:vizdoom_smoke_main"
+awa-v2-vizdoom-materialize = "awa.v2.cli:vizdoom_materialize_main"
+awa-v2-vizdoom-train = "awa.v2.cli:vizdoom_train_main"
+awa-v2-vizdoom-campaign = "awa.v2.cli:vizdoom_campaign_main"
+awa-v2-vizdoom-training-closure-smoke = "awa.v2.cli:vizdoom_training_closure_smoke_main"
+awa-v2-empirical-closure = "awa.v2.cli:empirical_closure_main"
+awa-v2-evolving-exploration-smoke = "awa.v2.cli:evolving_exploration_smoke_main"
+awa-v2-evolving-campaign = "awa.v2.cli:evolving_campaign_main"
+awa-v2-evolving-campaign-smoke = "awa.v2.cli:evolving_campaign_smoke_main"
+awa-v2-native-campaign-smoke = "awa.v2.cli:native_campaign_smoke_main"
+awa-v2-milestone-scorecard = "awa.v2.cli:milestone_scorecard_main"
+awa-v2-ablation-protocol = "awa.v2.cli:ablation_protocol_main"
+awa-v2-autonomous-collection-smoke = "awa.v2.cli:autonomous_collection_smoke_main"
+awa-v2-ablation-run = "awa.v2.cli:executable_ablation_main"
+awa-v2-ablation-runtime-smoke = "awa.v2.cli:executable_ablation_smoke_main"
+awa-v2-ablation-campaign = "awa.v2.cli:ablation_campaign_main"
+awa-v2-ablation-report = "awa.v2.cli:ablation_report_main"
+awa-v2-ablation-campaign-smoke = "awa.v2.cli:ablation_campaign_smoke_main"
+awa-v2-empirical-status = "awa.v2.cli:empirical_status_main"
+awa-v2-compositional-benchmark = "awa.v2.cli:compositional_benchmark_main"
+awa-v2-vizdoom-real-qualify = "awa.v2.cli:vizdoom_real_qualification_main"
+awa-v2-planner-hardware-benchmark = "awa.v2.cli:planner_hardware_benchmark_main"
+awa-v2-split-check = "awa.v2.split_cli:split_check_main"
+awa-v2-dream-rsi-smoke = "awa.v2.dream_rsi_cli:dream_rsi_smoke_main"
+awa-v2-dream-rsi-loop-smoke = "awa.v2.dream_rsi_cli:dream_rsi_loop_smoke_main"
+awa-v2-dream-rsi-campaign = "awa.v2.dream_rsi_cli:dream_rsi_campaign_main"
+awa-v2-dream-rsi-campaign-smoke = "awa.v2.dream_rsi_cli:dream_rsi_campaign_smoke_main"
+awa-v2-execution-preflight = "awa.v2.real_execution_cli:execution_preflight_main"
+awa-v2-vizdoom-real-campaign = "awa.v2.real_execution_cli:real_vizdoom_campaign_main"
+awa-v2-real-evidence-bundle = "awa.v2.real_execution_cli:real_evidence_bundle_main"
+awa-v2-external-baseline-compare = "awa.v2.real_execution_cli:external_baseline_compare_main"
+awa-v2-progressive-capability = "awa.v2.progressive_cli:progressive_capability_main"
+awa-v2-world-model-horizon-gate = "awa.v2.progressive_cli:world_model_horizon_gate_main"
+awa-v2-progressive-executor = "awa.v2.progressive_cli:progressive_executor_main"
+awa-v2-runpod-bootstrap = "awa.v2.progressive_cli:runpod_bootstrap_main"
+awa-v2-reward-diagnostic-gate = "awa.v2.progressive_cli:reward_diagnostic_gate_main"
+awa-v2-planner-diagnostic-gate = "awa.v2.progressive_cli:planner_diagnostic_gate_main"
+awa-v2-vizdoom-reward-diagnostic = "awa.v2.real_execution_cli:vizdoom_reward_diagnostic_main"
+awa-v2-vizdoom-branch-replay = "awa.v2.real_execution_cli:vizdoom_branch_replay_main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"

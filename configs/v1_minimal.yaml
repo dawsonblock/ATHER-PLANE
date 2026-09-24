@@ -1,0 +1,60 @@
+seed: 7
+device: auto
+
+env:
+  horizon: 64
+  cue_delay: 8
+  obs_dim: 16
+  action_dim: 3
+
+model:
+  obs_dim: 16
+  latent_dim: 64
+  deterministic_dim: 128
+  stochastic_dim: 32
+  dynamics: gru
+  action_dim: 3
+  hidden_dim: 128
+  slow_enabled: false
+  slow_stride: 8
+  slow_dim: 96
+  uncertainty_heads: 4
+
+planner:
+  enabled: true
+  horizon: 8
+  candidates: 128
+  elites: 16
+  iterations: 3
+  uncertainty_limit: 1.5
+
+training:
+  steps: 800
+  batch_size: 32
+  burn_in: 0
+  overshoot_horizon: 1
+  overshoot_coef: 0.0
+  sequence_length: 16
+  replay_capacity: 50000
+  warmup_steps: 256
+  lr: 0.0003
+  actor_lr: 0.0003
+  value_lr: 0.0003
+  imagination_horizon: 8
+  discount: 0.99
+  lambda: 0.95
+  entropy_coef: 0.003
+  free_nats: 0.1
+  epsilon_start: 0.4
+  epsilon_final: 0.05
+  log_every: 25
+  grad_clip: 10.0
+  eval_every: 200
+  checkpoint_every: 400
+
+acceptance:
+  success_improvement_pct: 5
+  sample_efficiency_pct: 15
+  robustness_pct: 20
+  compute_reduction_pct: 20
+  max_critical_regression_pct: 3

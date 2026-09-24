@@ -1,0 +1,47 @@
+{
+  "canonical_config": {
+    "path": "configs/v2_34_dream_rsi_empirical.yaml",
+    "sha256": "205148129b99995df159807cebd3129a8222747b5e174dc40b824f5acc212383"
+  },
+  "empirical_boundary": {
+    "campaign_resume_smoke_executed": true,
+    "canonical_five_seed_campaign_executed": false,
+    "dream_rsi_embodied_rl_benefit_demonstrated": false,
+    "real_vizdoom_structured_executed": false,
+    "real_vjepa_downstream_executed": false,
+    "tiny_paired_campaign_smoke_executed": true
+  },
+  "format": "awa-v2.34-dream-rsi-empirical-protocol-v1",
+  "new_closure": [
+    "hard transition-budget cap in the shared meta-policy decision interface",
+    "resumable paired fixed-vs-DREAM real campaign runner",
+    "grounded checkpoint lineage across recursive rounds",
+    "development heldout/transfer evaluation for replay policy feedback",
+    "independent final heldout/transfer meta-test not used during policy development",
+    "paired bootstrap confidence intervals and worst-seed regression gate",
+    "round receipts bind policy, complete menu, parent checkpoint digests, replay-world digest, and output checkpoint digests"
+  ],
+  "paired_design": {
+    "allocation_chunk_transitions": 6250,
+    "max_transition_budget_per_round": 25000,
+    "recursive_rounds": 5,
+    "same_agent_evaluator_interface_contract": true,
+    "same_environment_seed_per_paired_round": true,
+    "same_initial_policy": true,
+    "same_menu_per_paired_round": true,
+    "seeds": [
+      3401,
+      3402,
+      3403,
+      3404,
+      3405
+    ],
+    "worker_budget": 4
+  },
+  "release": "2.34.0",
+  "scope": "paired fixed-vs-DREAM meta-exploration over the Learning System; action-time agent unchanged",
+  "source": {
+    "arxiv": "2609.14858v1",
+    "title": "Dream-RSI: Recursive Self-Improvement through Evolving Worlds"
+  }
+}

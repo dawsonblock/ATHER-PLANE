@@ -1,0 +1,21 @@
+release: "2.38.6"
+purpose: runpod_persistent_volume_quota_and_real_execution_readiness
+
+preflight:
+  require_cuda: true
+  min_cuda_vram_gib: 16.0
+  min_disk_free_gib: 80.0
+  min_system_ram_gib: 32.0
+  require_vizdoom: true
+  require_transformers: true
+  require_vjepa_cache: false
+  vjepa_model: facebook/vjepa2-vitl-fpc64-256
+  persistent_volume_path: /workspace
+  persistent_volume_size_env: AWA_RUNPOD_VOLUME_SIZE_GB
+  persistent_volume_id_env: AWA_RUNPOD_VOLUME_ID
+  require_persistent_volume_quota: true
+
+claim_boundary:
+  - Persistent storage capacity is read from the provisioned network volume quota passed at pod creation.
+  - P0 fails closed if the named persistent volume is not mounted or its quota provenance is missing.
+  - Preflight readiness is not benchmark evidence.

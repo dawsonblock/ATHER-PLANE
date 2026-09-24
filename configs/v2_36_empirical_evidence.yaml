@@ -1,0 +1,20 @@
+release: "2.36.0"
+purpose: empirical_evidence_closure_and_external_baseline_contract
+
+evidence_bundle:
+  require_preflight: true
+  require_training: true
+  require_planner_benchmark: false
+  require_action_schedule_equivalence: true
+
+external_baseline_protocol:
+  required_pairs: 5
+  require_equal_transitions: true
+  max_accelerator_ratio: 1.25
+  bootstrap_samples: 5000
+  bootstrap_seed: 2360
+
+claim_boundary:
+  - Evidence bundling verifies and binds artifacts; it does not create missing benchmark evidence.
+  - External baseline comparison requires matched seeds, milestones, tracks, transition budgets, and bounded accelerator cost.
+  - A qualified comparison is not automatically a superiority claim; paired effects and confidence intervals must be interpreted.

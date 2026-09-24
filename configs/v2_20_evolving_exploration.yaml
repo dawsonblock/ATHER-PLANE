@@ -1,0 +1,59 @@
+release: "2.20.0"
+research_boundary:
+  arbitrary_source_rewrite: false
+  replay_can_promote_without_online_validation: false
+  simulated_evidence_can_support_empirical_claims: false
+
+meta_exploration:
+  replay:
+    max_rounds: 64
+    workers: 4
+    objective:
+      quality_weight: 1.0
+      transfer_weight: 0.25
+      information_weight: 0.10
+      uncertainty_weight: 0.10
+      compute_cost_weight: 0.10
+      latency_weight: 0.001
+      constraint_violation_weight: 1.0
+  policy:
+    quality_weight: 1.0
+    novelty_weight: 0.25
+    uncertainty_weight: 0.20
+    transfer_weight: 0.30
+    information_weight: 0.20
+    cost_weight: 0.10
+    new_world_bias: 0.35
+    stop_threshold: -0.05
+    max_parallel: 4
+    new_world_fraction: 0.20
+    adversarial_fraction: 0.10
+  mutation:
+    step: 0.10
+    minimum_new_world_fraction: 0.10
+    minimum_adversarial_fraction: 0.05
+    minimum_replay_gain: 0.0
+  promotion:
+    minimum_paired_grounded_seeds: 5
+    minimum_mean_gain: 0.0
+    maximum_per_seed_regression: 0.05
+
+adaptive_compute:
+  minimum_model_reliability: 0.25
+  compute_lambda: 0.05
+  latency_lambda: 0.001
+  risk_lambda: 0.25
+  risk_deliberation_bonus: 0.10
+  levels:
+    - {name: reflex, planner: actor, budget: 0, normalized_compute: 0.0}
+    - {name: shallow, planner: policy_mppi, budget: 32, normalized_compute: 0.25}
+    - {name: medium, planner: policy_mppi, budget: 128, normalized_compute: 0.50}
+    - {name: deep, planner: policy_icem, budget: 256, normalized_compute: 0.75}
+    - {name: strategic, planner: beam, budget: 512, normalized_compute: 1.0}
+
+qualification:
+  require_preregistered_v2_19_protocol: true
+  require_heldout_and_transfer: true
+  measure_planner_dependence: true
+  measure_reasoning_effort_distribution: true
+  measure_meta_policy_online_gain: true

@@ -1,0 +1,29 @@
+{
+  "agent_runtime_changed": false,
+  "claim_boundary": "The release validates software readiness and fail-closed evidence boundaries. It does not convert unexecuted hardware/benchmark work into empirical claims.",
+  "config_sha256": {
+    "configs/v2_35_empirical_execution.yaml": "2910c4b51f70fce066ec60688b6250719fec4ff6b4b3a065826e8a57ed69303e",
+    "configs/v2_35_vizdoom_pixel.yaml": "fd2e0b002a94b0ec72d25190b2a7743a44d4dd1cee4314f8df5f76bf33c0290b",
+    "configs/v2_35_vizdoom_structured.yaml": "911707e640e78bf81582f1d28ad1021416184e1f317a7795bd01f679297009f2"
+  },
+  "empirical_boundary": {
+    "canonical_five_seed_fixed_vs_dream_campaign_executed": false,
+    "external_world_model_baseline_executed": false,
+    "full_25k_100k_five_seed_ablation_executed": false,
+    "gpu_energy_measured": false,
+    "real_gpu_microbatch_sweep_executed": false,
+    "real_vizdoom_pixel_vjepa_training_campaign_executed": false,
+    "real_vizdoom_structured_training_campaign_executed": false
+  },
+  "features": {
+    "fail_closed_execution_preflight": true,
+    "native_only_vizdoom_training_campaign": true,
+    "non_injected_vjepa_requirement_for_pixel": true,
+    "planner_action_schedule_equivalence_check": true,
+    "planner_throughput_metrics": true,
+    "real_training_receipts_consumed_by_empirical_status": true
+  },
+  "format": "awa-v2.35-execution-readiness-audit-v1",
+  "purpose": "real hardware and real ViZDoom/V-JEPA execution readiness without cognitive expansion",
+  "release": "2.35.0"
+}

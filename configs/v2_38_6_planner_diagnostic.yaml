@@ -1,0 +1,28 @@
+release: "2.38.6"
+purpose: fixed_seed_real_branch_and_joint_model_reward_decision_ranking_gate
+
+diagnostic:
+  min_spearman: 0.30
+  min_top_k_agreement: 0.50
+  min_oracle_success_gain: 0.15
+  min_oracle_success_rate: 0.50
+  minimum_candidates: 16
+  minimum_qualified_horizon_for_p2: 8
+
+protocol:
+  scenario: my_way_home
+  minimum_fixed_seeds: 6
+  horizons: [1, 2, 4, 8, 16, 32]
+  proposals: [actor_seeded, mixed]
+  top_k: 5
+  tests:
+    P1P-A: {dynamics: environment, reward: oracle, terminal_value: none, risk: none}
+    P1P-B: {dynamics: learned, reward: learned, terminal_value: none, risk: none}
+    P1P-C: {dynamics: learned, reward: learned, terminal_value: learned, risk: none}
+    P1P-D: {dynamics: learned, reward: learned, terminal_value: learned, risk: learned}
+
+claim_boundary:
+  - P1P compares only the same checkpoint hashes, fixed states, candidate sequences, and seed set supplied in the raw receipt.
+  - A qualified learned-model horizon is the longest contiguous prefix whose B-ladder rank correlation and top-five agreement both clear threshold.
+  - P1P-B uses the learned reward head on imagined states and compares sequence scores with real ViZDoom branch returns; dynamics and reward error cannot be isolated by this comparison.
+  - State prediction RMSE is not a substitute for action-ranking accuracy.

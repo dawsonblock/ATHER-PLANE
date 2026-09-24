@@ -1,0 +1,54 @@
+{
+  "canonical_result_cells": 140,
+  "canonical_training_jobs": 70,
+  "config_sha256": "160c00728edad090a1d7f573b92bc5593c3db0dffd46c4594352b97aa07ece70",
+  "milestones": [
+    25000,
+    100000
+  ],
+  "plan_sha256": "c20f4f460de6c259e7ac600c9f4d22fdeb951ab12a1f27dad5d7e8705f6e518f",
+  "properties": {
+    "adjacent_marginal_component_analysis": true,
+    "atomic_job_commit": true,
+    "content_and_protocol_bound_records": true,
+    "dataset_series_exact_prefixes": true,
+    "decision_report_fails_closed_when_incomplete": true,
+    "deterministic_worker_sharding": true,
+    "resumable_after_preemption": true,
+    "same_frozen_checkpoint_across_heldout_transfer": true,
+    "shared_fixed_dataset_across_non_curriculum_variants": true,
+    "train_once_per_system_seed_milestone": true
+  },
+  "protocol_sha256": "ed6408a61f4d8e404d6d49302ff3405b22509410552f3d58ece203eb723a98c8",
+  "purpose": "resumable_preregistered_ablation_execution_and_decision_reporting",
+  "research_boundary": {
+    "canonical_25k_100k_matrix_executed_in_release_validation": false,
+    "collector_comparison_executed": false,
+    "compositional_transfer_study_executed": false,
+    "external_world_model_baseline_compared": false,
+    "keep_remove_decisions_from_real_campaign_available": false,
+    "planner_voc_utility_study_executed": false
+  },
+  "seeds": [
+    1701,
+    1702,
+    1703,
+    1704,
+    1705
+  ],
+  "splits": [
+    "heldout",
+    "transfer"
+  ],
+  "status": "PASS",
+  "systems": [
+    "actor_only",
+    "belief_actor",
+    "world_actor",
+    "world_planner",
+    "adaptive_compute",
+    "reusable_replay",
+    "full_curriculum"
+  ],
+  "version": "2.28.0"
+}

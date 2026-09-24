@@ -1,0 +1,155 @@
+release: "2.31.0"
+purpose: explicit_agent_learning_research_split_with_empirical_pivot
+
+ablation_campaign:
+  seeds: [1701, 1702, 1703, 1704, 1705]
+  milestones: [25000, 100000]
+  splits: [heldout, transfer]
+  systems:
+    - actor_only
+    - belief_actor
+    - world_actor
+    - world_planner
+    - adaptive_compute
+    - reusable_replay
+    - full_curriculum
+
+  device: auto
+  horizon: 100
+  hidden: 64
+  sequence_length: 5
+  world_epochs: 2
+  actor_epochs: 4
+  representation_epochs: 2
+  calibration_epochs: 2
+  batch_size: 64
+
+  # Physical execution schedule for planner world-model rollouts.
+  # 0 means each independent candidate set is evaluated in the largest possible
+  # vectorized call. Positive values cap the world-model microbatch size and are
+  # bound into the campaign config hash.
+  planner_world_batch_size: 0
+  voc_epochs: 40
+
+  train_difficulty: 0.45
+  heldout_difficulty: 0.65
+  transfer_difficulty: 0.80
+  eval_tasks_per_split: 6
+  minimum_seeds: 5
+  bootstrap_resamples: 4000
+
+  # Frozen decision contract. Changing these values requires a new output directory
+  # because they are bound into the campaign config hash.
+  minimum_final_success_gain: 0.03
+  minimum_relative_curve_gain: 0.10
+  noninferiority_margin: 0.01
+  meaningful_latency_reduction: 0.20
+  meaningful_planner_call_reduction: 0.20
+  meaningful_physical_forward_reduction: 0.20
+  meaningful_logical_work_reduction: 0.20
+
+execution_contract:
+  train_once_per_system_seed_milestone: true
+  evaluate_same_frozen_checkpoint_on_both_splits: true
+  shared_dataset_per_seed_milestone_and_curriculum_mode: true
+  exact_transition_prefixes: true
+  atomic_job_receipts: true
+  resumable_after_preemption: true
+  deterministic_worker_sharding: true
+  no_keep_remove_decisions_before_complete_matrix: true
+
+compute_reporting_contract:
+  distinguish_logical_world_model_transitions_from_physical_forwards: true
+  record_world_model_batch_schedule: true
+  record_peak_cuda_memory: true
+  record_accelerator_wall_hours: true
+  estimate_unmeasured_energy: false
+  source_methodology_reference: "https://arxiv.org/abs/2609.19499"
+
+
+empirical_pivot:
+  architecture_frozen: true
+  add_new_cognitive_modules: false
+  procedural_arena_role: ci_and_fast_ablation_only
+  real_vizdoom_structured_required_for_tier2: true
+  real_vizdoom_pixel_required_for_tier3: true
+  real_vjepa_required_for_tier4: true
+  compositional_benchmark_required_for_tier6: true
+  claim_implementation_as_empirical_result: false
+
+real_vizdoom_qualification:
+  scenario: my_way_home
+  structured_episodes: 8
+  pixel_episodes: 8
+  horizon: 600
+  frame_skip: 4
+  vjepa_model: facebook/vjepa2-vitl-fpc64-256
+  reject_injected_backend: true
+  reject_injected_vjepa: true
+
+compositional_benchmark:
+  factors: [navigation, memory, combat, scarcity, key_door, hazards, dynamics_shift]
+  train_replicates: 2
+  eval_replicates: 1
+  exact_factor_signature_leakage_allowed: false
+
+system_split:
+  format: awa-v2.31-system-split-v1
+  canonical_entrypoints:
+    agent_runtime: awa.v2.agent_runtime
+    learning_system: awa.v2.learning_system
+    research_os: awa.v2.research_os
+  dependency_direction:
+    agent_runtime: [agent_runtime, shared]
+    learning_system: [agent_runtime, learning_system, shared]
+    research_os: [agent_runtime, learning_system, research_os, shared]
+  experimental_not_in_canonical_agent:
+    - skills
+    - engram
+    - sparse_moe
+    - modular_world
+    - reusable_learning_engine
+    - connectome
+    - legacy_v2_prototypes
+
+agent_runtime:
+  perception:
+    structured_state: true
+    frozen_vjepa_for_pixels: true
+  temporal_belief: true
+  actor_critic_behavior: true
+  world_model: candidate_core
+  selective_planning:
+    enabled: true
+    planners: [mppi, icem]
+  value_of_computation: candidate_core
+  uncertainty_and_risk_separated: true
+  safety_guard: true
+  hybrid_action_codec: true
+  forbidden_responsibilities:
+    - dataset_collection
+    - optimizer_updates
+    - curriculum_mutation
+    - experiment_promotion
+    - release_governance
+
+learning_system:
+  collection_modes: [coverage, random, teacher, aether_actor, aether_planner]
+  grounded_hindsight_replay: probation
+  factorized_environment_factory: true
+  curriculum: probation
+  cumulative_checkpoint_resume: true
+  frozen_checkpoint_collection: true
+  forbidden_responsibilities:
+    - empirical_claim_promotion
+    - release_manifest_generation
+
+research_os:
+  preregistration: true
+  provenance: true
+  train_once_evaluate_many: true
+  ablation_campaign: true
+  compute_ledger: true
+  empirical_maturity_ladder: true
+  keep_remove_gate: true
+  may_not_change_agent_behavior_during_evaluation: true

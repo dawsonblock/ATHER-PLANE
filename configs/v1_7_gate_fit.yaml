@@ -1,0 +1,68 @@
+seed: 23
+device: cpu
+
+env:
+  kind: continuous_point
+  action_type: continuous
+  horizon: 24
+  obs_dim: 4
+  action_dim: 2
+  action_low: [-1.0, -1.0]
+  action_high: [1.0, 1.0]
+
+model:
+  obs_dim: 4
+  latent_dim: 16
+  deterministic_dim: 32
+  stochastic_dim: 8
+  dynamics: gru
+  action_dim: 2
+  hidden_dim: 48
+  slow_enabled: false
+  uncertainty_heads: 3
+  experts_enabled: false
+
+planner:
+  enabled: true
+  horizon: 4
+  candidates: 24
+  elites: 6
+  iterations: 2
+  uncertainty_limit: 1.5
+  calibrated_uncertainty: true
+  learned_gate: true
+  learned_gate_hidden: 24
+  learned_gate_threshold: 0.5
+
+training:
+  steps: 120
+  batch_size: 4
+  sequence_length: 4
+  burn_in: 0
+  overshoot_horizon: 2
+  overshoot_coef: 0.05
+  replay_capacity: 1000
+  lr: 0.0003
+  actor_lr: 0.0003
+  value_lr: 0.0003
+  grad_clip: 10.0
+  free_nats: 0.1
+  imagination_horizon: 4
+  discount: 0.99
+  lambda: 0.95
+  entropy_coef: 0.001
+  checkpoint_every: 1000
+  log_every: 25
+  continuous_q:
+    enabled: true
+    hidden_dim: 64
+    lr: 0.0003
+    target_tau: 0.01
+    actor_coef: 0.2
+
+acceptance:
+  success_improvement_pct: 5
+  sample_efficiency_pct: 15
+  robustness_pct: 20
+  compute_reduction_pct: 20
+  max_critical_regression_pct: 3

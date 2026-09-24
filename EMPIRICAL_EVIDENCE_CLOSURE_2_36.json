@@ -1,0 +1,22 @@
+{
+  "format": "awa-v2.36-empirical-evidence-closure-v1",
+  "release": "2.36.0",
+  "agent_runtime_changed": false,
+  "implemented": {
+    "content_bound_real_execution_bundle": true,
+    "stable_checkpoint_digest_verification": true,
+    "resume_transition_delta_receipt": true,
+    "checkpoint_registry_integrity_gate": true,
+    "matched_external_baseline_contract": true,
+    "paired_bootstrap_intervals": true,
+    "external_baseline_runner_bundled": false
+  },
+  "empirical_boundary": {
+    "real_vizdoom_campaign_executed_in_release_validation": false,
+    "real_vjepa_campaign_executed_in_release_validation": false,
+    "full_dream_rsi_campaign_executed": false,
+    "seven_system_ablation_executed": false,
+    "external_baseline_executed": false,
+    "gpu_energy_measured": false
+  }
+}

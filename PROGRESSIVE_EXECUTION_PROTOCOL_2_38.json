@@ -1,0 +1,200 @@
+{
+  "agent_runtime_changed": false,
+  "architecture_frozen": true,
+  "claim_boundary": [
+    "The executor advances only the first blocked phase and never skips failed prerequisites.",
+    "Command execution uses argv arrays with shell disabled.",
+    "Focused ablations are engineering promotion gates and do not replace the final full seven-system matrix.",
+    "Missing scientific measurements remain manual evidence requirements rather than fabricated outputs."
+  ],
+  "executor_config": {
+    "limits": {
+      "default_max_transition_target": 25000,
+      "execute_one_phase_per_invocation": true,
+      "require_expensive_ack_for": [
+        "P11",
+        "P14"
+      ],
+      "require_explicit_execute_flag": true,
+      "shell_execution": false
+    },
+    "path": "configs/v2_38_progressive_executor.yaml",
+    "sha256": "371a34437b9233161003b36e1f9dc40ef530b8f984fda8274bc759b3c38fac6d"
+  },
+  "focused_ablation_configs": {
+    "v2_38_ablation_adaptive_compute.yaml": {
+      "milestones": [
+        25000
+      ],
+      "seeds": [
+        3821,
+        3822,
+        3823,
+        3824,
+        3825
+      ],
+      "sha256": "3088e6110130353653a98c324dba09ce611d60436a31d334b5feeb8cd38a764b",
+      "splits": [
+        "heldout",
+        "transfer"
+      ],
+      "systems": [
+        "world_planner",
+        "adaptive_compute"
+      ]
+    },
+    "v2_38_ablation_fixed_planner.yaml": {
+      "milestones": [
+        25000
+      ],
+      "seeds": [
+        3811,
+        3812,
+        3813,
+        3814,
+        3815
+      ],
+      "sha256": "7ce8324b6c48e827b2da88222c24e2e397574c2a20f35c4858dae3269dcf7ea0",
+      "splits": [
+        "heldout",
+        "transfer"
+      ],
+      "systems": [
+        "world_actor",
+        "world_planner"
+      ]
+    },
+    "v2_38_ablation_temporal_memory.yaml": {
+      "milestones": [
+        25000
+      ],
+      "seeds": [
+        3801,
+        3802,
+        3803,
+        3804,
+        3805
+      ],
+      "sha256": "300191591e9f83b4ee33574d7948bcfdbc40cdac71fff22871a184289b0cf89f",
+      "splits": [
+        "heldout",
+        "transfer"
+      ],
+      "systems": [
+        "actor_only",
+        "belief_actor"
+      ]
+    }
+  },
+  "format": "awa-v2.38-progressive-execution-protocol-v1",
+  "full_matrix_gate": {
+    "config": "configs/v2_31_system_split.yaml",
+    "phase": "P14",
+    "required_before_scale_phase": "P15"
+  },
+  "progressive_config": {
+    "path": "configs/v2_38_progressive_capability.yaml",
+    "phases": [
+      {
+        "id": "P0",
+        "kind": "preflight",
+        "name": "cuda_vizdoom_preflight"
+      },
+      {
+        "id": "P1",
+        "kind": "real_training",
+        "min_transitions": 2000,
+        "name": "structured_bringup_2k",
+        "track": "structured"
+      },
+      {
+        "id": "P2",
+        "kind": "real_training",
+        "min_transitions": 10000,
+        "name": "structured_learning_10k",
+        "track": "structured"
+      },
+      {
+        "id": "P3",
+        "kind": "real_training",
+        "min_transitions": 25000,
+        "name": "structured_control_25k",
+        "track": "structured"
+      },
+      {
+        "id": "P4",
+        "kind": "ablation",
+        "mechanism": "temporal_memory",
+        "name": "temporal_memory_value"
+      },
+      {
+        "filename": "world_model_horizon_gate.json",
+        "id": "P5",
+        "kind": "report",
+        "name": "world_model_reliable_horizon"
+      },
+      {
+        "id": "P6",
+        "kind": "ablation",
+        "mechanism": "fixed_planner",
+        "name": "grounded_planner_benefit"
+      },
+      {
+        "id": "P7",
+        "kind": "ablation",
+        "mechanism": "adaptive_compute",
+        "name": "adaptive_compute_value"
+      },
+      {
+        "id": "P8",
+        "kind": "real_training",
+        "min_transitions": 5000,
+        "name": "real_vjepa_pixel_5k",
+        "require_vjepa": true,
+        "track": "pixel"
+      },
+      {
+        "id": "P9",
+        "kind": "planner_hardware",
+        "name": "planner_physical_schedule"
+      },
+      {
+        "filename": "compositional_report.json",
+        "id": "P10",
+        "kind": "report",
+        "name": "compositional_generalization"
+      },
+      {
+        "id": "P11",
+        "kind": "dream_campaign",
+        "name": "dream_rsi_five_seed"
+      },
+      {
+        "filename": "transfer_report.json",
+        "id": "P12",
+        "kind": "report",
+        "name": "unseen_map_transfer"
+      },
+      {
+        "filename": "external_baseline_comparison.json",
+        "id": "P13",
+        "kind": "report",
+        "name": "matched_external_baseline"
+      },
+      {
+        "id": "P14",
+        "kind": "full_ablation",
+        "min_records": 140,
+        "name": "full_seven_system_25k_100k_ablation"
+      },
+      {
+        "id": "P15",
+        "kind": "manual_scale_gate",
+        "name": "scale_250k_plus"
+      }
+    ],
+    "sha256": "ebca4cb9318da8b04dcf9fcfa090277e6a0e0c501f4592b459cc1a0f144858fb"
+  },
+  "release": "2.38.0",
+  "runpod_bootstrap": "deploy/runpod/bootstrap.sh"
+}

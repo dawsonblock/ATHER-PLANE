@@ -1,0 +1,63 @@
+{
+  "claim_boundary": "Implementation, unit tests, software smokes, hardware execution and empirical qualification are separate states. The status report never promotes a tier without corresponding evidence artifacts.",
+  "evidence_root": null,
+  "format": "awa-v2.30-empirical-status-v1",
+  "highest_status_rank": 2,
+  "tiers": [
+    {
+      "boundary": "Useful for mathematical/controller sanity only; not evidence of complex embodied control.",
+      "capability": "continuous-point mathematical sanity",
+      "evidence": [
+        "source tests and smoke coverage"
+      ],
+      "status": "SOFTWARE_VALIDATED",
+      "tier": "T0"
+    },
+    {
+      "boundary": "The shipped release does not include the canonical 25K/100K five-seed empirical result.",
+      "capability": "procedural 2-D arena integration",
+      "evidence": [
+        "native procedural tests and campaign smokes"
+      ],
+      "status": "SOFTWARE_VALIDATED",
+      "tier": "T1"
+    },
+    {
+      "boundary": "Requires a qualification receipt produced by the non-injected real ViZDoom path.",
+      "capability": "real ViZDoom structured-state control",
+      "evidence": [],
+      "status": "UNEXECUTED",
+      "tier": "T2"
+    },
+    {
+      "boundary": "Requires a real ViZDoom pixel-track qualification receipt.",
+      "capability": "real ViZDoom RGB control",
+      "evidence": [],
+      "status": "UNEXECUTED",
+      "tier": "T3"
+    },
+    {
+      "boundary": "Requires a non-injected V-JEPA model and real ViZDoom RGB frames.",
+      "capability": "real V-JEPA visual representation path",
+      "evidence": [],
+      "status": "UNEXECUTED",
+      "tier": "T4"
+    },
+    {
+      "boundary": "Requires a heldout real-ViZDoom transfer evaluation; no shipped result is assumed.",
+      "capability": "unseen ViZDoom scenario/map transfer",
+      "evidence": [],
+      "status": "UNEXECUTED",
+      "tier": "T5"
+    },
+    {
+      "boundary": "Task generation is implemented; a complete multi-seed result is not shipped.",
+      "capability": "compositional adaptation/generalization",
+      "evidence": [
+        "factorized compositional benchmark generator"
+      ],
+      "status": "IMPLEMENTED",
+      "tier": "T6"
+    }
+  ]
+}

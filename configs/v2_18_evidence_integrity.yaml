@@ -1,0 +1,15 @@
+release: "2.18.0"
+evidence_integrity:
+  require_checkpoint_sha256: true
+  require_config_sha256: true
+  require_source_sha256: true
+  require_dataset_sha256: true
+  require_environment_sha256: true
+  require_dependency_lock_sha256: true
+  reject_duplicate_run_keys: true
+  reject_train_eval_scenario_overlap: true
+  canonical_receipt_digest: sha256
+qualification:
+  empirical_closure: "v2.17"
+  integrity_gate: "v2.18"
+  fail_closed: true

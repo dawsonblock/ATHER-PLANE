@@ -1,0 +1,40 @@
+{
+  "release": "2.29.0",
+  "purpose": "separate logical planner work from physical execution schedule",
+  "research_input": {
+    "title": "Sample Count Is Not Enough: Candidate-Generation Strategy Shapes the Energy and Performance of LLM Test-Time Scaling",
+    "arxiv": "2609.19499v1",
+    "url": "https://arxiv.org/abs/2609.19499",
+    "adopted_lesson": "candidate or sample count alone does not identify physical execution cost; report call grouping and systems metrics",
+    "not_claimed": [
+      "the paper proves more RL data is better",
+      "the paper proves Aether planning is better",
+      "the paper directly studies model-based reinforcement learning"
+    ]
+  },
+  "implemented": {
+    "logical_world_model_transition_count": true,
+    "physical_world_model_forward_count": true,
+    "batch_size_histogram": true,
+    "deterministic_world_model_microbatch_limit": true,
+    "policy_seeded_prior_accounting": true,
+    "risk_aware_stochastic_planner_accounting": true,
+    "adaptive_compute_trace_accounting": true,
+    "campaign_execution_fingerprint": true,
+    "consolidated_compute_schedule_report": true,
+    "peak_cuda_memory": true,
+    "accelerator_wall_hours": true,
+    "direct_energy_measurement": false,
+    "energy_estimated_from_wall_time": false
+  },
+  "canonical_schedule": {
+    "config": "configs/v2_29_compute_efficiency.yaml",
+    "planner_world_batch_size": 0,
+    "semantics": "maximally batched candidate evaluation subject to the planner tensor shape"
+  },
+  "empirical_boundary": {
+    "full_25k_100k_five_seed_ablation_executed": false,
+    "matched_microbatch_schedule_benchmark_executed": false,
+    "gpu_energy_measured": false
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "continuous_cli_smoke": "passed",
+  "discrete_cli_smoke": "passed",
+  "distributional_continuous_training_smoke": "passed",
+  "installed_package_version": "1.8.0",
+  "known_boundaries": [
+    "Native Mamba cache execution depends on the installed mamba_ssm API; v1.8 safely falls back to bounded recomputation when no compatible incremental API is exposed.",
+    "Meta-World and dm_control remain optional adapters and were not runtime-qualified in this container without their external packages.",
+    "Distributional critics are a research option, not a claim of benchmark superiority over scalar twin-Q until multi-seed task results demonstrate it.",
+    "This release is a research framework and does not claim frontier world-model parity."
+  ],
+  "major_upgrades": [
+    "optional quantile twin-Q continuous critics",
+    "quantile Huber regression with conservative target quantile selection",
+    "configurable n-step real replay targets for continuous critics",
+    "multi-step real-environment planner-vs-actor branch measurement",
+    "compute-aware planner-benefit labels and branch-horizon CLI controls",
+    "backend-neutral sequence cache with native-cache preference and bounded-recompute fallback",
+    "Mamba native step/inference-cache capability probing",
+    "multi-seed environment qualification with per-seed failure reporting",
+    "state snapshot round-trip qualification",
+    "all v1.7 uncertainty calibration, learned arbitration, control, memory, experts, checkpoints and MaleCNS functionality retained"
+  ],
+  "multiseed_environment_qualification_cli": "passed",
+  "multistep_gate_fit_cli": "passed",
+  "pytest": {
+    "failed": 0,
+    "passed": 58
+  },
+  "python_compile": "passed",
+  "release": "1.8.0",
+  "runnable_configs_validated": 13,
+  "validated_at_unix": 1789693503
+}

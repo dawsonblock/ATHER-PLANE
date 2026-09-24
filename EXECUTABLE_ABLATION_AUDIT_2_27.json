@@ -1,0 +1,23 @@
+{
+  "broad_reusable_learning_label_removed": true,
+  "claim": "all preregistered ablation labels map to concrete executable runtimes",
+  "full_variant": "full_curriculum",
+  "replacement": "reusable_replay",
+  "rng_lineage": {
+    "numpy": true,
+    "python": true,
+    "torch_cpu": true,
+    "torch_cuda_when_available": true
+  },
+  "scientific_boundary": "runtime closure is not capability evidence; multi-seed experiments remain required",
+  "variant_ids": [
+    "actor_only",
+    "belief_actor",
+    "world_actor",
+    "world_planner",
+    "adaptive_compute",
+    "reusable_replay",
+    "full_curriculum"
+  ],
+  "version": "2.27.0"
+}

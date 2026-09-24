@@ -1,0 +1,51 @@
+release: "2.28.0"
+purpose: resumable_preregistered_ablation_execution_and_decision_reporting
+
+ablation_campaign:
+  seeds: [1701, 1702, 1703, 1704, 1705]
+  milestones: [25000, 100000]
+  splits: [heldout, transfer]
+  systems:
+    - actor_only
+    - belief_actor
+    - world_actor
+    - world_planner
+    - adaptive_compute
+    - reusable_replay
+    - full_curriculum
+
+  device: auto
+  horizon: 100
+  hidden: 64
+  sequence_length: 5
+  world_epochs: 2
+  actor_epochs: 4
+  representation_epochs: 2
+  calibration_epochs: 2
+  batch_size: 64
+  voc_epochs: 40
+
+  train_difficulty: 0.45
+  heldout_difficulty: 0.65
+  transfer_difficulty: 0.80
+  eval_tasks_per_split: 6
+  minimum_seeds: 5
+  bootstrap_resamples: 4000
+
+  # Frozen decision contract. Changing these values requires a new output directory
+  # because they are bound into the campaign config hash.
+  minimum_final_success_gain: 0.03
+  minimum_relative_curve_gain: 0.10
+  noninferiority_margin: 0.01
+  meaningful_latency_reduction: 0.20
+  meaningful_planner_call_reduction: 0.20
+
+execution_contract:
+  train_once_per_system_seed_milestone: true
+  evaluate_same_frozen_checkpoint_on_both_splits: true
+  shared_dataset_per_seed_milestone_and_curriculum_mode: true
+  exact_transition_prefixes: true
+  atomic_job_receipts: true
+  resumable_after_preemption: true
+  deterministic_worker_sharding: true
+  no_keep_remove_decisions_before_complete_matrix: true

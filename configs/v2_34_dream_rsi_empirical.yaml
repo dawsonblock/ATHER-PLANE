@@ -1,0 +1,144 @@
+release: "2.34.0"
+purpose: paired_fixed_vs_dream_rsi_empirical_qualification
+
+seeds: [3401, 3402, 3403, 3404, 3405]
+rounds: 5
+round_transition_budget: 25000
+option_transition_budget: 6250
+worker_budget: 4
+max_parallel: 4
+revision_rounds: 8
+replay_max_rounds: 8
+mutation_step: 0.10
+
+initial_policy:
+  policy_id: canonical-initial
+  deficit_weight: 1.0
+  uncertainty_weight: 0.25
+  transfer_weight: 0.35
+  novelty_weight: 0.20
+  cost_weight: 0.10
+  support_weight: 0.05
+  staleness_weight: 0.02
+  stop_threshold: -0.05
+  max_parallel: 4
+  worker_budget: 4
+  transition_budget_cap: 25000
+
+support_policy:
+  min_worlds: 2
+  min_selected_nodes: 2
+  min_replay_coverage: 0.10
+  min_exact_decision_support: 1
+
+objective:
+  mode: aether
+  quality_weight: 1.0
+  transfer_weight: 0.35
+  adaptation_weight: 0.20
+  failure_weight: 0.50
+  transition_cost_weight: 0.0
+  compute_cost_weight: 0.0
+  latency_weight: 0.0
+  parallelism_bonus_weight: 0.05
+  paper_beta1: 0.01
+  paper_beta2: 0.05
+
+# Only canonical training signatures from COMPOSITIONAL_BENCHMARK_2_30 are offered.
+# Signals are available before execution and remain frozen by the campaign plan.
+menu:
+  - factors: [navigation]
+    capability_deficit: 0.25
+    uncertainty: 0.10
+    transfer_gap: 0.10
+    novelty: 0.05
+    expected_cost: 0.10
+    collector: coverage
+  - factors: [memory]
+    capability_deficit: 0.75
+    uncertainty: 0.35
+    transfer_gap: 0.45
+    novelty: 0.30
+    expected_cost: 0.20
+    collector: coverage
+  - factors: [combat]
+    capability_deficit: 0.70
+    uncertainty: 0.30
+    transfer_gap: 0.30
+    novelty: 0.25
+    expected_cost: 0.25
+    collector: coverage
+  - factors: [scarcity]
+    capability_deficit: 0.68
+    uncertainty: 0.30
+    transfer_gap: 0.42
+    novelty: 0.30
+    expected_cost: 0.25
+    collector: coverage
+  - factors: [key_door]
+    capability_deficit: 0.72
+    uncertainty: 0.32
+    transfer_gap: 0.48
+    novelty: 0.35
+    expected_cost: 0.22
+    collector: coverage
+  - factors: [hazards]
+    capability_deficit: 0.62
+    uncertainty: 0.28
+    transfer_gap: 0.30
+    novelty: 0.25
+    expected_cost: 0.22
+    collector: coverage
+  - factors: [dynamics_shift]
+    capability_deficit: 0.66
+    uncertainty: 0.45
+    transfer_gap: 0.50
+    novelty: 0.45
+    expected_cost: 0.20
+    collector: coverage
+  - factors: [navigation, memory]
+    capability_deficit: 0.82
+    uncertainty: 0.40
+    transfer_gap: 0.55
+    novelty: 0.45
+    expected_cost: 0.30
+    collector: coverage
+  - factors: [combat, scarcity]
+    capability_deficit: 0.84
+    uncertainty: 0.42
+    transfer_gap: 0.58
+    novelty: 0.50
+    expected_cost: 0.35
+    collector: coverage
+  - factors: [hazards, key_door]
+    capability_deficit: 0.86
+    uncertainty: 0.44
+    transfer_gap: 0.60
+    novelty: 0.55
+    expected_cost: 0.35
+    collector: coverage
+
+runtime:
+  base_seed: 2340
+  difficulty: 0.50
+  horizon: 120
+  device: auto
+  precision: fp32
+  sequence_length: 5
+  hidden: 64
+  world_epochs: 2
+  actor_epochs: 4
+  calibration_epochs: 2
+  batch_size: 64
+  one_step_aux_epochs: 1
+  evaluate_generalization: true
+  evaluation_replicates: 2
+
+minimum_final_mean_gain: 0.0
+minimum_curve_mean_gain: 0.0
+max_seed_regression: 0.05
+bootstrap_samples: 20000
+final_eval_replicates: 2
+final_eval_base_seed: 934000
+final_heldout_difficulty: 0.70
+final_transfer_difficulty: 0.82

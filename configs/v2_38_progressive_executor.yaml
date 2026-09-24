@@ -1,0 +1,74 @@
+release: "2.38.6"
+purpose: resumable_progressive_empirical_executor
+progressive_config: configs/v2_38_progressive_capability.yaml
+execution:
+  P0:
+    class: engineering
+    description: qualify CUDA, ViZDoom and V-JEPA dependencies
+  P1:
+    class: low_cost_training
+    transition_target: 2000
+    stage: real-wiring-2k
+  P1D:
+    class: low_cost_diagnostic
+    input: reward_diagnostic_raw.json
+    required_output: reward_diagnostic.json
+  P1P:
+    class: planner_diagnostic
+    input: planner_diagnostic_raw.json
+    required_output: planner_diagnostic.json
+  P2:
+    class: training
+    transition_target: 10000
+    stage: real-navigation-10k
+  P3:
+    class: training
+    transition_target: 25000
+    stage: real-control-25k
+  P4:
+    class: focused_ablation
+    config: configs/v2_38_ablation_temporal_memory.yaml
+  P5:
+    class: measurement_gate
+    input: world_model_horizon_curve.json
+  P6:
+    class: focused_ablation
+    config: configs/v2_38_ablation_fixed_planner.yaml
+  P7:
+    class: focused_ablation
+    config: configs/v2_38_ablation_adaptive_compute.yaml
+  P8:
+    class: training
+    transition_target: 5000
+    stage: real-pixel-navigation-5k
+  P9:
+    class: hardware_benchmark
+  P10:
+    class: external_evidence
+    required_output: compositional_report.json
+  P11:
+    class: expensive_campaign
+    config: configs/v2_34_dream_rsi_empirical.yaml
+  P12:
+    class: external_evidence
+    required_output: transfer_report.json
+  P13:
+    class: external_evidence
+    required_output: external_baseline_comparison.json
+  P14:
+    class: expensive_campaign
+    config: configs/v2_31_system_split.yaml
+  P15:
+    class: manual_authorization
+    required_output: scale_authorization.json
+limits:
+  default_max_transition_target: 25000
+  shell_execution: false
+  execute_one_phase_per_invocation: true
+  require_explicit_execute_flag: true
+  require_expensive_ack_for: [P11, P14]
+claim_boundary:
+  - The executor advances only the first blocked phase and never skips failed prerequisites.
+  - Command execution uses argv arrays with shell disabled.
+  - Focused ablations are engineering promotion gates and do not replace the final full seven-system matrix.
+  - Missing scientific measurements remain manual evidence requirements rather than fabricated outputs.

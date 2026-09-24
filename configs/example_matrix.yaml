@@ -1,0 +1,21 @@
+baseline_gru:
+  model:
+    dynamics: gru
+    slow_enabled: false
+    experts_enabled: false
+  planner:
+    enabled: false
+
+ssm_actor:
+  model:
+    dynamics: ssm
+    slow_enabled: false
+    experts_enabled: false
+  planner:
+    enabled: false
+
+ssm_planner:
+  model:
+    dynamics: ssm
+  planner:
+    enabled: true

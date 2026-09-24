@@ -1,0 +1,15 @@
+{
+  "release": "2.30.0",
+  "compatibility_only": {
+    "awa.v2.memory": "awa.experimental.legacy_v2.memory",
+    "awa.v2.hierarchy": "awa.experimental.legacy_v2.hierarchy",
+    "awa.v2.context_replay": "awa.experimental.legacy_v2.context_replay",
+    "awa.v2.decision": "awa.experimental.legacy_v2.decision",
+    "awa.connectome": "awa.experimental.connectome"
+  },
+  "v1_runtime": {
+    "status": "retained_for_compatibility_and_regression_reproduction",
+    "stable_v2_30_spine": false,
+    "planned_action": "separate/archive after empirical ablations and one deprecation cycle"
+  }
+}

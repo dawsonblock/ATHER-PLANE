@@ -1,0 +1,99 @@
+release: "2.25.0"
+purpose: reduction_empirical_closure_cumulative_native_campaign
+
+research_boundary:
+  arbitrary_source_rewrite: false
+  replay_can_promote_without_online_validation: false
+  simulated_evidence_can_support_empirical_claims: false
+  evaluator_changes_during_pair: false
+  execute_requires_explicit_flag: true
+  bootstrap_requires_explicit_flag: true
+
+active_policy:
+  policy_id: active
+  quality_weight: 1.0
+  novelty_weight: 0.25
+  uncertainty_weight: 0.20
+  transfer_weight: 0.30
+  information_weight: 0.20
+  cost_weight: 0.10
+  new_world_bias: 0.35
+  stop_threshold: -0.05
+  max_parallel: 4
+  new_world_fraction: 0.20
+  adversarial_fraction: 0.10
+
+meta_exploration:
+  replay:
+    max_rounds: 64
+    objective:
+      quality_weight: 1.0
+      transfer_weight: 0.25
+      information_weight: 0.10
+      uncertainty_weight: 0.10
+      compute_cost_weight: 0.10
+      latency_weight: 0.001
+      constraint_violation_weight: 1.0
+  mutation:
+    step: 0.20
+    fields: [quality_weight, information_weight, novelty_weight, transfer_weight]
+    minimum_new_world_fraction: 0.10
+    minimum_adversarial_fraction: 0.05
+    minimum_replay_gain: 0.0
+  promotion:
+    maximum_per_seed_regression: 0.05
+    minimum_final_mean_gain: 0.0
+    minimum_curve_mean_gain: 0.0
+    maximum_split_mean_regression: 0.02
+    require_positive_final_ci: false
+    bootstrap_resamples: 4000
+
+metric_projection:
+  quality_metric: success_rate
+  novelty_metric: novelty
+  uncertainty_reduction_metric: uncertainty_reduction
+  transfer_metric: success_rate
+  information_gain_metric: information_gain
+  constraint_metric: constraint_violations
+  compute_cost_metric: normalized_compute_cost
+  latency_metric: wall_clock_seconds
+  latency_scale: 0.0002777777777777778
+
+validation:
+  seeds: [1701, 1702, 1703, 1704, 1705]
+  tasks: [procedural]
+  splits: [heldout, transfer]
+  milestones: [25000, 100000, 250000, 500000, 1000000]
+  primary_metric: success_rate
+  minimum_seeds: 5
+
+# v2.25 keeps train-once/evaluate-many across evaluation splits and adds
+# cumulative milestone training: each larger milestone reuses the previous
+# grounded checkpoint and collects/trains only on the transition delta.
+# Native meta-policy mutation is restricted to curriculum axes that actually
+# change collection behavior; execution-equivalent candidates are deduplicated.
+runner:
+  type: native_procedural
+  config:
+    device: auto
+    precision: fp32
+    curriculum_stages: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    tasks_per_batch: 24
+    episodes_per_task: 1
+    horizon: 100
+    train_difficulty: 0.45
+    eval_difficulty: 0.65
+    eval_tasks: 6
+    sequence_length: 5
+    hidden: 64
+    world_epochs: 2
+    actor_epochs: 4
+    calibration_epochs: 2
+    batch_size: 64
+    one_step_aux_epochs: 1
+    minimum_transitions: 32
+    max_collection_batches: 10000
+    reuse_training_artifacts: true
+    cumulative_milestone_training: true
+    run_planner_diagnostics: false
+    evaluation_seed_offset: 31

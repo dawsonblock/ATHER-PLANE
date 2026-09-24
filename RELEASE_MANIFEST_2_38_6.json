@@ -1,0 +1,265 @@
+{
+  "based_on_release": "2.38.5",
+  "claim_boundary": "The v2.38.5 evidence remains the only real ViZDoom training result. Gatefix 4 corrects an infeasible P1P oracle condition, but real P1D/P1P GPU or benchmark outcomes have not been produced.",
+  "files_changed_or_added": [
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "a25d24ab0f60c01073e5e53dcdd549de0b6cbb963aa42cee213f0011c5f8fc08",
+      "size": 47074
+    },
+    {
+      "path": "README.md",
+      "sha256": "cd12f1c9f28ba6d487267073913c6b1ad8d9de327bcbe8f97565e925d8b786ec",
+      "size": 45788
+    },
+    {
+      "path": "configs/v2_38_6_empirical_execution.yaml",
+      "sha256": "fd9041b2de66f772d059f131dff30906e642ae61e14e3b83c522c2478dd0d0f9",
+      "size": 785
+    },
+    {
+      "path": "configs/v2_38_6_planner_diagnostic.yaml",
+      "sha256": "dd0888bc37f28d4be7422f3d2de9845d184aece2bdaa5831a3f974480fedde62",
+      "size": 1325
+    },
+    {
+      "path": "configs/v2_38_6_reward_diagnostic.yaml",
+      "sha256": "5dcae1b59db1ede10d7fc6ed8c4eea02855a07cf830b4bdb247e72e8233fe876",
+      "size": 1006
+    },
+    {
+      "path": "configs/v2_38_progressive_capability.yaml",
+      "sha256": "75836cbeb7d13d8db6e59395bf2dcdc7ff89c7e8a22817a2c8a57ca1b470d0ea",
+      "size": 3176
+    },
+    {
+      "path": "configs/v2_38_progressive_executor.yaml",
+      "sha256": "597e674182e3beb50f495289046b560a39896c120c5e5b383ab81e2d31f691b9",
+      "size": 2282
+    },
+    {
+      "path": "deploy/runpod/bootstrap.sh",
+      "sha256": "97ee9b81241f2d33be6e944453bbac33185eae88139cf97e1c44758f9065ba4d",
+      "size": 2341
+    },
+    {
+      "path": "docs/PLANNER_DIAGNOSTIC_P1P_2_38_6.md",
+      "sha256": "df5e99349ae03de27a935cc47a97ae824f6b997c47f84062addade1eb557bb9c",
+      "size": 5806
+    },
+    {
+      "path": "docs/REWARD_DIAGNOSTIC_P1D_2_38_6.md",
+      "sha256": "74cc5a4082a4bc47a5df5c32de76007699db59f101d9387e2643dfd69d7100a7",
+      "size": 1327
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "e07b7377f0d927fb38244318fdc158c1464318fd1d6cb46c91efc7c4d37bd3f7",
+      "size": 6911
+    },
+    {
+      "path": "src/awa/__init__.py",
+      "sha256": "4ffbc3b159091d4905da3c9b207678c874e4f35a3c76b31abed54d1731619e63",
+      "size": 23
+    },
+    {
+      "path": "src/awa/v2/__init__.py",
+      "sha256": "02a793b71cf1075e6d63bf77b4c32f1889de63d0ddf6e642ec5c6a16b498ab58",
+      "size": 9288
+    },
+    {
+      "path": "src/awa/v2/datasets.py",
+      "sha256": "e5b1590fcadd46a6b2dd4e75f9aec5857399a8d56892e090d3c1907c65f9c6fd",
+      "size": 13674
+    },
+    {
+      "path": "src/awa/v2/game/vizdoom_campaign.py",
+      "sha256": "3c4c696a36293c883f90b7e74fa820ba27eaed74a71f47e9225de61ee68343ca",
+      "size": 14544
+    },
+    {
+      "path": "src/awa/v2/game/vizdoom_dataset.py",
+      "sha256": "2a4c02c355c510de58530de80b735655139f7893a83af0fb25cb2f43572a9416",
+      "size": 9426
+    },
+    {
+      "path": "src/awa/v2/game/vizdoom_training.py",
+      "sha256": "699c6785980588995070327a69b3a24bcae9fd9e1471589e26fd935ea3de29ae",
+      "size": 13046
+    },
+    {
+      "path": "src/awa/v2/progressive_cli.py",
+      "sha256": "1b26aad7b416c14d6336cb7fa465289e2082aec7afa1e33ed449aa73e81dce37",
+      "size": 6368
+    },
+    {
+      "path": "src/awa/v2/real_execution_cli.py",
+      "sha256": "cba580edfaf692018a6c12c85b076221fb7eb7682bf7d4a26ef6c1614fb9d842",
+      "size": 8153
+    },
+    {
+      "path": "src/awa/v2/research_os/branch_replay.py",
+      "sha256": "4fee783b4978674d53dc560f50ecf43f1d6cd8667488c853fcd2f7680b76fd56",
+      "size": 7809
+    },
+    {
+      "path": "src/awa/v2/research_os/execution_preflight.py",
+      "sha256": "857fb734290010fb7abda0e7fdc1228426fff388048e24cf8a57df2e22513c1c",
+      "size": 12822
+    },
+    {
+      "path": "src/awa/v2/research_os/planner_diagnostic.py",
+      "sha256": "8860bf0ae5f62afcbd52846eac57d0e9862ef0dbf4b02373c64d880f70a5358b",
+      "size": 32570
+    },
+    {
+      "path": "src/awa/v2/research_os/progressive_capability.py",
+      "sha256": "f7399d5f86f3f2f05a31190b0c5ef41ff27529b4334b55c1193ec7a0a10f6ab2",
+      "size": 27161
+    },
+    {
+      "path": "src/awa/v2/research_os/progressive_executor.py",
+      "sha256": "91f5ffa8804cc5210eebe81ad372f576931ca190aefe156bc4e18977b19da7b1",
+      "size": 20324
+    },
+    {
+      "path": "src/awa/v2/research_os/reward_diagnostic.py",
+      "sha256": "e3a91c995e33e70d2951ff3e35da8d6a8e7ca39e86a3a9895da7042cac739e2d",
+      "size": 14424
+    },
+    {
+      "path": "tests/test_v2160_vizdoom_training_closure.py",
+      "sha256": "d87b59c3c1c38cfaa5e4f4bbd0419b7892cffd4b3fccfd8043cbf91f6a9395c2",
+      "size": 12315
+    },
+    {
+      "path": "tests/test_v2200_evolving_exploration.py",
+      "sha256": "4e28fd2c74f62e17d4802b3dc6bbf70b118588d464b0f8239f685d56aa00544c",
+      "size": 7719
+    },
+    {
+      "path": "tests/test_v2210_evolving_campaign.py",
+      "sha256": "4f59d751cab35a84ab75e80259827d97c06ced584a6da0217a50b8f51f543d3e",
+      "size": 6683
+    },
+    {
+      "path": "tests/test_v2220_native_campaign.py",
+      "sha256": "b75c1ae5a570cf39b29d2d5e5ad4ac2993859870ecde85d9e27d3f302d3cdbc3",
+      "size": 10678
+    },
+    {
+      "path": "tests/test_v2230_train_once_evaluate_many.py",
+      "sha256": "3ebd71ffa22a9f678c9d99ec19729f3d668b494083bdba3e044c0bbaf7cae60c",
+      "size": 4534
+    },
+    {
+      "path": "tests/test_v2240_milestone_empirical_closure.py",
+      "sha256": "fd317fc558d212fbcc44d05d5c52538a57a854be5110c1f8d0c21b313a8f878f",
+      "size": 4989
+    },
+    {
+      "path": "tests/test_v2250_reduction_release.py",
+      "sha256": "a6c1fef76205328c6a82ae27e65e45f24c25b9754e54634b9a5eb01770a5ee6c",
+      "size": 5875
+    },
+    {
+      "path": "tests/test_v2260_autonomous_ablation.py",
+      "sha256": "2503566149c3240481c57d6c1e9da46754a7c6a54688bc47eae0745fcbd043bc",
+      "size": 5245
+    },
+    {
+      "path": "tests/test_v2270_executable_ablation.py",
+      "sha256": "39097ece57d6478b114550463dad914d495ef1d0d254c83456ba80f309047dc6",
+      "size": 4611
+    },
+    {
+      "path": "tests/test_v2280_ablation_campaign.py",
+      "sha256": "625f41dcc938ce0fcfd08c1ab8bfaae77948c1ed6dea2b3a3b485fbedbb3d27a",
+      "size": 5440
+    },
+    {
+      "path": "tests/test_v2290_compute_schedule.py",
+      "sha256": "102aee372c9161681da80375d2103a272823bca82a7a4ff53812c448b2a2bfc4",
+      "size": 6731
+    },
+    {
+      "path": "tests/test_v2300_empirical_pivot.py",
+      "sha256": "73e49e3e4b645a4a0d5fb2ac6bead9d8089d40b7d7250aa9f3299e005f768fd9",
+      "size": 5613
+    },
+    {
+      "path": "tests/test_v2310_system_split.py",
+      "sha256": "bff73f7e47d4c725fd8f1fb010ef59c195f068792591698a42e728dd2057f7e2",
+      "size": 3320
+    },
+    {
+      "path": "tests/test_v2320_dream_rsi_meta_learning.py",
+      "sha256": "f7b81c7c7e3bfd90714df18d09c97c306772352ef597d4f99ab0431cfac92ffe",
+      "size": 9272
+    },
+    {
+      "path": "tests/test_v2340_dream_rsi_empirical_campaign.py",
+      "sha256": "6a2145dff3f167d18b152e926e6c1040d1df2a7a2bbb23d0bf74ffdab8ded08e",
+      "size": 5618
+    },
+    {
+      "path": "tests/test_v2350_real_execution_readiness.py",
+      "sha256": "76e33519271017621f2cff83210a105d0025a9899a06826ba485c6f0f02f4da4",
+      "size": 11390
+    },
+    {
+      "path": "tests/test_v2360_empirical_evidence_closure.py",
+      "sha256": "9af04105b007d22747cd26226485a14dcbec327a87a7052a6c80498288b52982",
+      "size": 5604
+    },
+    {
+      "path": "tests/test_v2370_progressive_capability.py",
+      "sha256": "378bd1c9247973c1a98ed0d3b930f127a81649236786c0217ceee4a1d603c099",
+      "size": 7331
+    },
+    {
+      "path": "tests/test_v2380_progressive_executor.py",
+      "sha256": "9d8c02babbb5687caf84a07712b39ea4e1f3b4c795ae72eebe045828f80b22bb",
+      "size": 15465
+    },
+    {
+      "path": "tests/test_v2381_execution_repairs.py",
+      "sha256": "86d1ef5278df94c5043f2921d2f2279586ed72676ae205a3104cb01d2fb7c272",
+      "size": 13918
+    },
+    {
+      "path": "tests/test_v2386_planner_diagnostic.py",
+      "sha256": "884851912dec5763a706345ae6019c0ca69d4d44f55a0e138bdf6d6823ba86a4",
+      "size": 11149
+    }
+  ],
+  "frozen_base_zip_sha256": "1cb7f6b41e4aacef85b7c25df0ff6c46a626e6879c170227f234ae8b26005b8a",
+  "gatefix1": {
+    "scope": "Pair P1D arms by training seed ID; reject duplicate P1D evaluation rows and P1P oracle ladder entries.",
+    "validation": "Seven executable gate checks passed without Torch; GPU qualification remains pending."
+  },
+  "gatefix2": {
+    "scope": "Align progressive-order regression tests with P1D/P1P prerequisites; make mocked P2 dataset and checkpoint artifacts valid.",
+    "validation": "403 passed, 1 skipped; CPU-only PyTorch."
+  },
+  "gatefix3": {
+    "scope": "Require a reproducible real ViZDoom reset/branch probe, retained raw P1P evidence, and verified P1 checkpoint hashes; reject inconsistent branch returns and unsafe ViZDoom IPC hosts.",
+    "limitation": "The independent reward oracle for imagined latent states and the real GPU P1D/P1P measurements remain outstanding."
+  },
+  "release": "2.38.6",
+  "scope": "paired P1D reward diagnosis, P1P real-branch joint dynamics/reward gate, persistent-volume quota preflight, scenario/reward telemetry, baseline-registration semantics; no action-time cognitive module",
+  "verification": {
+    "bootstrap_shell_syntax": "pass",
+    "progression_to_p2_after_all_prerequisites": "pass",
+    "pytest": "408 passed, 1 skipped; CPU-only PyTorch 2.14.0+cpu",
+    "python_compile": "pass",
+    "real_gpu_training": "not run; this validation used CPU-only PyTorch and did not execute on a GPU pod",
+    "vizdoom_branch_replay": "BLOCKED on this workspace: native ViZDoom requires a local IPC socket that this host denies; the new preflight reports the failure without entering the native extension",
+    "synthetic_p1d_p1p_evidence_logic": "pass",
+    "yaml_and_toml_parse": "pass"
+  },
+  "gatefix4": {
+    "scope": "Replace impossible imagined-state reward oracle with real-branch comparison of joint learned dynamics and reward; add separate terminal value and risk ablations; reject legacy v1 planner raw evidence.",
+    "limitation": "P1P still requires real ViZDoom branch collection and closed-loop evaluation on a qualified GPU host; no new empirical results claimed."
+  }
+}

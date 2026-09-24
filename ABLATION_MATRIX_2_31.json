@@ -1,0 +1,45 @@
+{
+  "protocol": {
+    "milestones": [
+      25000,
+      100000
+    ],
+    "minimum_seeds": 5,
+    "primary_metric": "success_rate",
+    "protocol_id": "aether-v2.31-executable-component-ablation-v1",
+    "seeds": [
+      1701,
+      1702,
+      1703,
+      1704,
+      1705
+    ],
+    "splits": [
+      "heldout",
+      "transfer"
+    ],
+    "system_config_sha256": {
+      "actor_only": "3e58f79424f6530614d978e865200ecf0a043d7ca4a38ae85a3ac4de02abb203",
+      "adaptive_compute": "98c40049bc575e83e9492df1eddf92a5c557a40d17a8987ea4532acea608ba5d",
+      "belief_actor": "b7043abbccf2dd2711f98fbb95124d2709f196db34010699e090d949b8bd151d",
+      "full_curriculum": "af03c8a334f2d78739543b3988f441d514ce94c58aabfababf264a26562830d2",
+      "reusable_replay": "e1ea9982ed8e7e9e7d954aa2499302254ca2b44956e32f0a8d8df5b2b2746a55",
+      "world_actor": "cd6f8ce01fcdce7f049dd628cdc5a987d16a6e4f9962c2c46624f9f6674c1ba1",
+      "world_planner": "6c33fb024c21c902387bf66dc8a35dd7a9ca487c23f8c7e59ccf4d0ab0db8731"
+    },
+    "systems": [
+      "actor_only",
+      "belief_actor",
+      "world_actor",
+      "world_planner",
+      "adaptive_compute",
+      "reusable_replay",
+      "full_curriculum"
+    ],
+    "tasks": [
+      "procedural"
+    ]
+  },
+  "protocol_sha256": "c0c18fbe1be9fcb87eeffb3087edd1b54d244d544b59232257c26aae502d4889",
+  "version": "2.31.0"
+}

@@ -1,0 +1,38 @@
+version: 2.3
+seed: 7
+baseline:
+  actor_only:
+    algorithm: td3_bc
+    hidden_dim: 256
+    gamma: 0.99
+    target_tau: 0.01
+    bc_weight: 2.5
+    learning_rate: 0.0003
+planner_qualification:
+  exact_snapshot_required: true
+  branch_horizon: 5
+  world_model_call_budgets: [32, 64, 128, 256, 512]
+  planners:
+    - cem
+    - mppi
+    - policy_mppi
+    - policy_icem
+    - gradient
+  metrics:
+    - real_return_gain
+    - win_rate
+    - world_model_calls
+    - latency_ms
+    - gain_per_1k_calls
+value_of_computation:
+  train_from_real_branches: true
+  cost_weight: 1.0
+  features: [uncertainty_h1, uncertainty_h5, uncertainty_h20, risk, actor_action_norm, belief_norm]
+  choices_include_budget: true
+safety:
+  fail_closed_guard: true
+  learned_risk_limit: 0.8
+  recovery_action: neutral
+promotion:
+  planner_must_improve_real_return_per_compute: true
+  actor_only_remains_default: true

@@ -1,0 +1,28 @@
+{
+  "release": "2.30.0",
+  "purpose": "freeze architecture and pivot from synthetic framework validation to grounded empirical qualification",
+  "implemented": {
+    "fail_closed_empirical_status_ladder": true,
+    "real_vizdoom_backend_provenance_gate": true,
+    "injected_fake_vizdoom_rejected_for_qualification": true,
+    "real_vjepa_provenance_gate": true,
+    "factorized_compositional_environment_factory": true,
+    "exact_factor_signature_split_leakage_check": true,
+    "generated_task_geometry_validation": true,
+    "planner_hardware_schedule_benchmark_runner": true,
+    "orphan_v2_prototypes_quarantined": true,
+    "connectome_experiment_quarantined": true,
+    "v2_30_ablation_protocol_binding": true
+  },
+  "empirical_boundary": {
+    "full_25k_100k_five_seed_ablation_executed": false,
+    "real_vizdoom_structured_benchmark_executed": false,
+    "real_vizdoom_rgb_benchmark_executed": false,
+    "real_vjepa_downstream_benchmark_executed": false,
+    "matched_gpu_microbatch_schedule_benchmark_executed": false,
+    "gpu_energy_measured": false,
+    "five_seed_compositional_transfer_executed": false,
+    "external_world_model_baseline_executed": false
+  },
+  "claim_boundary": "Implementation, unit/smoke validation, real hardware execution and empirical qualification are reported as distinct states."
+}

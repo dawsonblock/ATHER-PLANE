@@ -1,0 +1,29 @@
+{
+  "base_zip_sha256": "371fe6da2a9b8a2119f90cd1beee07f457cc431a6ba8d7f57149021f86db6883",
+  "files_changed_or_added": {
+    "README.md": "04f62a50fb25ffec8e8031a922645af979a6f89aa1b4bf56dd9e184dd8f55761",
+    "configs/v2_38_3_empirical_execution.yaml": "eb6a52e7fe8e0ebd904805d649b1f43a486898e7c84bc1de0eee3cb169d228cf",
+    "configs/v2_38_progressive_capability.yaml": "eecf5f616f861e45532248d1f063b46e1ef4598df506bb98672cfd0078cc7b68",
+    "configs/v2_38_progressive_executor.yaml": "b15edea50935eb67205fb54a7126339b88f75054c8fb94db9f73b46fc326247b",
+    "deploy/runpod/bootstrap.sh": "6715057d14cb4b95701cdab74158eb514f97a558c3032b26b6c76cf9a0f8ac00",
+    "docs/REPLAY_BUDGET_FIX_2_38_3.md": "84b21ab4ad96a857cd2083184382a310f76ae3d2200b7aeb520b6df74a9ac12e",
+    "pyproject.toml": "9ee5139c4a588f9c4ce71a000bae1886284c51d0fc58cfd402216d9a83454f2a",
+    "src/awa/__init__.py": "31708e6c7a0be53d4a0674dc5f6bd8ce0b55b9c96aba18f68b9cc83c7dc7ab40",
+    "src/awa/v2/__init__.py": "c152c0936abdb200570774ccac4a5d0edafa610129421c7b2122c6ed591636dc",
+    "src/awa/v2/game/vizdoom_campaign.py": "0c53ea1f8052d65ac2bd931a23aaa2900aed4c9d96ece7623667b58f7f1a0c6e",
+    "src/awa/v2/progressive_cli.py": "02acd97bd82d763ee9d046421842237e152d993d2ba707aa2064c31f2c07031d",
+    "src/awa/v2/replay/sharded_store.py": "de35706067c4282b786ab3d1faa876248f1b71982216149bb926ab2ab707458c",
+    "src/awa/v2/research_os/progressive_capability.py": "89851093996d09d8c2d6394ef77990028eafc811a7293c3098a0a7064403cec5",
+    "src/awa/v2/research_os/progressive_executor.py": "f956aeb2ed7095eadab8ecba01fb13a4a3512051c05ab0cc415b66c01f1ff352",
+    "tests/test_v2383_replay_selection.py": "6d7ffe6764f2d59fa00c3ba8b623b0859d1798b904803ddac86ad46870b2d01e"
+  },
+  "release": "2.38.3",
+  "scope": "ViZDoom fixed-budget replay selection only; frozen architecture and promotion gates unchanged",
+  "supersedes": "2.38.2",
+  "verification": {
+    "bootstrap_shell_syntax": "pass",
+    "python_compile": "pass",
+    "real_GPU_requalification": "not run; prior P2 remains failed",
+    "real_P2_replay_offline": "10000 bounded rows; three successful my_way_home episodes included vs zero before; prefix episode boundary terminal"
+  }
+}

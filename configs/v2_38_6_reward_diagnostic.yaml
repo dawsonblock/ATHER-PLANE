@@ -1,0 +1,28 @@
+release: "2.38.6"
+purpose: paired_my_way_home_raw_vs_clipped_reward_diagnostic
+
+diagnostic:
+  scenario: my_way_home
+  track: structured
+  collection_episodes: 12
+  collection_horizon: 400
+  minimum_collection_transitions: 2048
+  collection_seed: 7350
+  training_seeds: [7101, 7102, 7103]
+  evaluation_seed_ids: [9101, 9102, 9103, 9104, 9105, 9106, 9107, 9108]
+  evaluation_horizon: 600
+  sequence_length: 8
+  world_epochs: 1
+  actor_epochs: 2
+  calibration_epochs: 1
+  batch_size: 64
+  hidden: 96
+  device: cuda
+  reward_clip_min: -1.0
+  reward_clip_max: 1.0
+
+claim_boundary:
+  - Both reward arms use the exact same my_way_home observations, actions, episode boundaries and evaluation seeds.
+  - Only the scalar training reward differs; clipped reward is clipped to [-1, 1].
+  - Reward component proxies are labeled as proxies and are not represented as the engine's exact internal reward terms.
+  - The gate uses paired realized navigation success, not training loss, to decide whether clipping advances.

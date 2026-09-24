@@ -1,0 +1,35 @@
+version: 2.12.0
+experiment: controlled_modular_scaling
+seed: 212
+runtime:
+  device: auto
+  precision: fp32
+model:
+  hidden: 96
+  components: 3
+  horizons: [1, 2, 4]
+  experts: 4
+  top_k: 1
+training:
+  epochs: 3
+  batch_size: 128
+  sequence_length: 8
+  lr: 0.0007
+data:
+  # On a 1M-transition dataset these approximately probe 100k, 250k, 500k and 1M scale.
+  fractions: [0.10, 0.25, 0.50, 1.00]
+  model_kind: monolithic
+scaling:
+  hidden_sizes: [64, 96, 128, 192]
+context:
+  # [sequence_length, event_slots, global_stride]
+  specs:
+    - [4, 4, 4]
+    - [8, 8, 4]
+    - [16, 16, 4]
+    - [32, 24, 2]
+  model_kind: monolithic
+qualification:
+  seeds: [212, 213, 214, 215, 216]
+  bootstrap_resamples: 2000
+  confidence: 0.95

@@ -1,0 +1,33 @@
+{
+  "format": "awa-v2.33-dream-rsi-closure-v1",
+  "release": "2.33.0",
+  "scope": "training-allocation meta-exploration only; action-time agent unchanged",
+  "closed_gaps": [
+    "exact-transition real execution of TrainingAllocationDecision",
+    "complete offered decision-menu logging",
+    "unsupported offered-but-unexecuted decisions fail closed into online probes",
+    "global worker budget counts sum(parallel_worlds), not only meta-decision count",
+    "iterative replay-policy development with per-revision feedback receipts",
+    "replay pool expands after each completed grounded online round",
+    "next round redeploys only a candidate that passed paired grounded online qualification",
+    "exact-paper quality/cost/parallelism replay objective mode",
+    "controlled fixed-vs-DREAM comparison contract with identical initial policy and resource budget"
+  ],
+  "aether_hardening_retained": [
+    "observed/validated evidence only in grounded replay",
+    "cryptographically frozen agent/evaluator/interface contract",
+    "support-aware historical replay",
+    "replay can never directly promote",
+    "no arbitrary policy source-code rewriting"
+  ],
+  "empirical_boundary": {
+    "software_loop_closed": true,
+    "tiny_real_exact_transition_smoke_executed": true,
+    "fixed_vs_dream_real_embodied_comparison_executed": false,
+    "dream_rsi_embodied_rl_benefit_demonstrated": false
+  },
+  "source": {
+    "title": "Dream-RSI: Recursive Self-Improvement through Evolving Worlds",
+    "arxiv": "2609.14858v1"
+  }
+}

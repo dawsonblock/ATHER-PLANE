@@ -1,0 +1,54 @@
+version: 2.15.0
+seed: 215
+
+vizdoom:
+  scenario: my_way_home
+  frame_skip: 4
+  screen_resolution: RES_320X240
+  screen_format: RGB24
+  turn_delta_degrees: 12.0
+  move_delta_units: 12.0
+  visible: false
+  sound: false
+
+curriculum:
+  - basic
+  - my_way_home
+  - health_gathering
+  - defend_the_center
+  - predict_position
+  - take_cover
+  - deadly_corridor
+  - deathmatch
+
+tracks:
+  structured:
+    enabled: true
+    observation: telemetry
+  pixel:
+    enabled: true
+    observation: rgb
+    telemetry_fusion: true
+
+vjepa:
+  provider: vjepa2-hf
+  model_name_or_path: facebook/vjepa2-vitl-fpc64-256
+  local_files_only: true
+  frames_per_clip: 64
+  frame_stride: 1
+  image_size: 256
+  normalize_visual: true
+  cache_namespace: vizdoom-vjepa2
+
+collection:
+  episodes: 8
+  horizon: 600
+  policy: explorer
+  preserve_uint8_frames: true
+
+qualification:
+  compare_structured_vs_pixel: true
+  require_encoder_fingerprint: true
+  require_dataset_sha256: true
+  require_clip_contract: true
+  seeds: [215, 216, 217, 218, 219]

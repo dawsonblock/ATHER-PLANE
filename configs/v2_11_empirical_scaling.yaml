@@ -1,0 +1,24 @@
+version: 2.11.0
+experiment: empirical_scaling
+planning:
+  stochastic_samples: 8
+  cvar_alpha: 0.25
+  cvar_weight: 0.5
+  epistemic_weight: 0.1
+ensemble:
+  members: 3
+  bootstrap: true
+replay:
+  sharded: true
+  shard_size: 100000
+aggregation:
+  rounds: 4
+  planner_probability_start: 0.7
+  planner_probability_floor: 0.1
+qualification:
+  seeds: 5
+  bootstrap_resamples: 2000
+  confidence: 0.95
+hybrid_action:
+  continuous: [move_x, move_y]
+  discrete: [attack, interact]

@@ -1,0 +1,410 @@
+{
+  "config": "configs/v2_30_empirical_pivot.yaml",
+  "config_sha256": "c96ece5890a5e487835f4eac768ca444546ad203849ca8787ebc8811139c1648",
+  "executed": false,
+  "plan": {
+    "config_sha256": "c96ece5890a5e487835f4eac768ca444546ad203849ca8787ebc8811139c1648",
+    "expected_result_cells": 140,
+    "format": "awa-v2.30-ablation-campaign-plan-v1",
+    "protocol_sha256": "8e12c93d0e4c7f6029786b29d9d6029469cc73c1a541d9a392aaa7e501c8d370",
+    "training_job_count": 70,
+    "training_jobs": [
+      {
+        "milestone": 25000,
+        "seed": 1701,
+        "system": "actor_only"
+      },
+      {
+        "milestone": 100000,
+        "seed": 1701,
+        "system": "actor_only"
+      },
+      {
+        "milestone": 25000,
+        "seed": 1702,
+        "system": "actor_only"
+      },
+      {
+        "milestone": 100000,
+        "seed": 1702,
+        "system": "actor_only"
+      },
+      {
+        "milestone": 25000,
+        "seed": 1703,
+        "system": "actor_only"
+      },
+      {
+        "milestone": 100000,
+        "seed": 1703,
+        "system": "actor_only"
+      },
+      {
+        "milestone": 25000,
+        "seed": 1704,
+        "system": "actor_only"
+      },
+      {
+        "milestone": 100000,
+        "seed": 1704,
+        "system": "actor_only"
+      },
+      {
+        "milestone": 25000,
+        "seed": 1705,
+        "system": "actor_only"
+      },
+      {
+        "milestone": 100000,
+        "seed": 1705,
+        "system": "actor_only"
+      },
+      {
+        "milestone": 25000,
+        "seed": 1701,
+        "system": "belief_actor"
+      },
+      {
+        "milestone": 100000,
+        "seed": 1701,
+        "system": "belief_actor"
+      },
+      {
+        "milestone": 25000,
+        "seed": 1702,
+        "system": "belief_actor"
+      },
+      {
+        "milestone": 100000,
+        "seed": 1702,
+        "system": "belief_actor"
+      },
+      {
+        "milestone": 25000,
+        "seed": 1703,
+        "system": "belief_actor"
+      },
+      {
+        "milestone": 100000,
+        "seed": 1703,
+        "system": "belief_actor"
+      },
+      {
+        "milestone": 25000,
+        "seed": 1704,
+        "system": "belief_actor"
+      },
+      {
+        "milestone": 100000,
+        "seed": 1704,
+        "system": "belief_actor"
+      },
+      {
+        "milestone": 25000,
+        "seed": 1705,
+        "system": "belief_actor"
+      },
+      {
+        "milestone": 100000,
+        "seed": 1705,
+        "system": "belief_actor"
+      },
+      {
+        "milestone": 25000,
+        "seed": 1701,
+        "system": "world_actor"
+      },
+      {
+        "milestone": 100000,
+        "seed": 1701,
+        "system": "world_actor"
+      },
+      {
+        "milestone": 25000,
+        "seed": 1702,
+        "system": "world_actor"
+      },
+      {
+        "milestone": 100000,
+        "seed": 1702,
+        "system": "world_actor"
+      },
+      {
+        "milestone": 25000,
+        "seed": 1703,
+        "system": "world_actor"
+      },
+      {
+        "milestone": 100000,
+        "seed": 1703,
+        "system": "world_actor"
+      },
+      {
+        "milestone": 25000,
+        "seed": 1704,
+        "system": "world_actor"
+      },
+      {
+        "milestone": 100000,
+        "seed": 1704,
+        "system": "world_actor"
+      },
+      {
+        "milestone": 25000,
+        "seed": 1705,
+        "system": "world_actor"
+      },
+      {
+        "milestone": 100000,
+        "seed": 1705,
+        "system": "world_actor"
+      },
+      {
+        "milestone": 25000,
+        "seed": 1701,
+        "system": "world_planner"
+      },
+      {
+        "milestone": 100000,
+        "seed": 1701,
+        "system": "world_planner"
+      },
+      {
+        "milestone": 25000,
+        "seed": 1702,
+        "system": "world_planner"
+      },
+      {
+        "milestone": 100000,
+        "seed": 1702,
+        "system": "world_planner"
+      },
+      {
+        "milestone": 25000,
+        "seed": 1703,
+        "system": "world_planner"
+      },
+      {
+        "milestone": 100000,
+        "seed": 1703,
+        "system": "world_planner"
+      },
+      {
+        "milestone": 25000,
+        "seed": 1704,
+        "system": "world_planner"
+      },
+      {
+        "milestone": 100000,
+        "seed": 1704,
+        "system": "world_planner"
+      },
+      {
+        "milestone": 25000,
+        "seed": 1705,
+        "system": "world_planner"
+      },
+      {
+        "milestone": 100000,
+        "seed": 1705,
+        "system": "world_planner"
+      },
+      {
+        "milestone": 25000,
+        "seed": 1701,
+        "system": "adaptive_compute"
+      },
+      {
+        "milestone": 100000,
+        "seed": 1701,
+        "system": "adaptive_compute"
+      },
+      {
+        "milestone": 25000,
+        "seed": 1702,
+        "system": "adaptive_compute"
+      },
+      {
+        "milestone": 100000,
+        "seed": 1702,
+        "system": "adaptive_compute"
+      },
+      {
+        "milestone": 25000,
+        "seed": 1703,
+        "system": "adaptive_compute"
+      },
+      {
+        "milestone": 100000,
+        "seed": 1703,
+        "system": "adaptive_compute"
+      },
+      {
+        "milestone": 25000,
+        "seed": 1704,
+        "system": "adaptive_compute"
+      },
+      {
+        "milestone": 100000,
+        "seed": 1704,
+        "system": "adaptive_compute"
+      },
+      {
+        "milestone": 25000,
+        "seed": 1705,
+        "system": "adaptive_compute"
+      },
+      {
+        "milestone": 100000,
+        "seed": 1705,
+        "system": "adaptive_compute"
+      },
+      {
+        "milestone": 25000,
+        "seed": 1701,
+        "system": "reusable_replay"
+      },
+      {
+        "milestone": 100000,
+        "seed": 1701,
+        "system": "reusable_replay"
+      },
+      {
+        "milestone": 25000,
+        "seed": 1702,
+        "system": "reusable_replay"
+      },
+      {
+        "milestone": 100000,
+        "seed": 1702,
+        "system": "reusable_replay"
+      },
+      {
+        "milestone": 25000,
+        "seed": 1703,
+        "system": "reusable_replay"
+      },
+      {
+        "milestone": 100000,
+        "seed": 1703,
+        "system": "reusable_replay"
+      },
+      {
+        "milestone": 25000,
+        "seed": 1704,
+        "system": "reusable_replay"
+      },
+      {
+        "milestone": 100000,
+        "seed": 1704,
+        "system": "reusable_replay"
+      },
+      {
+        "milestone": 25000,
+        "seed": 1705,
+        "system": "reusable_replay"
+      },
+      {
+        "milestone": 100000,
+        "seed": 1705,
+        "system": "reusable_replay"
+      },
+      {
+        "milestone": 25000,
+        "seed": 1701,
+        "system": "full_curriculum"
+      },
+      {
+        "milestone": 100000,
+        "seed": 1701,
+        "system": "full_curriculum"
+      },
+      {
+        "milestone": 25000,
+        "seed": 1702,
+        "system": "full_curriculum"
+      },
+      {
+        "milestone": 100000,
+        "seed": 1702,
+        "system": "full_curriculum"
+      },
+      {
+        "milestone": 25000,
+        "seed": 1703,
+        "system": "full_curriculum"
+      },
+      {
+        "milestone": 100000,
+        "seed": 1703,
+        "system": "full_curriculum"
+      },
+      {
+        "milestone": 25000,
+        "seed": 1704,
+        "system": "full_curriculum"
+      },
+      {
+        "milestone": 100000,
+        "seed": 1704,
+        "system": "full_curriculum"
+      },
+      {
+        "milestone": 25000,
+        "seed": 1705,
+        "system": "full_curriculum"
+      },
+      {
+        "milestone": 100000,
+        "seed": 1705,
+        "system": "full_curriculum"
+      }
+    ]
+  },
+  "plan_sha256": "4bcdc41124afd3c07c9896fe0fc9255f7fea366a5a182f51bade73d20d4ccb4c",
+  "protocol": {
+    "milestones": [
+      25000,
+      100000
+    ],
+    "minimum_seeds": 5,
+    "primary_metric": "success_rate",
+    "protocol_id": "aether-v2.30-executable-component-ablation-v1",
+    "seeds": [
+      1701,
+      1702,
+      1703,
+      1704,
+      1705
+    ],
+    "splits": [
+      "heldout",
+      "transfer"
+    ],
+    "system_config_sha256": {
+      "actor_only": "3e58f79424f6530614d978e865200ecf0a043d7ca4a38ae85a3ac4de02abb203",
+      "adaptive_compute": "98c40049bc575e83e9492df1eddf92a5c557a40d17a8987ea4532acea608ba5d",
+      "belief_actor": "b7043abbccf2dd2711f98fbb95124d2709f196db34010699e090d949b8bd151d",
+      "full_curriculum": "af03c8a334f2d78739543b3988f441d514ce94c58aabfababf264a26562830d2",
+      "reusable_replay": "e1ea9982ed8e7e9e7d954aa2499302254ca2b44956e32f0a8d8df5b2b2746a55",
+      "world_actor": "cd6f8ce01fcdce7f049dd628cdc5a987d16a6e4f9962c2c46624f9f6674c1ba1",
+      "world_planner": "6c33fb024c21c902387bf66dc8a35dd7a9ca487c23f8c7e59ccf4d0ab0db8731"
+    },
+    "systems": [
+      "actor_only",
+      "belief_actor",
+      "world_actor",
+      "world_planner",
+      "adaptive_compute",
+      "reusable_replay",
+      "full_curriculum"
+    ],
+    "tasks": [
+      "procedural"
+    ]
+  },
+  "protocol_sha256": "8e12c93d0e4c7f6029786b29d9d6029469cc73c1a541d9a392aaa7e501c8d370",
+  "release": "2.30.0",
+  "result_cells": 140,
+  "training_jobs": 70
+}

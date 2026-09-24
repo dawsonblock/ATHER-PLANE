@@ -1,0 +1,55 @@
+version: 2.14.0
+seed: 214
+
+bridge:
+  protocol: aether.game.v1
+  host: 127.0.0.1
+  port: 8765
+  require_snapshot_for_counterfactual: true
+
+rollouts:
+  backend: process
+  workers: 4
+  policy_staleness_limit: 2
+  max_queue_episodes: 128
+
+telemetry:
+  enabled: true
+  flush_every_events: 1
+  metrics:
+    - samples_per_sec
+    - optimizer_updates_per_sec
+    - replay_transitions
+    - replay_age
+    - world_loss
+    - actor_loss
+    - gradient_norm
+    - planner_dependency
+    - planner_model_calls
+    - skill_use_rate
+    - uncertainty
+    - risk
+
+benchmark_tracks:
+  structured:
+    observation_dim: 32
+  pixel:
+    require_encoder_fingerprint: true
+    require_separate_report: true
+
+qualification:
+  milestones: [100000, 250000, 500000, 1000000]
+  seeds: [214, 215, 216, 217, 218]
+  bootstrap_resamples: 2000
+  confidence: 0.95
+
+ablations:
+  - full
+  - no_temporal
+  - no_planner
+  - no_skills
+  - no_ensemble
+  - no_priority
+  - no_counterfactual
+  - no_hindsight
+  - no_voc

@@ -1,0 +1,50 @@
+version: 2.1
+seed: 7
+representation:
+  provider: hf
+  model_name_or_path: local/path/to/vision-backbone
+  local_files_only: true
+  frozen: true
+  cache_frozen_features: true
+  cache_namespace: dataset_hash
+  latent_dim: 512
+  projection:
+    trainable: true
+    geometry_preservation: true
+world:
+  local_core: ssm_or_mamba
+  local_dim: 512
+  global_core: sparse_transformer
+  global_dim: 512
+  global_stride: 4
+  context_events: 2048
+  stochastic_components: 8
+  horizon_uncertainty: [1, 5, 10, 20, 50, 100]
+  experts:
+    enabled: false
+risk:
+  separate_from_uncertainty: true
+  constraints: [collision, forbidden_state, task_failure, force_limit]
+decision:
+  default: actor
+  value_of_computation: true
+  planners:
+    local: [mppi, icem]
+    differentiable: [gradient]
+    abstract: [beam]
+  compute_budgets: [0, 16, 64, 256]
+hierarchy:
+  skills_first_class: true
+  enforce_subgoal_reachability: true
+memory:
+  long_context_events: 8192
+  episodic_capacity: 1000000
+biology:
+  critical_path: false
+  require_matched_controls: true
+acceptance:
+  task_success_pct: 5
+  sample_efficiency_pct: 15
+  robustness_pct: 20
+  compute_reduction_pct: 20
+  max_critical_regression_pct: 3

@@ -1,0 +1,30 @@
+{
+  "format": "awa-v2.37-progressive-capability-protocol-v1",
+  "release": "2.37.0",
+  "agent_runtime_changed": false,
+  "ordered_capability_path": [
+    "cuda_vizdoom_preflight",
+    "structured_bringup_2k",
+    "structured_learning_10k",
+    "structured_control_25k",
+    "temporal_memory_value",
+    "world_model_reliable_horizon",
+    "grounded_planner_benefit",
+    "adaptive_compute_value",
+    "real_vjepa_pixel_5k",
+    "planner_physical_schedule",
+    "compositional_generalization",
+    "dream_rsi_five_seed",
+    "unseen_map_transfer",
+    "matched_external_baseline",
+    "scale_250k_plus"
+  ],
+  "key_invariants": {
+    "later_phase_cannot_bypass_failed_prerequisite": true,
+    "world_model_horizon_requires_heldout_error_and_calibration": true,
+    "planner_benefit_is_separate_from_model_reliability": true,
+    "real_pixel_gate_requires_non_injected_vjepa": true,
+    "250k_plus_scale_is_manual_and_evidence_gated": true
+  },
+  "empirical_boundary": "Protocol implementation is not empirical qualification. Shipped release contains no new real ViZDoom, V-JEPA, five-seed, transfer, baseline, or scale result."
+}

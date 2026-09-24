@@ -1,0 +1,28 @@
+version: 2.17.0
+purpose: empirical_closure
+seeds: [1701, 1702, 1703, 1704, 1705]
+milestones: [25000, 100000, 250000, 500000, 1000000]
+primary_metric: success_rate
+required_metrics:
+  - success_rate
+  - episode_return
+  - constraint_violations
+  - planner_calls_per_episode
+  - world_model_calls_per_episode
+  - inference_latency_ms
+  - wall_clock_seconds
+systems:
+  - full
+  - actor_only
+  - world_model_mppi
+  - no_skills
+  - no_counterfactual
+  - no_hindsight
+  - no_global_context
+  - no_vjepa
+  - no_voc
+splits: [validation, heldout, transfer]
+qualification:
+  minimum_seeds: 5
+  require_heldout_or_transfer: true
+  paired_seed_comparisons: true

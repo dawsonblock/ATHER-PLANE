@@ -1,0 +1,23 @@
+{
+  "format": "awa-v2.25-reduction-audit-v1",
+  "scope_note": "Import measurements are release-environment startup measurements, not training-memory claims. Transition counts describe canonical newly collected/trained milestone deltas, not evaluation episodes.",
+  "v2_24_reference": {
+    "candidate_policy_objects": 17,
+    "five_seed_transition_sum": 9375000,
+    "milestone_transition_sum_per_seed": 1875000,
+    "plain_import_elapsed_seconds_measured": 2.97,
+    "plain_import_maxrss_mb_measured": 255.3,
+    "tasks_per_batch": 8,
+    "unique_native_allocations": 3
+  },
+  "v2_25": {
+    "candidate_policy_objects": 9,
+    "cumulative_new_transitions_per_seed": 1000000,
+    "five_seed_new_transitions": 5000000,
+    "plain_import_elapsed_seconds_measured": 0.77,
+    "plain_import_maxrss_mb_measured": 90.0,
+    "tasks_per_batch": 24,
+    "transition_reduction_fraction": 0.4666666666666667,
+    "unique_native_allocations": 8
+  }
+}

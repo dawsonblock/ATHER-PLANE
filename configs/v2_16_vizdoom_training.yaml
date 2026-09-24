@@ -1,0 +1,88 @@
+# Aether v2.16 — ViZDoom Training Closure
+# The CLI is plan-only unless --execute is explicitly supplied.
+track: structured
+seed: 216
+runtime:
+  device: cpu
+  precision: fp32
+environment:
+  frame_skip: 4
+  max_episode_steps: 1200
+  visible: false
+  sound: false
+video:
+  model: facebook/vjepa2-vitl-fpc64-256
+  frames: 64
+  stride: 1
+  batch_size: 8
+replay:
+  shard_size: 50000
+promotion:
+  max_actor_success_regression: 0.15
+  max_planner_success_regression: 0.10
+stages:
+  - name: wiring-25k
+    scenario: basic
+    target_transitions: 25000
+    episodes_per_collection: 16
+    horizon: 300
+    sequence_length: 8
+    world_epochs: 2
+    actor_epochs: 4
+    calibration_epochs: 1
+    batch_size: 64
+    hidden: 96
+    eval_episodes: 6
+    planner_fraction: 0.0
+  - name: navigation-100k
+    scenario: my_way_home
+    target_transitions: 100000
+    episodes_per_collection: 24
+    horizon: 900
+    sequence_length: 12
+    world_epochs: 3
+    actor_epochs: 5
+    calibration_epochs: 2
+    batch_size: 64
+    hidden: 128
+    eval_episodes: 8
+    planner_fraction: 0.15
+  - name: control-250k
+    scenario: health_gathering
+    target_transitions: 250000
+    episodes_per_collection: 24
+    horizon: 1200
+    sequence_length: 16
+    world_epochs: 3
+    actor_epochs: 6
+    calibration_epochs: 2
+    batch_size: 64
+    hidden: 128
+    eval_episodes: 8
+    planner_fraction: 0.2
+  - name: tactics-500k
+    scenario: take_cover
+    target_transitions: 500000
+    episodes_per_collection: 24
+    horizon: 1200
+    sequence_length: 16
+    world_epochs: 4
+    actor_epochs: 6
+    calibration_epochs: 2
+    batch_size: 64
+    hidden: 160
+    eval_episodes: 10
+    planner_fraction: 0.25
+  - name: integration-1m
+    scenario: deadly_corridor
+    target_transitions: 1000000
+    episodes_per_collection: 32
+    horizon: 1500
+    sequence_length: 24
+    world_epochs: 4
+    actor_epochs: 8
+    calibration_epochs: 2
+    batch_size: 64
+    hidden: 192
+    eval_episodes: 12
+    planner_fraction: 0.3

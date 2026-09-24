@@ -1,0 +1,41 @@
+version: 2.10.0
+release: real_adaptation_qualification
+game:
+  observation_dim: 32
+  action_dim: 4
+  goal_dim: 13
+  horizon: 120
+  reveal_dynamics: false
+objectives:
+  explicit_programs: true
+  stage_is_policy_input: false
+  subgoal_aware_reward: true
+world_generation:
+  collision_safe_placement: true
+  reachability_validation: true
+belief:
+  observation_latent_dim: 32
+  local_gru_dim: 48
+  global_transformer_dim: 48
+  goal_latent_dim: 16
+  train_observation_reconstruction: true
+  train_goal_reconstruction: true
+world_model:
+  mixture_components: 3
+  terminal_value_training: true
+  terminal_value_gamma: 0.99
+learning:
+  structural_replay_weights_to_sgd: true
+  game_hindsight: true
+  exact_counterfactual_branches: true
+  one_step_auxiliary_training: true
+transfer:
+  modes: [zero_shot, in_context, learning]
+  categories: [seen, visual_ood, layout_ood, dynamics_ood, compositional_ood, task_ood]
+  real_prediction_error: true
+voc:
+  exact_game_snapshot_branches: true
+runtime:
+  hierarchy: [skill, actor, voc_planner]
+qualification:
+  multi_seed_required_for_capability_claims: true

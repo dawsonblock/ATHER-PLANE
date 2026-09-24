@@ -1,0 +1,65 @@
+release: "2.27.0"
+purpose: executable_component_ablation_and_rng_resume_closure
+
+research_boundary:
+  all_ablation_labels_require_real_runtimes: true
+  simulated_results_cannot_support_promotion: true
+  skills_engram_moe_not_credited_without_executable_path: true
+  full_curriculum_requires_adaptive_dataset_contract: true
+  replay_rows_must_be_grounded_in_observed_transitions: true
+  exact_resume_rng_state_is_checkpointed: true
+
+ablation:
+  systems:
+    - actor_only
+    - belief_actor
+    - world_actor
+    - world_planner
+    - adaptive_compute
+    - reusable_replay
+    - full_curriculum
+  seeds: [1701, 1702, 1703, 1704, 1705]
+  splits: [heldout, transfer]
+  milestones: [25000, 100000]
+  primary_metric: success_rate
+  minimum_seeds: 5
+
+runtime_defaults:
+  device: auto
+  hidden: 64
+  sequence_length: 5
+  world_epochs: 2
+  actor_epochs: 4
+  representation_epochs: 2
+  calibration_epochs: 2
+  batch_size: 64
+  horizon: 100
+  voc_epochs: 40
+
+variant_contracts:
+  actor_only:
+    representation: raw_observation_plus_goal
+    world_model: false
+    planner: false
+  belief_actor:
+    representation: temporal_belief_reconstruction
+    world_model: false
+    planner: false
+  world_actor:
+    representation: temporal_belief_world_model
+    planner: false
+  world_planner:
+    representation: temporal_belief_world_model
+    planner: fixed_policy_mppi
+  adaptive_compute:
+    representation: temporal_belief_world_model
+    planner: voc_selected_actor_mppi_icem
+  reusable_replay:
+    representation: temporal_belief_world_model
+    planner: voc_selected_actor_mppi_icem
+    grounded_hindsight_replay: true
+  full_curriculum:
+    representation: temporal_belief_world_model
+    planner: voc_selected_actor_mppi_icem
+    grounded_hindsight_replay: true
+    adaptive_curriculum: true
